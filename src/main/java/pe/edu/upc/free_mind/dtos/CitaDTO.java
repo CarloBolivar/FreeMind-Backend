@@ -13,4 +13,5 @@ public class CitaDTO {
     private int idPaciente;
     private int idPsicologo;
     private int idHorario;
+    private int idTerapia;
 }

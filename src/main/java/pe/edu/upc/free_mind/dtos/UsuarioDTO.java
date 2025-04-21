@@ -11,6 +11,7 @@ public class UsuarioDTO {
     private String nombre;
     private String apellido;
     private String correo;
+    private String contrasena;
     private String dni;
     private String especialidad;
     private String credencial;

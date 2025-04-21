@@ -31,6 +31,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
         u.setApellido(dto.getApellido());
         u.setCorreo(dto.getCorreo());
         u.setDni(dto.getDni());
+        u.setContrasena(dto.getContrasena());
         u.setEspecialidad(dto.getEspecialidad());
         u.setCredencial(dto.getCredencial());
         Rol r = rolRepository.findById(dto.getIdRol()).orElse(new Rol());
@@ -47,6 +48,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
             dto.setApellido(u.getApellido());
             dto.setCorreo(u.getCorreo());
             dto.setDni(u.getDni());
+            dto.setContrasena(u.getContrasena());
             dto.setEspecialidad(u.getEspecialidad());
             dto.setCredencial(u.getCredencial());
             dto.setIdRol(u.getRol().getIdRol());
@@ -68,6 +70,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
         u.setApellido(dto.getApellido());
         u.setCorreo(dto.getCorreo());
         u.setDni(dto.getDni());
+        u.setContrasena(dto.getContrasena());
         u.setEspecialidad(dto.getEspecialidad());
         u.setCredencial(dto.getCredencial());
 
@@ -82,6 +85,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
         result.setApellido(actualizado.getApellido());
         result.setCorreo(actualizado.getCorreo());
         result.setDni(actualizado.getDni());
+        result.setContrasena(actualizado.getContrasena());
         result.setEspecialidad(actualizado.getEspecialidad());
         result.setCredencial(actualizado.getCredencial());
         result.setIdRol(actualizado.getRol().getIdRol());

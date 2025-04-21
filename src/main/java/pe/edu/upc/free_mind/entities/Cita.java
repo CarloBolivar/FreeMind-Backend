@@ -31,4 +31,8 @@ public class Cita {
     @ManyToOne
     @JoinColumn(name = "idHorario")
     private Horario horario;
+
+    @ManyToOne
+    @JoinColumn(name = "idTerapia")
+    private Terapia terapia;
 }

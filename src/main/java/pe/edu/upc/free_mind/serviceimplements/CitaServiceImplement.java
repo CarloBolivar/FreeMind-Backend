@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.free_mind.dtos.CitaDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import pe.edu.upc.free_mind.entities.Horario;
+import pe.edu.upc.free_mind.entities.Terapia;
 import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.repositories.ICitaRepository;
 import pe.edu.upc.free_mind.repositories.IHorarioRepository;
+import pe.edu.upc.free_mind.repositories.ITerapiaRepository;
 import pe.edu.upc.free_mind.repositories.IUsuarioRepository;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
@@ -29,6 +31,9 @@ public class CitaServiceImplement implements ICitaService {
     @Autowired
     private IHorarioRepository horarioRepository;
 
+    @Autowired
+    private ITerapiaRepository terapiaRepository;
+
     @Override
     public void insert(CitaDTO dto) {
         Cita c = new Cita();
@@ -38,10 +43,11 @@ public class CitaServiceImplement implements ICitaService {
         Usuario paciente = usuarioRepository.findById(dto.getIdPaciente()).orElse(null);
         Usuario psicologo = usuarioRepository.findById(dto.getIdPsicologo()).orElse(null);
         Horario horario = horarioRepository.findById(dto.getIdHorario()).orElse(null);
-
+        Terapia terapia = terapiaRepository.findById(dto.getIdTerapia()).orElse(null);
         c.setPaciente(paciente);
         c.setPsicologo(psicologo);
         c.setHorario(horario);
+        c.setTerapia(terapia);
 
         citaRepository.save(c);
     }
@@ -56,6 +62,8 @@ public class CitaServiceImplement implements ICitaService {
             dto.setIdPaciente(c.getPaciente().getIdUsuario());
             dto.setIdPsicologo(c.getPsicologo().getIdUsuario());
             dto.setIdHorario(c.getHorario().getIdHorario());
+            dto.setIdTerapia(c.getTerapia().getIdTerapia());
+
             return dto;
         }).collect(Collectors.toList());
     }
@@ -76,10 +84,11 @@ public class CitaServiceImplement implements ICitaService {
         Usuario paciente = usuarioRepository.findById(dto.getIdPaciente()).orElse(null);
         Usuario psicologo = usuarioRepository.findById(dto.getIdPsicologo()).orElse(null);
         Horario horario = horarioRepository.findById(dto.getIdHorario()).orElse(null);
-
+        Terapia terapia = terapiaRepository.findById(dto.getIdTerapia()).orElse(null);
         c.setPaciente(paciente);
         c.setPsicologo(psicologo);
         c.setHorario(horario);
+        c.setTerapia(terapia);
 
         Cita actualizada = citaRepository.save(c);
 
@@ -90,7 +99,7 @@ public class CitaServiceImplement implements ICitaService {
         result.setIdPaciente(actualizada.getPaciente().getIdUsuario());
         result.setIdPsicologo(actualizada.getPsicologo().getIdUsuario());
         result.setIdHorario(actualizada.getHorario().getIdHorario());
-
+        result.setIdTerapia(actualizada.getTerapia().getIdTerapia());
         return result;
     }
 }
