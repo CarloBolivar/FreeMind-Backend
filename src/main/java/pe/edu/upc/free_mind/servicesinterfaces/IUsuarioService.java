@@ -11,4 +11,8 @@ public interface IUsuarioService {
     public Usuario listId(int id);
     public void update(Usuario usuario);
     public Usuario findByCorreo(String correo);
+
+    /*R*/
+    public List<String[]> amountByUsuario();
+    public List<String[]> comentByUsuario();
 }
