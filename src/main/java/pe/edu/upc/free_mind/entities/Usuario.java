@@ -43,6 +43,10 @@ public class Usuario {
     @Column(name = "credencial", length = 50)
     private String credencial;
 
+    @Column(name = "enabled")
+    private Boolean enabled = true;
+
+
     /** Rol que tiene el usuario dentro del sistema */
     @ManyToOne
     @JoinColumn(name = "idRol")

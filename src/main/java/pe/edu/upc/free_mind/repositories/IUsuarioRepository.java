@@ -11,4 +11,9 @@ import pe.edu.upc.free_mind.entities.Usuario;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     // Aquí se pueden definir consultas personalizadas si se requiere
+
+    Usuario findByCorreo(String correo);
 }
+
+
+

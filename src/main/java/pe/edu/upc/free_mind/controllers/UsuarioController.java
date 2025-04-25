@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
 import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -83,6 +85,14 @@ public class UsuarioController {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         usuarioService.update(u);
+    }
+
+    @GetMapping("/perfil")
+    public UsuarioDTO obtenerPerfil(@AuthenticationPrincipal UserDetails userDetails) {
+        String correo = userDetails.getUsername(); // viene desde el token JWT
+        Usuario usuario = usuarioService.findByCorreo(correo); // necesitas tener este metodo en tu servicio
+        ModelMapper m = new ModelMapper();
+        return m.map(usuario, UsuarioDTO.class);
     }
 }
 

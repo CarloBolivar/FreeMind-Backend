@@ -12,8 +12,12 @@ import java.util.List;
  * Implementación del servicio para la entidad Usuario.
  * Aplica la lógica de negocio y delega a la capa de persistencia.
  */
+
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
+
 
     /**
      * Repositorio para operaciones CRUD sobre Usuario.
@@ -71,5 +75,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void update(Usuario usuario) {
         uR.save(usuario);
     }
+    @Override
+    public Usuario findByCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo);
+    }
+
 }
+
 
