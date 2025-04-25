@@ -94,6 +94,39 @@ public class UsuarioController {
         ModelMapper m = new ModelMapper();
         return m.map(usuario, UsuarioDTO.class);
     }
+
+
+    
+    /*R*/
+    @GetMapping("/montos")
+    public List<SumaPagoDTO> sumaPago(){
+        List<SumaPagoDTO> dtoLista = new ArrayList<>();
+        List<String[]> fila = usuarioService.amountByUsuario();
+        for (String[] columna : fila) {
+            SumaPagoDTO dto = new SumaPagoDTO();
+            dto.setNombre(columna[0]);
+            dto.setAmountByUsuario(Double.parseDouble(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/comentarios")
+    public List<CantidadComentarioDTO> cantidadComentario(){
+        List<CantidadComentarioDTO> dtoLista = new ArrayList<>();
+        List<String[]> fila = usuarioService.comentByUsuario();
+        for (String[] columna : fila) {
+            CantidadComentarioDTO dto = new CantidadComentarioDTO();
+            dto.setNombre(columna[0]);
+            dto.setComentByUsuario(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+
+
+    
 }
 
 
