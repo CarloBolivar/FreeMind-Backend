@@ -80,6 +80,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return usuarioRepository.findByCorreo(correo);
     }
 
+    /*R*/
+    @Override
+    public List<String[]> amountByUsuario() { return uR.amountByUsuario(); }
+    @Override
+    public List<String[]> comentByUsuario() { return uR.comentByUsuario(); }
 }
 
 
