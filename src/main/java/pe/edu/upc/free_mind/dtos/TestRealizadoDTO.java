@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Test;
 import pe.edu.upc.free_mind.entities.Usuario;
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class TestRealizadoDTO {
     private LocalDateTime fechaRealizacion;
     private String resultado;
     private Usuario usuario;
+    private Test test;
 
     public int getIdTestRealizado() {
         return idTestRealizado;
@@ -44,4 +46,8 @@ public class TestRealizadoDTO {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public Test getTest() { return test; }
+
+    public void setTest(Test test) { this.test = test; }
 }

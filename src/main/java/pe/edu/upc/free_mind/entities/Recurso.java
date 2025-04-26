@@ -14,9 +14,9 @@ public class Recurso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecurso;
 
-    /** Título del recurso */
-    @Column(name = "titulo", nullable = false, length = 100)
-    private String titulo;
+    /** Típo del recurso */
+    @Column(name = "tipo", nullable = false, length = 60)
+    private String tipo;
 
     /** Descripción breve del recurso */
     @Column(name = "descripcion", length = 300)
@@ -26,6 +26,12 @@ public class Recurso {
     @Column(name = "enlace", nullable = false, length = 255)
     private String enlace;
 
+    /** Relación con Tabla Terapia */
+    @ManyToOne
+    @JoinColumn(name = "idTerapia")
+    private Terapia terapia;
+
+
     public int getIdRecurso() {
         return idRecurso;
     }
@@ -34,12 +40,12 @@ public class Recurso {
         this.idRecurso = idRecurso;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getDescripcion() {
@@ -57,4 +63,8 @@ public class Recurso {
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
+
+    public Terapia getTerapia() {return terapia;}
+
+    public void setTerapia(Terapia terapia) {this.terapia = terapia;}
 }

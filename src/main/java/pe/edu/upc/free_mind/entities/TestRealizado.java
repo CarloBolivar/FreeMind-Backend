@@ -10,23 +10,35 @@ import java.time.LocalDateTime;
 @Table(name = "test_realizado")
 public class TestRealizado {
 
-    /** Identificador único del test realizado */
+    /**
+     * Identificador único del test realizado
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTestRealizado;
 
-    /** Fecha y hora en que se completó el test */
+    /**
+     * Fecha y hora en que se completó el test
+     */
     @Column(name = "fechaRealizacion", nullable = false)
     private LocalDateTime fechaRealizacion;
 
-    /** Resultado del test */
+    /**
+     * Resultado del test
+     */
     @Column(name = "resultado", length = 300)
     private String resultado;
 
-    /** Usuario que realizó el test */
+    /**
+     * Usuario que realizó el test
+     */
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idTest")
+    private Test test;
 
     public int getIdTestRealizado() {
         return idTestRealizado;
@@ -59,4 +71,8 @@ public class TestRealizado {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public Test getTest() { return test;}
+
+    public void setTest(Test test) { this.test = test;}
 }

@@ -1,14 +1,18 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Terapia;
+
 /**
  * DTO para transferir información de recursos educativos.
  */
 public class RecursoDTO {
 
     private int idRecurso;
-    private String titulo;
+    private String tipo;
     private String descripcion;
     private String enlace;
+    private Terapia terapia;
+
 
     public int getIdRecurso() {
         return idRecurso;
@@ -18,12 +22,12 @@ public class RecursoDTO {
         this.idRecurso = idRecurso;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getDescripcion() {
@@ -41,4 +45,8 @@ public class RecursoDTO {
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
+
+    public Terapia getTerapia() {return terapia;}
+
+    public void setTerapia(Terapia terapia) {this.terapia = terapia;}
 }

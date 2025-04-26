@@ -22,6 +22,10 @@ public class PreguntaTest {
     @Column(name = "tipo", length = 50)
     private String tipo;
 
+    @ManyToOne
+    @JoinColumn(name="idTest")
+    private Test test;
+
     public int getIdPreguntaTest() {
         return idPreguntaTest;
     }
@@ -45,4 +49,8 @@ public class PreguntaTest {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public Test getTest() { return test; }
+
+    public void setTest(Test test) { this.test = test; }
 }

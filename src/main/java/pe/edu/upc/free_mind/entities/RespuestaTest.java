@@ -24,6 +24,11 @@ public class RespuestaTest {
     @Column(name = "nivel", length = 50)
     private String nivel;
 
+    /** Relación con Tabla PreguntaTest */
+    @ManyToOne
+    @JoinColumn(name= "idPreguntaTest")
+    private PreguntaTest preguntaTest;
+
     public int getIdRespuesta() {
         return idRespuesta;
     }
@@ -47,4 +52,8 @@ public class RespuestaTest {
     public void setNivel(String nivel) {
         this.nivel = nivel;
     }
+
+    public PreguntaTest getPreguntaTest() { return preguntaTest; }
+
+    public void setPreguntaTest(PreguntaTest preguntaTest) { this.preguntaTest = preguntaTest; }
 }

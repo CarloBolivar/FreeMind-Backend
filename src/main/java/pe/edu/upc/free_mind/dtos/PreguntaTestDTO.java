@@ -1,5 +1,7 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Test;
+
 /**
  * DTO para transferir datos de preguntas de test.
  */
@@ -8,6 +10,7 @@ public class PreguntaTestDTO {
     private int idPreguntaTest;
     private String contenido;
     private String tipo;
+    private Test test;
 
     public int getIdPreguntaTest() {
         return idPreguntaTest;
@@ -32,4 +35,8 @@ public class PreguntaTestDTO {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public Test getTest() { return test; }
+
+    public void setTest(Test test) { this.test = test; }
 }
