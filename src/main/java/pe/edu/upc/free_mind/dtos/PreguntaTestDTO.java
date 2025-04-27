@@ -1,42 +1,41 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Test;
-
 /**
- * DTO para transferir datos de preguntas de test.
+ * DTO para transferir datos de la entidad PreguntaTest.
  */
 public class PreguntaTestDTO {
 
-    private int idPreguntaTest;
-    private String contenido;
-    private String tipo;
-    private Test test;
+    /** Identificador único de la pregunta */
+    private int idPregunta;
 
-    public int getIdPreguntaTest() {
-        return idPreguntaTest;
+    /** Contenido de la pregunta */
+    private String pregunta;
+
+    /** Identificador del test asociado */
+    private int idTest;
+
+    // Getters y Setters
+    public int getIdPregunta() {
+        return idPregunta;
     }
 
-    public void setIdPreguntaTest(int idPreguntaTest) {
-        this.idPreguntaTest = idPreguntaTest;
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getPregunta() {
+        return pregunta;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getIdTest() {
+        return idTest;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setIdTest(int idTest) {
+        this.idTest = idTest;
     }
-
-    public Test getTest() { return test; }
-
-    public void setTest(Test test) { this.test = test; }
 }

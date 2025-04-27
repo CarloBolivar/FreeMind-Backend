@@ -1,19 +1,20 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Usuario;
-import java.time.LocalDate;
-
 /**
- * DTO para transferir información relacionada a las sesiones de terapia.
+ * DTO para transferir datos de la entidad Terapia.
  */
 public class TerapiaDTO {
 
+    /** Identificador único de la terapia */
     private int idTerapia;
-    private LocalDate fechaTerapia;
-    private String descripcion;
-    private Usuario psicologo;
-    private Usuario paciente;
 
+    /** Título o nombre de la terapia */
+    private String titulo;
+
+    /** Descripción detallada de la terapia */
+    private String descripcion;
+
+    // Getters y Setters
     public int getIdTerapia() {
         return idTerapia;
     }
@@ -22,12 +23,12 @@ public class TerapiaDTO {
         this.idTerapia = idTerapia;
     }
 
-    public LocalDate getFechaTerapia() {
-        return fechaTerapia;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setFechaTerapia(LocalDate fechaTerapia) {
-        this.fechaTerapia = fechaTerapia;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {
@@ -36,21 +37,5 @@ public class TerapiaDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Usuario getPsicologo() {
-        return psicologo;
-    }
-
-    public void setPsicologo(Usuario psicologo) {
-        this.psicologo = psicologo;
-    }
-
-    public Usuario getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Usuario paciente) {
-        this.paciente = paciente;
     }
 }

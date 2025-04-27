@@ -1,10 +1,9 @@
-
 package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
 /**
- * Entidad que representa la respuesta del test del usuario.
+ * Entidad que representa una respuesta de un usuario a una pregunta de un test.
  * Mapeada a la tabla "respuesta_test" en la base de datos.
  */
 @Entity
@@ -16,19 +15,21 @@ public class RespuestaTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRespuesta;
 
-    /** Puntaje obtenido por el usuario en el test */
-    @Column(name = "puntaje", nullable = false)
-    private int puntaje;
+    /** Contenido de la respuesta proporcionada */
+    @Column(name = "respuesta", nullable = false, columnDefinition = "TEXT")
+    private String respuesta;
 
-    /** Nivel de resultado interpretado a partir del puntaje */
-    @Column(name = "nivel", length = 50)
-    private String nivel;
-
-    /** Relación con Tabla PreguntaTest */
+    /** Relación hacia la pregunta del test */
     @ManyToOne
-    @JoinColumn(name= "idPreguntaTest")
+    @JoinColumn(name = "id_pregunta", nullable = false)
     private PreguntaTest preguntaTest;
 
+    /** Relación hacia el usuario que respondió */
+    @ManyToOne
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
+    private Usuario usuario;
+
+    // Getters y Setters
     public int getIdRespuesta() {
         return idRespuesta;
     }
@@ -37,23 +38,27 @@ public class RespuestaTest {
         this.idRespuesta = idRespuesta;
     }
 
-    public int getPuntaje() {
-        return puntaje;
+    public String getRespuesta() {
+        return respuesta;
     }
 
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
-    public String getNivel() {
-        return nivel;
+    public PreguntaTest getPreguntaTest() {
+        return preguntaTest;
     }
 
-    public void setNivel(String nivel) {
-        this.nivel = nivel;
+    public void setPreguntaTest(PreguntaTest preguntaTest) {
+        this.preguntaTest = preguntaTest;
     }
 
-    public PreguntaTest getPreguntaTest() { return preguntaTest; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    public void setPreguntaTest(PreguntaTest preguntaTest) { this.preguntaTest = preguntaTest; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

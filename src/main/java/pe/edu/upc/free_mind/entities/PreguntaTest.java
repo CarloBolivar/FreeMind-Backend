@@ -12,45 +12,40 @@ public class PreguntaTest {
     /** Identificador único de la pregunta */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPreguntaTest;
+    @Column(name = "id_pregunta")
+    private int idPregunta;
 
     /** Contenido de la pregunta */
-    @Column(name = "contenido", nullable = false, length = 500)
-    private String contenido;
+    @Column(name = "pregunta", nullable = false, columnDefinition = "text")
+    private String pregunta;
 
-    /** Tipo de pregunta (opcional, puede ser múltiple, escala, etc.) */
-    @Column(name = "tipo", length = 50)
-    private String tipo;
-
+    /** Test al que pertenece la pregunta */
     @ManyToOne
-    @JoinColumn(name="idTest")
+    @JoinColumn(name = "id_test", nullable = false)
     private Test test;
 
-    public int getIdPreguntaTest() {
-        return idPreguntaTest;
+    // Getters y Setters
+    public int getIdPregunta() {
+        return idPregunta;
     }
 
-    public void setIdPreguntaTest(int idPreguntaTest) {
-        this.idPreguntaTest = idPreguntaTest;
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getPregunta() {
+        return pregunta;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Test getTest() {
+        return test;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTest(Test test) {
+        this.test = test;
     }
-
-    public Test getTest() { return test; }
-
-    public void setTest(Test test) { this.test = test; }
 }

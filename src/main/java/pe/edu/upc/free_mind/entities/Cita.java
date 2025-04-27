@@ -2,11 +2,8 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 /**
- * Entidad que representa una cita agendada entre paciente y psicólogo.
+ * Entidad que representa una cita agendada entre un paciente y un psicólogo.
  */
 @Entity
 @Table(name = "cita")
@@ -17,27 +14,31 @@ public class Cita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCita;
 
-    /** Fecha programada para la cita */
-    @Column(name = "fecha", nullable = false)
-    private LocalDate fecha;
+    /** Estado de la cita (por ejemplo, programado, completado, cancelado) */
+    @Column(name = "estado", nullable = false)
+    private int estado;
 
-    /** Hora programada para la cita */
-    @Column(name = "hora", nullable = false)
-    private LocalTime hora;
-
-    /** Modalidad de la cita (presencial o virtual) */
-    @Column(name = "modalidad", length = 50)
-    private String modalidad;
-
-    /** Motivo o asunto principal de la cita */
-    @Column(name = "motivo", length = 200)
-    private String motivo;
-
-    /** Relación con el usuario (psicólogo o paciente) */
+    /** Relación con el horario asignado a la cita */
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    @JoinColumn(name = "id_horario", nullable = false)
+    private Horario horario;
 
+    /** Relación con el paciente (usuario que recibe la cita) */
+    @ManyToOne
+    @JoinColumn(name = "id_paciente", nullable = false)
+    private Usuario paciente;
+
+    /** Relación con el psicólogo (usuario que brinda la cita) */
+    @ManyToOne
+    @JoinColumn(name = "id_psicologo", nullable = false)
+    private Usuario psicologo;
+
+    /** Relación con la terapia asociada a la cita (opcional) */
+    @ManyToOne
+    @JoinColumn(name = "id_terapia")
+    private Terapia terapia;
+
+    // Getters y Setters
     public int getIdCita() {
         return idCita;
     }
@@ -46,43 +47,43 @@ public class Cita {
         this.idCita = idCita;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
-    public LocalTime getHora() {
-        return hora;
+    public Horario getHorario() {
+        return horario;
     }
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setHorario(Horario horario) {
+        this.horario = horario;
     }
 
-    public String getModalidad() {
-        return modalidad;
+    public Usuario getPaciente() {
+        return paciente;
     }
 
-    public void setModalidad(String modalidad) {
-        this.modalidad = modalidad;
+    public void setPaciente(Usuario paciente) {
+        this.paciente = paciente;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public Usuario getPsicologo() {
+        return psicologo;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setPsicologo(Usuario psicologo) {
+        this.psicologo = psicologo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Terapia getTerapia() {
+        return terapia;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTerapia(Terapia terapia) {
+        this.terapia = terapia;
     }
 }

@@ -1,11 +1,10 @@
 package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
- * Entidad que representa un comentario realizado por un usuario en relación a una cita, terapia u otro recurso.
+ * Entidad que representa un comentario realizado por un usuario.
  */
 @Entity
 @Table(name = "comentario")
@@ -14,21 +13,27 @@ public class Comentario {
     /** Identificador único del comentario */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_comentario")
     private int idComentario;
 
     /** Contenido del comentario */
-    @Column(name = "contenido", nullable = false, length = 500)
-    private String contenido;
+    @Column(name = "comentario", nullable = false, length = 2000)
+    private String comentario;
 
-    /** Fecha y hora en la que se hizo el comentario */
-    @Column(name = "fechaComentario", nullable = false)
-    private LocalDateTime fechaComentario;
+    /** Puntuación del comentario */
+    @Column(name = "puntuacion", nullable = false)
+    private int puntuacion;
 
-    /** Relación con el usuario que comenta */
+    /** Fecha en que se realizó el comentario */
+    @Column(name = "fecha", nullable = false)
+    private LocalDate fecha;
+
+    /** Usuario que realizó el comentario */
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
     private Usuario usuario;
 
+    // Getters y Setters
     public int getIdComentario() {
         return idComentario;
     }
@@ -37,20 +42,28 @@ public class Comentario {
         this.idComentario = idComentario;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
-    public LocalDateTime getFechaComentario() {
-        return fechaComentario;
+    public int getPuntuacion() {
+        return puntuacion;
     }
 
-    public void setFechaComentario(LocalDateTime fechaComentario) {
-        this.fechaComentario = fechaComentario;
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public Usuario getUsuario() {

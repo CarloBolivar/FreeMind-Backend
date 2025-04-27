@@ -1,7 +1,6 @@
 package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -21,19 +20,16 @@ public class Horario {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    /** Hora de inicio de disponibilidad */
-    @Column(name = "horaInicio", nullable = false)
-    private LocalTime horaInicio;
-
-    /** Hora de fin de disponibilidad */
-    @Column(name = "horaFin", nullable = false)
-    private LocalTime horaFin;
+    /** Hora disponible */
+    @Column(name = "hora", nullable = false)
+    private LocalTime hora;
 
     /** Usuario asociado (psicólogo) */
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
     private Usuario usuario;
 
+    // Getters y Setters
     public int getIdHorario() {
         return idHorario;
     }
@@ -50,20 +46,12 @@ public class Horario {
         this.fecha = fecha;
     }
 
-    public LocalTime getHoraInicio() {
-        return horaInicio;
+    public LocalTime getHora() {
+        return hora;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public LocalTime getHoraFin() {
-        return horaFin;
-    }
-
-    public void setHoraFin(LocalTime horaFin) {
-        this.horaFin = horaFin;
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
     public Usuario getUsuario() {

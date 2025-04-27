@@ -14,24 +14,20 @@ public class Recurso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecurso;
 
-    /** Típo del recurso */
-    @Column(name = "tipo", nullable = false, length = 60)
+    /** Tipo del recurso (por ejemplo: video, documento, enlace) */
+    @Column(name = "tipo", nullable = false, length = 20)
     private String tipo;
 
-    /** Descripción breve del recurso */
-    @Column(name = "descripcion", length = 300)
-    private String descripcion;
+    /** URL del recurso */
+    @Column(name = "url", nullable = false, length = 500)
+    private String url;
 
-    /** Enlace o ruta del recurso */
-    @Column(name = "enlace", nullable = false, length = 255)
-    private String enlace;
-
-    /** Relación con Tabla Terapia */
+    /** Relación con la entidad Terapia */
     @ManyToOne
-    @JoinColumn(name = "idTerapia")
+    @JoinColumn(name = "id_terapia", nullable = false)
     private Terapia terapia;
 
-
+    // Getters y Setters
     public int getIdRecurso() {
         return idRecurso;
     }
@@ -48,23 +44,19 @@ public class Recurso {
         this.tipo = tipo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getUrl() {
+        return url;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getEnlace() {
-        return enlace;
+    public Terapia getTerapia() {
+        return terapia;
     }
 
-    public void setEnlace(String enlace) {
-        this.enlace = enlace;
+    public void setTerapia(Terapia terapia) {
+        this.terapia = terapia;
     }
-
-    public Terapia getTerapia() {return terapia;}
-
-    public void setTerapia(Terapia terapia) {this.terapia = terapia;}
 }

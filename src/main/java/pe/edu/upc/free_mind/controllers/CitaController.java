@@ -75,4 +75,13 @@ public class CitaController {
         Cita c = m.map(dto, Cita.class);
         citaService.update(c);
     }
+
+    /**
+     * Obtiene la cantidad de citas atendidas por cada psicólogo
+     * @return Lista de objetos CantidadCitasPorPsicologoDTO
+     */
+    @GetMapping("/cantidad-citas-por-psicologo")
+    public List<String[]> obtenerCantidadCitasPorPsicologo() {
+        return citaService.obtenerCantidadCitasPorPsicologo();
+    }
 }

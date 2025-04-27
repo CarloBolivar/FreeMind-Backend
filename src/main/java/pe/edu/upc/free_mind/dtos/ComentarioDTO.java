@@ -1,19 +1,28 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Usuario;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * DTO para transferir datos relacionados a comentarios realizados por usuarios.
  */
 public class ComentarioDTO {
 
+    /** Identificador único del comentario */
     private int idComentario;
-    private String contenido;
-    private LocalDateTime fechaComentario;
-    private Usuario usuario;
 
+    /** Contenido del comentario */
+    private String comentario;
+
+    /** Puntuación asignada en el comentario */
+    private int puntuacion;
+
+    /** Fecha en la que se realizó el comentario */
+    private LocalDate fecha;
+
+    /** Identificador del usuario que realizó el comentario */
+    private int idUsuario;
+
+    // Getters y Setters
     public int getIdComentario() {
         return idComentario;
     }
@@ -22,27 +31,35 @@ public class ComentarioDTO {
         this.idComentario = idComentario;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
-    public LocalDateTime getFechaComentario() {
-        return fechaComentario;
+    public int getPuntuacion() {
+        return puntuacion;
     }
 
-    public void setFechaComentario(LocalDateTime fechaComentario) {
-        this.fechaComentario = fechaComentario;
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

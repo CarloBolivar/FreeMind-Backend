@@ -1,20 +1,28 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Test;
-import pe.edu.upc.free_mind.entities.Usuario;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * DTO para representar los datos de un test psicológico completado por un usuario.
  */
 public class TestRealizadoDTO {
 
+    /** Identificador único del test realizado */
     private int idTestRealizado;
-    private LocalDateTime fechaRealizacion;
-    private String resultado;
-    private Usuario usuario;
-    private Test test;
 
+    /** Fecha en la que se realizó el test */
+    private LocalDate fecha;
+
+    /** Resultado obtenido en el test */
+    private String resultado;
+
+    /** Identificador del usuario que realizó el test */
+    private int idUsuario;
+
+    /** Identificador del test que fue realizado */
+    private int idTest;
+
+    // Getters y Setters
     public int getIdTestRealizado() {
         return idTestRealizado;
     }
@@ -23,12 +31,12 @@ public class TestRealizadoDTO {
         this.idTestRealizado = idTestRealizado;
     }
 
-    public LocalDateTime getFechaRealizacion() {
-        return fechaRealizacion;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setFechaRealizacion(LocalDateTime fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public String getResultado() {
@@ -39,15 +47,19 @@ public class TestRealizadoDTO {
         this.resultado = resultado;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Test getTest() { return test; }
+    public int getIdTest() {
+        return idTest;
+    }
 
-    public void setTest(Test test) { this.test = test; }
+    public void setIdTest(int idTest) {
+        this.idTest = idTest;
+    }
 }

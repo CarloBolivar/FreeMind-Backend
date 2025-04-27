@@ -14,14 +14,15 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTest;
 
-    /** Nombre o título del test */
-    @Column(name = "nombre", nullable = false, length = 100)
-    private String nombre;
+    /** Título del test */
+    @Column(name = "titulo", nullable = false, length = 100)
+    private String titulo;
 
     /** Descripción general del test */
-    @Column(name = "descripcion", length = 300)
+    @Column(name = "descripcion")
     private String descripcion;
 
+    // Getters y Setters
     public int getIdTest() {
         return idTest;
     }
@@ -30,12 +31,12 @@ public class Test {
         this.idTest = idTest;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {

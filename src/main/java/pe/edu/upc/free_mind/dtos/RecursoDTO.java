@@ -1,19 +1,23 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Terapia;
-
 /**
- * DTO para transferir información de recursos educativos.
+ * DTO para transferir información de los recursos.
  */
 public class RecursoDTO {
 
+    /** Identificador único del recurso */
     private int idRecurso;
+
+    /** Tipo de recurso (por ejemplo, video, documento, enlace) */
     private String tipo;
-    private String descripcion;
-    private String enlace;
-    private Terapia terapia;
 
+    /** URL del recurso */
+    private String url;
 
+    /** Identificador de la terapia asociada al recurso */
+    private int idTerapia;
+
+    // Getters y Setters
     public int getIdRecurso() {
         return idRecurso;
     }
@@ -30,23 +34,19 @@ public class RecursoDTO {
         this.tipo = tipo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getUrl() {
+        return url;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getEnlace() {
-        return enlace;
+    public int getIdTerapia() {
+        return idTerapia;
     }
 
-    public void setEnlace(String enlace) {
-        this.enlace = enlace;
+    public void setIdTerapia(int idTerapia) {
+        this.idTerapia = idTerapia;
     }
-
-    public Terapia getTerapia() {return terapia;}
-
-    public void setTerapia(Terapia terapia) {this.terapia = terapia;}
 }

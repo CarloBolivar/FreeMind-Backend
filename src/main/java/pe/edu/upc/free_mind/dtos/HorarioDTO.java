@@ -1,20 +1,26 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Usuario;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * DTO para transferir datos del horario disponible de un usuario.
+ * DTO para transferir datos de la entidad Horario.
  */
 public class HorarioDTO {
 
+    /** Identificador único del horario */
     private int idHorario;
-    private LocalDate fecha;
-    private LocalTime horaInicio;
-    private LocalTime horaFin;
-    private Usuario usuario;
 
+    /** Fecha disponible para el horario */
+    private LocalDate fecha;
+
+    /** Hora disponible para el horario */
+    private LocalTime hora;
+
+    /** Identificador del usuario (psicólogo) asociado al horario */
+    private int idUsuario;
+
+    // Getters y Setters
     public int getIdHorario() {
         return idHorario;
     }
@@ -31,27 +37,19 @@ public class HorarioDTO {
         this.fecha = fecha;
     }
 
-    public LocalTime getHoraInicio() {
-        return horaInicio;
+    public LocalTime getHora() {
+        return hora;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
-    public LocalTime getHoraFin() {
-        return horaFin;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setHoraFin(LocalTime horaFin) {
-        this.horaFin = horaFin;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -1,23 +1,30 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.Usuario;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 /**
  * DTO para transferir datos de la entidad Cita.
  * Utilizado en la capa de presentación.
  */
 public class CitaDTO {
 
+    /** Identificador único de la cita */
     private int idCita;
-    private LocalDate fecha;
-    private LocalTime hora;
-    private String modalidad;
-    private String motivo;
-    private Usuario usuario;
 
+    /** Identificador del horario asociado a la cita */
+    private int idHorario;
+
+    /** Estado actual de la cita (por ejemplo, programado, completado, cancelado) */
+    private int estado;
+
+    /** Identificador del paciente asociado a la cita */
+    private int idPaciente;
+
+    /** Identificador del psicólogo asociado a la cita */
+    private int idPsicologo;
+
+    /** Identificador de la terapia asociada a la cita (puede ser nulo) */
+    private Integer idTerapia;
+
+    // Getters y Setters
     public int getIdCita() {
         return idCita;
     }
@@ -26,43 +33,43 @@ public class CitaDTO {
         this.idCita = idCita;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public int getIdHorario() {
+        return idHorario;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setIdHorario(int idHorario) {
+        this.idHorario = idHorario;
     }
 
-    public LocalTime getHora() {
-        return hora;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
-    public String getModalidad() {
-        return modalidad;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setModalidad(String modalidad) {
-        this.modalidad = modalidad;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public int getIdPsicologo() {
+        return idPsicologo;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setIdPsicologo(int idPsicologo) {
+        this.idPsicologo = idPsicologo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Integer getIdTerapia() {
+        return idTerapia;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdTerapia(Integer idTerapia) {
+        this.idTerapia = idTerapia;
     }
 }

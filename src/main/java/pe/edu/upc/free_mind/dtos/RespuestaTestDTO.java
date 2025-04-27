@@ -1,18 +1,23 @@
 package pe.edu.upc.free_mind.dtos;
 
-import pe.edu.upc.free_mind.entities.PreguntaTest;
-
 /**
- * DTO para la entidad RespuestaTest.
- * Se utiliza para transferencia de datos del resultado de test.
+ * DTO para transferir datos de la entidad RespuestaTest.
  */
 public class RespuestaTestDTO {
 
+    /** Identificador único de la respuesta */
     private int idRespuesta;
-    private int puntaje;
-    private String nivel;
-    private PreguntaTest preguntaTest;
 
+    /** Contenido de la respuesta proporcionada */
+    private String respuesta;
+
+    /** Identificador de la pregunta asociada */
+    private int idPregunta;
+
+    /** Identificador del usuario que respondió */
+    private int idUsuario;
+
+    // Getters y Setters
     public int getIdRespuesta() {
         return idRespuesta;
     }
@@ -21,23 +26,27 @@ public class RespuestaTestDTO {
         this.idRespuesta = idRespuesta;
     }
 
-    public int getPuntaje() {
-        return puntaje;
+    public String getRespuesta() {
+        return respuesta;
     }
 
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
-    public String getNivel() {
-        return nivel;
+    public int getIdPregunta() {
+        return idPregunta;
     }
 
-    public void setNivel(String nivel) {
-        this.nivel = nivel;
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
-    public PreguntaTest getPreguntaTest() { return preguntaTest;}
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
-    public void setPreguntaTest(PreguntaTest preguntaTest) { this.preguntaTest = preguntaTest; }
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 }

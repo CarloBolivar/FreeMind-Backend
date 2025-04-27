@@ -1,10 +1,9 @@
 package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 /**
- * Entidad que representa una terapia programada o realizada por un psicólogo a un paciente.
+ * Entidad que representa un tipo de terapia disponible en el sistema.
  */
 @Entity
 @Table(name = "terapia")
@@ -15,24 +14,15 @@ public class Terapia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTerapia;
 
-    /** Fecha de la sesión de terapia */
-    @Column(name = "fechaTerapia", nullable = false)
-    private LocalDate fechaTerapia;
+    /** Título o nombre de la terapia */
+    @Column(name = "titulo", nullable = false, length = 100)
+    private String titulo;
 
-    /** Descripción de lo tratado o planificado en la terapia */
-    @Column(name = "descripcion", length = 300)
+    /** Descripción detallada de la terapia (opcional) */
+    @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String descripcion;
 
-    /** Usuario psicólogo que realiza la terapia */
-    @ManyToOne
-    @JoinColumn(name = "idPsicologo")
-    private Usuario psicologo;
-
-    /** Usuario paciente que recibe la terapia */
-    @ManyToOne
-    @JoinColumn(name = "idPaciente")
-    private Usuario paciente;
-
+    // Getters y Setters
     public int getIdTerapia() {
         return idTerapia;
     }
@@ -41,12 +31,12 @@ public class Terapia {
         this.idTerapia = idTerapia;
     }
 
-    public LocalDate getFechaTerapia() {
-        return fechaTerapia;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setFechaTerapia(LocalDate fechaTerapia) {
-        this.fechaTerapia = fechaTerapia;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {
@@ -55,21 +45,5 @@ public class Terapia {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Usuario getPsicologo() {
-        return psicologo;
-    }
-
-    public void setPsicologo(Usuario psicologo) {
-        this.psicologo = psicologo;
-    }
-
-    public Usuario getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Usuario paciente) {
-        this.paciente = paciente;
     }
 }

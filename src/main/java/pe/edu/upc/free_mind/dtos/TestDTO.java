@@ -5,10 +5,16 @@ package pe.edu.upc.free_mind.dtos;
  */
 public class TestDTO {
 
+    /** Identificador único del test */
     private int idTest;
-    private String nombre;
+
+    /** Título del test */
+    private String titulo;
+
+    /** Descripción del test */
     private String descripcion;
 
+    // Getters y Setters
     public int getIdTest() {
         return idTest;
     }
@@ -17,12 +23,12 @@ public class TestDTO {
         this.idTest = idTest;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {

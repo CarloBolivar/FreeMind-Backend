@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
+import pe.edu.upc.free_mind.dtos.CantidadCitasPorPsicologoDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import java.util.List;
 
@@ -39,4 +40,9 @@ public interface ICitaService {
      * @param cita Objeto Cita actualizado
      */
     public void update(Cita cita);
+
+    /**
+     * Obtiene la cantidad de citas atendidas por cada psicólogo.
+   */
+    public List<String[]> obtenerCantidadCitasPorPsicologo();
 }

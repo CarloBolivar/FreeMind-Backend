@@ -6,6 +6,7 @@ import pe.edu.upc.free_mind.entities.Cita;
 import pe.edu.upc.free_mind.repositories.ICitaRepository;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
+
 import java.util.List;
 
 /**
@@ -62,5 +63,14 @@ public class CitaServiceImplement implements ICitaService {
     @Override
     public void update(Cita cita) {
         cR.save(cita);
+    }
+
+    /**
+     * Obtiene la cantidad de citas atendidas por cada psicólogo.
+     * @return Lista de objetos CantidadCitasPorPsicologoDTO con los datos
+     */
+    @Override
+    public List<String[]> obtenerCantidadCitasPorPsicologo() {
+        return cR.obtenerCantidadCitasPorPsicologo();
     }
 }

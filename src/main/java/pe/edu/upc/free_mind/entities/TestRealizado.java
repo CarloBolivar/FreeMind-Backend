@@ -1,7 +1,7 @@
 package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * Entidad que representa un test psicológico que ha sido respondido por un usuario.
@@ -10,36 +10,30 @@ import java.time.LocalDateTime;
 @Table(name = "test_realizado")
 public class TestRealizado {
 
-    /**
-     * Identificador único del test realizado
-     */
+    /** Identificador único del test realizado */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTestRealizado;
 
-    /**
-     * Fecha y hora en que se completó el test
-     */
-    @Column(name = "fechaRealizacion", nullable = false)
-    private LocalDateTime fechaRealizacion;
+    /** Fecha en la que se completó el test */
+    @Column(name = "fecha", nullable = false) // Se llama fecha, no fechaRealizacion
+    private LocalDate fecha;
 
-    /**
-     * Resultado del test
-     */
-    @Column(name = "resultado", length = 300)
+    /** Resultado del test */
+    @Column(name = "resultado", columnDefinition = "text") // No poner length, usar definición text
     private String resultado;
 
-    /**
-     * Usuario que realizó el test
-     */
+    /** Usuario que realizó el test */
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "id_usuario") // Nombre exacto en BD: id_usuario
     private Usuario usuario;
 
+    /** Test que fue realizado */
     @ManyToOne
-    @JoinColumn(name = "idTest")
+    @JoinColumn(name = "id_test") // Nombre exacto en BD: id_test
     private Test test;
 
+    // Getters y Setters
     public int getIdTestRealizado() {
         return idTestRealizado;
     }
@@ -48,12 +42,12 @@ public class TestRealizado {
         this.idTestRealizado = idTestRealizado;
     }
 
-    public LocalDateTime getFechaRealizacion() {
-        return fechaRealizacion;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setFechaRealizacion(LocalDateTime fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public String getResultado() {
@@ -72,7 +66,11 @@ public class TestRealizado {
         this.usuario = usuario;
     }
 
-    public Test getTest() { return test;}
+    public Test getTest() {
+        return test;
+    }
 
-    public void setTest(Test test) { this.test = test;}
+    public void setTest(Test test) {
+        this.test = test;
+    }
 }

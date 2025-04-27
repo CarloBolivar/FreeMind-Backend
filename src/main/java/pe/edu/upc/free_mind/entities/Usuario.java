@@ -16,19 +16,19 @@ public class Usuario {
     private int idUsuario;
 
     /** Nombre del usuario */
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
     /** Apellido del usuario */
-    @Column(name = "apellido", nullable = false, length = 100)
+    @Column(name = "apellido", nullable = false, length = 50)
     private String apellido;
 
     /** Correo electrónico del usuario */
-    @Column(name = "correo", nullable = false, length = 150)
+    @Column(name = "correo", nullable = false, length = 50)
     private String correo;
 
     /** Contraseña cifrada del usuario */
-    @Column(name = "contrasena", nullable = false, length = 100)
+    @Column(name = "contrasena", nullable = false, length = 50)
     private String contrasena;
 
     /** Documento Nacional de Identidad */
@@ -40,23 +40,15 @@ public class Usuario {
     private String especialidad;
 
     /** Número o código de credencial profesional */
-    @Column(name = "credencial", length = 50)
+    @Column(name = "credencial", length = 20)
     private String credencial;
-
-    @Column(name = "enabled")
-    private Boolean enabled = true;
-
 
     /** Rol que tiene el usuario dentro del sistema */
     @ManyToOne
-    @JoinColumn(name = "idRol")
+    @JoinColumn(name = "id_rol")
     private Rol rol;
 
-    /** Resultado del test asociado al usuario */
-    @ManyToOne
-    @JoinColumn(name = "idRespuesta")
-    private RespuestaTest respuestaTest;
-
+    // Getters y Setters
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -127,13 +119,5 @@ public class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
-    }
-
-    public RespuestaTest getRespuestaTest() {
-        return respuestaTest;
-    }
-
-    public void setRespuestaTest(RespuestaTest respuestaTest) {
-        this.respuestaTest = respuestaTest;
     }
 }
