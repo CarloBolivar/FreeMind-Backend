@@ -73,4 +73,10 @@ public class CitaServiceImplement implements ICitaService {
     public List<String[]> obtenerCantidadCitasPorPsicologo() {
         return cR.obtenerCantidadCitasPorPsicologo();
     }
+
+    /*D*/
+    @Override
+    public List<String[]> QuantityCitaByTerapia() {
+        return cR.QuantityCitaByTerapia();
+    }
 }

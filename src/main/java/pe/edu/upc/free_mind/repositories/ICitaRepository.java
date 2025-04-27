@@ -22,4 +22,17 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
             "GROUP BY u.nombre " +
             "ORDER BY cantidadCitas DESC", nativeQuery = true)
     List<String[]> obtenerCantidadCitasPorPsicologo();
+
+    /*Deyci*/
+    @Query(value="select\n" +
+            "    t.nombre as name_terapia,\n" +
+            "    COUNT(c.id_cita) as quantity_citas\n" +
+            "from cita c\n" +
+            "inner join terapia t\n " +
+            "on c.id_terapia = t.id_terapia\n" +
+            "group by t.nombre\n" +
+            "order by quantity_citas desc\n ",nativeQuery=true)
+    public List<String[]> QuantityCitaByTerapia();
+
+
 }

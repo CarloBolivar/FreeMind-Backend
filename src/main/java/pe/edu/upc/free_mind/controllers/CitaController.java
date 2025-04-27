@@ -3,10 +3,12 @@ package pe.edu.upc.free_mind.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.free_mind.dtos.CantidadCitasPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.CitaDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,4 +86,20 @@ public class CitaController {
     public List<String[]> obtenerCantidadCitasPorPsicologo() {
         return citaService.obtenerCantidadCitasPorPsicologo();
     }
+
+    @GetMapping("/cantidadCitasxTerapia")
+    public List<CantidadCitasPorTerapiaDTO> listCantidadCitasByTerapia() {
+        List<CantidadCitasPorTerapiaDTO> dtoLista=new ArrayList<>();
+        List<String[]> fila=citaService.QuantityCitaByTerapia();
+        for(String[] columna:fila) {
+            CantidadCitasPorTerapiaDTO dto=new CantidadCitasPorTerapiaDTO();
+            dto.setNameTerapia(columna[0]);
+            dto.setQuantityCitas(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+
+
 }
