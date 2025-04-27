@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
+import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
 import pe.edu.upc.free_mind.entities.Terapia;
 import java.util.List;
 
@@ -8,11 +9,14 @@ import java.util.List;
  * Encapsula la lógica de negocio relacionada a las terapias.
  */
 public interface ITerapiaService {
-
     /**
      * Lista todas las terapias registradas.
      * @return Lista de objetos Terapia
      */
+    
+ List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia();
+
+    
     public List<Terapia> list();
 
     /**
