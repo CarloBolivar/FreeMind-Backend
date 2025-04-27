@@ -39,4 +39,10 @@ public interface IPagoService {
      * @param pago Objeto con los nuevos datos
      */
     public void update(Pago pago);
+
+    /**
+     * Obtiene la suma total de pagos realizados por mes.
+     * @return Lista de String[] con los datos
+     */
+    public List<String[]> obtenerSumaPagosPorMes();
 }

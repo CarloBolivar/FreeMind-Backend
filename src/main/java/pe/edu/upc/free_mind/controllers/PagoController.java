@@ -75,4 +75,14 @@ public class PagoController {
         Pago p = m.map(dto, Pago.class);
         pagoService.update(p);
     }
+
+    /**
+     * Obtiene la suma de pagos realizados por mes.
+     * @return Lista de String[] con los datos
+     */
+    @GetMapping("/suma-pagos-por-mes")
+    public List<String[]> obtenerSumaPagosPorMes() {
+        return pagoService.obtenerSumaPagosPorMes();
+    }
+
 }
