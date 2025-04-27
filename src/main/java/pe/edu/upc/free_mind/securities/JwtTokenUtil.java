@@ -55,6 +55,7 @@ public class JwtTokenUtil implements Serializable {
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
 
+        //trayendo todos los usuarios de la base de datos a memoria y luego filtrando.
         Usuario usuario = usuarioRepository.findAll().stream()
                 .filter(u -> u.getCorreo().equals(userDetails.getUsername()))
                 .findFirst()

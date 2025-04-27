@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.repositories.IUsuarioRepository;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Servicio que implementa UserDetailsService para autenticación JWT.
+ */
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
@@ -18,23 +22,22 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findAll()
-                .stream()
-                .filter(u -> u.getCorreo().equals(correo))
-                .findFirst()
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        if (usuario == null) {
+            throw new UsernameNotFoundException(String.format("Usuario no existe: %s", correo));
+        }
 
-        GrantedAuthority authority = new SimpleGrantedAuthority(usuario.getRol().getNombre());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(usuario.getRol().getNombre())); //  rol en Usuario
+
         return new User(
                 usuario.getCorreo(),
                 usuario.getContrasena(),
-                true,  // enabled
+                usuario.getEnabled(), // campo enabled
                 true,  // accountNonExpired
                 true,  // credentialsNonExpired
                 true,  // accountNonLocked
-                Collections.singleton(authority)
+                authorities
         );
-
-        //return new User(usuario.getCorreo(), usuario.getContrasena(), Collections.singleton(authority));
     }
 }

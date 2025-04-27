@@ -120,4 +120,19 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    /** Estado del usuario (habilitado o no) */
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+    /** Getter para enabled */
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    /** Setter para enabled */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
 }
