@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.TerapiaDTO;
 import pe.edu.upc.free_mind.entities.Terapia;
+import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
 import pe.edu.upc.free_mind.servicesinterfaces.ITerapiaService;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public class TerapiaController {
         }).collect(Collectors.toList());
     }
 
+     @GetMapping("/monto-por-tipo")
+     public List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia() {
+     return tS.listarMontosPorTipoTerapia();
+    }
+
+
+
+    
     /**
      * Inserta una nueva terapia
      * @param dto DTO recibido del cliente
