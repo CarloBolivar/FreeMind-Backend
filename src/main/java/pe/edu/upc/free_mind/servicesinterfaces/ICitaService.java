@@ -1,6 +1,5 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
-import pe.edu.upc.free_mind.dtos.CantidadCitasPorPsicologoDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import java.util.List;
 
@@ -48,6 +47,6 @@ public interface ICitaService {
 
     /*Deyci*/
     public List<String[]> QuantityCitaByTerapia();
-
+    public List<String[]> totalIngresosPorPsicologo();
 
 }

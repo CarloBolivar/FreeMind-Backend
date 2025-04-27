@@ -79,4 +79,11 @@ public class CitaServiceImplement implements ICitaService {
     public List<String[]> QuantityCitaByTerapia() {
         return cR.QuantityCitaByTerapia();
     }
+
+    @Override
+    public List<String[]> totalIngresosPorPsicologo() {
+        return cR.TotalIngresosPsicologo();
+    }
+
+
 }

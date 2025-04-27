@@ -25,14 +25,22 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
 
     /*Deyci*/
     @Query(value="select\n" +
-            "    t.nombre as name_terapia,\n" +
+            "    t.titulo as name_terapia,\n" +
             "    COUNT(c.id_cita) as quantity_citas\n" +
             "from cita c\n" +
             "inner join terapia t\n " +
             "on c.id_terapia = t.id_terapia\n" +
-            "group by t.nombre\n" +
+            "group by t.titulo\n" +
             "order by quantity_citas desc\n ",nativeQuery=true)
     public List<String[]> QuantityCitaByTerapia();
 
+   @Query(value ="SELECT u.nombre, u.apellido, SUM(p.monto) AS total_ingresos\n" +
+           "FROM usuario u\n" +
+           "JOIN cita c ON u.id_usuario = c.id_psicologo\n" +
+           "JOIN pago p ON c.id_cita = p.id_cita\n" +
+           "GROUP BY u.id_usuario, u.nombre, u.apellido\n" +
+           "ORDER BY total_ingresos DESC;", nativeQuery = true)
+
+   public List<String[]> TotalIngresosPsicologo();
 
 }

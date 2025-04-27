@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadCitasPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.CitaDTO;
+import pe.edu.upc.free_mind.dtos.TotalIngresosPorPsicologoDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
@@ -95,6 +96,20 @@ public class CitaController {
             CantidadCitasPorTerapiaDTO dto=new CantidadCitasPorTerapiaDTO();
             dto.setNameTerapia(columna[0]);
             dto.setQuantityCitas(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/totalIngresosPsicologos")
+    public List<TotalIngresosPorPsicologoDTO> listTotalIngresosPorPsicologo() {
+        List<TotalIngresosPorPsicologoDTO> dtoLista=new ArrayList<>();
+        List<String[]> fila=citaService.totalIngresosPorPsicologo();
+        for(String[] columna:fila) {
+            TotalIngresosPorPsicologoDTO dto=new TotalIngresosPorPsicologoDTO();
+            dto.setNombre(columna[0]);
+            dto.setApellido(columna[1]);
+            dto.setTotalIngresos(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }
         return dtoLista;
