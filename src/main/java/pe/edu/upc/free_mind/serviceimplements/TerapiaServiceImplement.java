@@ -1,6 +1,7 @@
 package pe.edu.upc.free_mind.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.free_mind.entities.Terapia;
 import pe.edu.upc.free_mind.repositories.ITerapiaRepository;
@@ -14,8 +15,10 @@ import java.util.List;
 @Service
 public class TerapiaServiceImplement implements ITerapiaService {
 
+
     /** Repositorio para acceso a la base de datos de Terapia */
     @Autowired
+    
     private ITerapiaRepository tR;
 
     /**
@@ -63,4 +66,13 @@ public class TerapiaServiceImplement implements ITerapiaService {
     public void update(Terapia terapia) {
         tR.save(terapia);
     }
+
+    /**
+    *Lista monto por tipo de terapia
+    */
+    @Override
+    public List<MontoPorTipoDeTerapiaDTO> listarMontosPorTipoTerapia() {
+        return tR.obtenerMontoTotalPorTipoTerapia();
+    }
+
 }
