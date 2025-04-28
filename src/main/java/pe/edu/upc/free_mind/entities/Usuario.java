@@ -28,7 +28,7 @@ public class Usuario {
     private String correo;
 
     /** Contraseña cifrada del usuario */
-    @Column(name = "contrasena", nullable = false, length = 50)
+    @Column(name = "contrasena", nullable = false, length = 200)
     private String contrasena;
 
     /** Documento Nacional de Identidad */

@@ -18,7 +18,7 @@ import java.util.List;
 public interface ITerapiaRepository extends JpaRepository<Terapia, Integer> {
     // Métodos personalizados pueden agregarse aquí si se requieren
     
-    @Query("""
+    /*@Query("""
         SELECT new pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO(
             t.tipo, SUM(p.monto)
         )
@@ -26,5 +26,5 @@ public interface ITerapiaRepository extends JpaRepository<Terapia, Integer> {
         JOIN p.terapia t
         GROUP BY t.tipo
     """)
-    List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia();
+    List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia();*/
 }

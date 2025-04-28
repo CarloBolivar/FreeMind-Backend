@@ -14,7 +14,7 @@ public interface ITerapiaService {
      * @return Lista de objetos Terapia
      */
     
- List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia();
+ //List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia();
 
     
     public List<Terapia> list();

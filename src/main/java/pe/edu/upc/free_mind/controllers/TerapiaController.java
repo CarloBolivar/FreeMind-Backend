@@ -34,10 +34,10 @@ public class TerapiaController {
         }).collect(Collectors.toList());
     }
 
-     @GetMapping("/monto-por-tipo")
-     public List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia() {
-     return tS.listarMontosPorTipoTerapia();
-    }
+     //@GetMapping("/monto-por-tipo")
+     //public List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia() {
+     //return tS.listarMontosPorTipoTerapia();
+    //}
 
 
 
