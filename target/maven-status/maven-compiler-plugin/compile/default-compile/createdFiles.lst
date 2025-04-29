@@ -13,6 +13,7 @@ pe\edu\upc\free_mind\repositories\IUsuarioRepository.class
 pe\edu\upc\free_mind\controllers\RolController.class
 pe\edu\upc\free_mind\controllers\ComentarioController.class
 pe\edu\upc\free_mind\entities\Rol.class
+pe\edu\upc\free_mind\controllers\HomeController.class
 pe\edu\upc\free_mind\dtos\HorarioDTO.class
 pe\edu\upc\free_mind\dtos\PreguntaTestDTO.class
 pe\edu\upc\free_mind\repositories\ITerapiaRepository.class
