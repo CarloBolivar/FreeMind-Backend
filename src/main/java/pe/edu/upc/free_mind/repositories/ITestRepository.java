@@ -15,7 +15,7 @@ public interface ITestRepository extends JpaRepository<Test, Integer> {
 
     /*Erick*/
     //Obtiene la cantidad de tests completados por mes
-    @Query(value = "SELECT EXTRACT(MONTH FROM fecha_realizacion) AS mes, COUNT(id_test) AS cantidadTests " +
+    @Query(value = "SELECT EXTRACT(MONTH FROM fecha) AS mes, COUNT(id_test) AS cantidadTests " +
             "FROM test " +
             "WHERE estado = 'Completado' " +
             "GROUP BY mes " +
