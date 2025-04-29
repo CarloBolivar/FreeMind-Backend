@@ -61,6 +61,7 @@ public class WebSecurityConfig {
     //Cadena de filtros de seguridad para proteger las rutas de la API usando JWT
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        /**
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
@@ -73,6 +74,12 @@ public class WebSecurityConfig {
                 .sessionManagement(Customizer.withDefaults());
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+         */
+        httpSecurity
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                );
         return httpSecurity.build();
     }
 }
