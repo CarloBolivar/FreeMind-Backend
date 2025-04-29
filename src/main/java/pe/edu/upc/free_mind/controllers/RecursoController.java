@@ -3,6 +3,7 @@ package pe.edu.upc.free_mind.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.free_mind.dtos.CantidadRecursosPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.RecursoDTO;
 import pe.edu.upc.free_mind.entities.Recurso;
 import pe.edu.upc.free_mind.servicesinterfaces.IRecursoService;
@@ -57,4 +58,10 @@ public class RecursoController {
         Recurso r = m.map(dto, Recurso.class);
         recursoService.update(r);
     }
+
+    @GetMapping("/cantidad-recursos-por-terapia")
+    public List<CantidadRecursosPorTerapiaDTO> cantidadRecursosPorTerapia() {
+        return recursoService.cantidadRecursosPorTerapia();
+    }
+
 }

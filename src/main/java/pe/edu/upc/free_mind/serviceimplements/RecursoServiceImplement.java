@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.free_mind.dtos.CantidadRecursosPorTerapiaDTO;
 import pe.edu.upc.free_mind.entities.Recurso;
 import pe.edu.upc.free_mind.repositories.IRecursoRepository;
 import pe.edu.upc.free_mind.servicesinterfaces.IRecursoService;
@@ -45,4 +46,10 @@ public class RecursoServiceImplement implements IRecursoService {
     public void update(Recurso recurso) {
         rR.save(recurso);
     }
+
+    @Override
+    public List<CantidadRecursosPorTerapiaDTO> cantidadRecursosPorTerapia() {
+        return rR.obtenerCantidadRecursosPorTerapia();
+    }
+
 }

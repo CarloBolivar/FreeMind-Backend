@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
+import pe.edu.upc.free_mind.dtos.CantidadRecursosPorTerapiaDTO;
 import pe.edu.upc.free_mind.entities.Recurso;
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface IRecursoService {
 
     //Actualiza un recurso existente
     public void update(Recurso recurso);
+    List<CantidadRecursosPorTerapiaDTO> cantidadRecursosPorTerapia();
+
 }
