@@ -3,6 +3,7 @@ package pe.edu.upc.free_mind.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.free_mind.dtos.CantidadComentariosPorUsuarioDTO;
 import pe.edu.upc.free_mind.dtos.ComentarioDTO;
 import pe.edu.upc.free_mind.entities.Comentario;
 import pe.edu.upc.free_mind.servicesinterfaces.IComentarioService;
@@ -57,4 +58,10 @@ public class ComentarioController {
         Comentario c = m.map(dto, Comentario.class);
         comentarioService.update(c);
     }
+
+    @GetMapping("/cantidad-comentarios-por-usuario")
+    public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
+        return comentarioService.cantidadComentariosPorUsuario();
+    }
+
 }

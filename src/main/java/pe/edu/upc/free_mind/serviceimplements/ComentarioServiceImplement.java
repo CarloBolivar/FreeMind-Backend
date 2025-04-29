@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.free_mind.dtos.CantidadComentariosPorUsuarioDTO;
 import pe.edu.upc.free_mind.entities.Comentario;
 import pe.edu.upc.free_mind.repositories.IComentarioRepository;
 import pe.edu.upc.free_mind.servicesinterfaces.IComentarioService;
@@ -44,5 +45,10 @@ public class ComentarioServiceImplement implements IComentarioService {
     @Override
     public void update(Comentario comentario) {
         cR.save(comentario);
+    }
+
+    @Override
+    public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
+        return cR.obtenerCantidadComentariosPorUsuario();
     }
 }

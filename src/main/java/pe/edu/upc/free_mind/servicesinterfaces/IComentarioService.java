@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
+import pe.edu.upc.free_mind.dtos.CantidadComentariosPorUsuarioDTO;
 import pe.edu.upc.free_mind.entities.Comentario;
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface IComentarioService {
 
     //Actualiza un comentario existente.
     public void update(Comentario comentario);
+
+    List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario();
+
 }
