@@ -9,70 +9,41 @@ import pe.edu.upc.free_mind.servicesinterfaces.ITerapiaService;
 
 import java.util.List;
 
-/**
- * Implementación de ITerapiaService. Gestiona operaciones sobre la entidad Terapia.
- */
+//Implementación del servicio para la entidad Terapia
 @Service
 public class TerapiaServiceImplement implements ITerapiaService {
 
-
-    /** Repositorio para acceso a la base de datos de Terapia */
+    //Repositorio para operaciones CRUD sobre Terapia
     @Autowired
-    
     private ITerapiaRepository tR;
 
-    /**
-     * Inserta una nueva terapia
-     * @param terapia Objeto Terapia a guardar
-     */
+    //Inserta una nueva terapia en la base de datos
     @Override
     public void insert(Terapia terapia) {
         tR.save(terapia);
     }
 
-    /**
-     * Lista todas las terapias
-     * @return Lista de Terapia
-     */
+    //Lista todas las terapias registradas
     @Override
     public List<Terapia> list() {
         return tR.findAll();
     }
 
-    /**
-     * Elimina una terapia por ID
-     * @param id Identificador de la terapia
-     */
+    //Elimina una terapia según su ID
     @Override
     public void delete(int id) {
         tR.deleteById(id);
     }
 
-    /**
-     * Busca una terapia por su ID
-     * @param id ID buscado
-     * @return Terapia encontrada o una nueva si no existe
-     */
+    //Obtiene una terapia por su ID
     @Override
     public Terapia listId(int id) {
         return tR.findById(id).orElse(new Terapia());
     }
 
-    /**
-     * Actualiza una terapia existente
-     * @param terapia Objeto con datos modificados
-     */
+    //Actualiza los datos de una terapia existente
     @Override
     public void update(Terapia terapia) {
         tR.save(terapia);
     }
-
-    /**
-    *Lista monto por tipo de terapia
-    */
-    //@Override
-    //public List<MontoPorTipoDeTerapiaDTO> listarMontosPorTipoTerapia() {
-    //    return tR.obtenerMontoTotalPorTipoTerapia();
-    //}
-
 }

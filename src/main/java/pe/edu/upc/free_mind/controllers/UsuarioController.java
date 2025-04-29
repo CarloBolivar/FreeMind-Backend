@@ -15,26 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la gestión de usuarios.
- * Utiliza ModelMapper para la conversión entre entidades y DTOs.
- */
+//Controlador REST para la gestión de usuarios
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    /**
-     * Servicio de lógica de negocio para la entidad Usuario.
-     */
+    //Servicio de lógica de negocio para la entidad Usuario
     @Autowired
     private IUsuarioService usuarioService;
 
-    /**
-     * Lista todos los usuarios existentes.
-     * Crea una instancia de ModelMapper dentro del método
-     *
-     * @return Lista de UsuarioDTO
-     */
+    //Lista todos los usuarios existentes
     @GetMapping
     public List<UsuarioDTO> listar() {
         return usuarioService.list().stream().map(x -> {
@@ -43,11 +33,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Registra un nuevo usuario.
-     *
-     * @param dto UsuarioDTO con los datos a registrar
-     */
+    //Registra un nuevo usuario
     @PostMapping
     public void registrar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -55,22 +41,13 @@ public class UsuarioController {
         usuarioService.insert(u);
     }
 
-    /**
-     * Elimina un usuario por su ID.
-     *
-     * @param id Identificador del usuario a eliminar
-     */
+    //Elimina un usuario por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         usuarioService.delete(id);
     }
 
-    /**
-     * Obtiene un usuario por su ID.
-     *
-     * @param id Identificador del usuario a consultar
-     * @return UsuarioDTO del usuario encontrado
-     */
+    //Obtiene un usuario por su ID
     @GetMapping("/{id}")
     public UsuarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Usuario u = usuarioService.listId(id);
@@ -78,11 +55,7 @@ public class UsuarioController {
         return m.map(u, UsuarioDTO.class);
     }
 
-    /**
-     * Modifica un usuario existente.
-     *
-     * @param dto UsuarioDTO con los datos actualizados
-     */
+    //Modifica un usuario existente
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -90,22 +63,22 @@ public class UsuarioController {
         usuarioService.update(u);
     }
 
+    //Obtiene el perfil del usuario autenticado
     @GetMapping("/perfil")
     public UsuarioDTO obtenerPerfil(@AuthenticationPrincipal UserDetails userDetails) {
-        String correo = userDetails.getUsername(); // viene desde el token JWT
-        Usuario usuario = usuarioService.findByCorreo(correo); // necesitas tener este metodo en tu servicio
+        String correo = userDetails.getUsername();
+        Usuario usuario = usuarioService.findByCorreo(correo);
         ModelMapper m = new ModelMapper();
         return m.map(usuario, UsuarioDTO.class);
     }
 
+    //Reportes
 
-
-    /**
-     * Reportes
-     */
     /*Renzo*/
+
+    //Obtiene el monto total pagado por usuario
     @GetMapping("/montos")
-    public List<SumaPagoDTO> sumaPago(){
+    public List<SumaPagoDTO> sumaPago() {
         List<SumaPagoDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = usuarioService.amountByUsuario();
         for (String[] columna : fila) {
@@ -117,8 +90,9 @@ public class UsuarioController {
         return dtoLista;
     }
 
+    //Obtiene la cantidad de comentarios realizados por usuario
     @GetMapping("/comentarios")
-    public List<CantidadComentarioDTO> cantidadComentario(){
+    public List<CantidadComentarioDTO> cantidadComentario() {
         List<CantidadComentarioDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = usuarioService.comentByUsuario();
         for (String[] columna : fila) {
@@ -129,10 +103,4 @@ public class UsuarioController {
         }
         return dtoLista;
     }
-
-
-
-    
 }
-
-

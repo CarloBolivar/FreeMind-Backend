@@ -1,20 +1,18 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para transferir datos de la entidad PreguntaTest.
- */
+//DTO para transferir datos de la entidad PreguntaTest
 public class PreguntaTestDTO {
 
-    /** Identificador único de la pregunta */
+    //Identificador único de la pregunta
     private int idPregunta;
 
-    /** Contenido de la pregunta */
+    //Contenido de la pregunta
     private String pregunta;
 
-    /** Identificador del test asociado */
+    //Identificador del test asociado
     private int idTest;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdPregunta() {
         return idPregunta;
     }

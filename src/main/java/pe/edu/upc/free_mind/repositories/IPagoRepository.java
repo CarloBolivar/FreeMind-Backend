@@ -7,19 +7,14 @@ import pe.edu.upc.free_mind.entities.Pago;
 
 import java.util.List;
 
-/**
- * Repositorio JPA para la entidad Pago.
- * Permite operaciones CRUD básicas sobre la tabla pago.
- */
+//Repositorio para operaciones CRUD sobre Pago
 @Repository
 public interface IPagoRepository extends JpaRepository<Pago, Integer> {
-    // Métodos personalizados pueden agregarse aquí si se requieren
 
-    /**
-     * Reportes
-     */
+    //Reportes
+
     /*Carlo*/
-    //la suma de pagos por mes
+    //Obtiene la suma de pagos agrupados por mes
     @Query(value = "SELECT EXTRACT(MONTH FROM h.fecha) AS mes, SUM(p.monto) AS montoTotal " +
             "FROM pago p " +
             "INNER JOIN cita c ON p.id_cita = c.id_cita " +
@@ -27,4 +22,14 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
             "GROUP BY mes " +
             "ORDER BY mes", nativeQuery = true)
     List<String[]> obtenerSumaPagosPorMes();
+
+    /*Erick*/
+    //Obtiene el monto total generado por tipo de terapia
+    @Query(value = "SELECT t.titulo AS tipoTerapia, SUM(p.monto) AS montoTotal " +
+            "FROM pago p " +
+            "INNER JOIN cita c ON p.id_cita = c.id_cita " +
+            "INNER JOIN terapia t ON c.id_terapia = t.id_terapia " +
+            "GROUP BY t.titulo " +
+            "ORDER BY montoTotal DESC", nativeQuery = true)
+    public List<String[]> obtenerMontoPorTipoDeTerapia();
 }

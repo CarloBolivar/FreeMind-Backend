@@ -21,9 +21,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
-/**
- * Clase de configuración de seguridad para FreeMind basada en demo3155API.
- */
+//Configuración de seguridad para FreeMind basada en demo3155API
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -42,51 +40,30 @@ public class WebSecurityConfig {
     @Qualifier("handlerExceptionResolver")
     private HandlerExceptionResolver exceptionResolver;
 
-    /**
-     * Bean para codificar contraseñas usando BCrypt.
-     * Igual que en la demo3155API.
-     * @return PasswordEncoder basado en BCrypt.
-     */
+    //Bean para codificar contraseñas usando BCrypt
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * Configura AuthenticationManagerBuilder usando UserDetailsService y PasswordEncoder.
-     * @param auth AuthenticationManagerBuilder
-     * @throws Exception en caso de error de configuración
-     */
+    //Configura AuthenticationManagerBuilder usando UserDetailsService y PasswordEncoder
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
-    /**
-     * Bean de AuthenticationManager necesario para login manual.
-     * @param authenticationConfiguration configuración automática de Spring
-     * @return AuthenticationManager
-     * @throws Exception en caso de error
-     */
+    //Bean de AuthenticationManager necesario para login manual
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    /**
-     * Cadena de filtros de seguridad para proteger las rutas de la API usando JWT.
-     * @param httpSecurity configuración de HttpSecurity
-     * @return SecurityFilterChain configurado
-     * @throws Exception en caso de error
-     */
+    //Cadena de filtros de seguridad para proteger las rutas de la API usando JWT
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        /** req -> req
-                        .requestMatchers(antMatcher("/login")).permitAll()
-                        .anyRequest().authenticated()  */
                         .requestMatchers(antMatcher("/login")).permitAll()
                         .anyRequest().permitAll()
                 )

@@ -2,27 +2,25 @@ package pe.edu.upc.free_mind.dtos;
 
 import java.time.LocalDate;
 
-/**
- * DTO para transferir datos relacionados a comentarios realizados por usuarios.
- */
+//DTO para transferir datos relacionados a comentarios realizados por usuarios
 public class ComentarioDTO {
 
-    /** Identificador único del comentario */
+    //Identificador único del comentario
     private int idComentario;
 
-    /** Contenido del comentario */
+    //Contenido del comentario
     private String comentario;
 
-    /** Puntuación asignada en el comentario */
+    //Puntuación asignada en el comentario
     private int puntuacion;
 
-    /** Fecha en la que se realizó el comentario */
+    //Fecha en la que se realizó el comentario
     private LocalDate fecha;
 
-    /** Identificador del usuario que realizó el comentario */
+    //Identificador del usuario que realizó el comentario
     private int idUsuario;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdComentario() {
         return idComentario;
     }

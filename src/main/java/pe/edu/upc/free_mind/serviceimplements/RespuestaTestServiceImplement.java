@@ -8,58 +8,39 @@ import pe.edu.upc.free_mind.servicesinterfaces.IRespuestaTestService;
 
 import java.util.List;
 
-/**
- * Implementación de la interfaz IRespuestaTestService.
- * Gestiona las operaciones sobre resultados de test realizados por usuarios.
- */
+//Implementación del servicio para la entidad RespuestaTest
 @Service
 public class RespuestaTestServiceImplement implements IRespuestaTestService {
 
-    /** Repositorio para acceder a la base de datos de respuestas */
+    //Repositorio para operaciones CRUD sobre RespuestaTest
     @Autowired
     private IRespuestaTestRepository rR;
 
-    /**
-     * Inserta una nueva respuesta de test
-     * @param respuestaTest Objeto a guardar
-     */
+    //Inserta una nueva respuesta de test
     @Override
     public void insert(RespuestaTest respuestaTest) {
         rR.save(respuestaTest);
     }
 
-    /**
-     * Lista todas las respuestas de test
-     * @return Lista de objetos RespuestaTest
-     */
+    //Lista todas las respuestas de test registradas
     @Override
     public List<RespuestaTest> list() {
         return rR.findAll();
     }
 
-    /**
-     * Elimina una respuesta por su ID
-     * @param id Identificador a eliminar
-     */
+    //Elimina una respuesta de test según su ID
     @Override
     public void delete(int id) {
         rR.deleteById(id);
     }
 
-    /**
-     * Obtiene una respuesta específica por su ID
-     * @param id Identificador buscado
-     * @return Objeto RespuestaTest correspondiente o uno vacío si no existe
-     */
+    //Obtiene una respuesta de test por su ID
     @Override
     public RespuestaTest listId(int id) {
         return rR.findById(id).orElse(new RespuestaTest());
     }
 
-    /**
-     * Actualiza una respuesta existente
-     * @param respuestaTest Objeto con los datos nuevos
-     */
+    //Actualiza una respuesta de test existente
     @Override
     public void update(RespuestaTest respuestaTest) {
         rR.save(respuestaTest);

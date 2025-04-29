@@ -1,10 +1,18 @@
 package pe.edu.upc.free_mind.dtos;
 
+//DTO para representar el total de ingresos por psicólogo
 public class TotalIngresosPorPsicologoDTO {
-    String nombre;
-    String apellido;
-    int totalIngresos;
 
+    //Nombre del psicólogo
+    private String nombre;
+
+    //Apellido del psicólogo
+    private String apellido;
+
+    //Total de ingresos generados
+    private int totalIngresos;
+
+    //Getters y Setters
     public String getNombre() {
         return nombre;
     }

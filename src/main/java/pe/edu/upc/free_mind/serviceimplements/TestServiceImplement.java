@@ -8,59 +8,46 @@ import pe.edu.upc.free_mind.servicesinterfaces.ITestService;
 
 import java.util.List;
 
-/**
- * Implementación de ITestService. Gestiona operaciones sobre la entidad Test.
- */
+//Implementación de ITestService. Gestiona operaciones sobre la entidad Test
 @Service
 public class TestServiceImplement implements ITestService {
 
-    /** Inyección del repositorio de Test */
+    // Repositorio para operaciones CRUD sobre los tests
     @Autowired
     private ITestRepository tR;
 
-    /**
-     * Inserta un nuevo test en la base de datos.
-     * @param test Objeto Test a guardar
-     */
+    // Inserta un nuevo test en la base de datos
     @Override
     public void insert(Test test) {
         tR.save(test);
     }
 
-    /**
-     * Retorna todos los test registrados.
-     * @return Lista de objetos Test
-     */
+    //Retorna todos los test registrados
     @Override
     public List<Test> list() {
         return tR.findAll();
     }
 
-    /**
-     * Elimina un test por ID
-     * @param id Identificador del test
-     */
+    //Elimina un test por ID
     @Override
     public void delete(int id) {
         tR.deleteById(id);
     }
 
-    /**
-     * Retorna un test por ID
-     * @param id Identificador buscado
-     * @return Objeto Test o uno nuevo si no existe
-     */
+    //Retorna un test por ID
     @Override
     public Test listId(int id) {
         return tR.findById(id).orElse(new Test());
     }
 
-    /**
-     * Actualiza un test existente
-     * @param test Objeto con datos actualizados
-     */
+    // Actualiza un test existente
     @Override
     public void update(Test test) {
         tR.save(test);
+    }
+
+    @Override
+    public List<String[]> cantidadTestsPorMes() {
+        return tR.cantidadTestsPorMes();
     }
 }

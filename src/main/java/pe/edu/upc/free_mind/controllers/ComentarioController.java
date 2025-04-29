@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.IComentarioService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad Comentario.
- * Expone endpoints para operaciones CRUD relacionadas a comentarios.
- */
+//Controlador REST para gestionar operaciones sobre comentarios
 @RestController
 @RequestMapping("/comentarios")
 public class ComentarioController {
 
+    //Servicio para operaciones sobre Comentario
     @Autowired
     private IComentarioService comentarioService;
 
-    /**
-     * Lista todos los comentarios
-     * @return Lista de ComentarioDTO
-     */
+    //Lista todos los comentarios
     @GetMapping
     public List<ComentarioDTO> listar() {
         return comentarioService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class ComentarioController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Registra un nuevo comentario
-     * @param dto DTO recibido del cliente
-     */
+    //Registra un nuevo comentario
     @PostMapping
     public void insertar(@RequestBody ComentarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class ComentarioController {
         comentarioService.insert(c);
     }
 
-    /**
-     * Elimina un comentario por su ID
-     * @param id ID del comentario
-     */
+    //Elimina un comentario por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         comentarioService.delete(id);
     }
 
-    /**
-     * Obtiene un comentario por ID
-     * @param id ID buscado
-     * @return ComentarioDTO correspondiente
-     */
+    //Obtiene un comentario por su ID
     @GetMapping("/{id}")
     public ComentarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Comentario c = comentarioService.listId(id);
@@ -65,10 +50,7 @@ public class ComentarioController {
         return m.map(c, ComentarioDTO.class);
     }
 
-    /**
-     * Modifica un comentario existente
-     * @param dto DTO con los datos actualizados
-     */
+    //Modifica un comentario existente
     @PutMapping
     public void modificar(@RequestBody ComentarioDTO dto) {
         ModelMapper m = new ModelMapper();

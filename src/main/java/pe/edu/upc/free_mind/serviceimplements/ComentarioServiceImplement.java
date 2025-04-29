@@ -8,57 +8,39 @@ import pe.edu.upc.free_mind.servicesinterfaces.IComentarioService;
 
 import java.util.List;
 
-/**
- * Implementación de IComentarioService. Gestiona operaciones sobre la entidad Comentario.
- */
+//Implementación del servicio para la entidad Comentario
 @Service
 public class ComentarioServiceImplement implements IComentarioService {
 
-    /** Repositorio para acceso a la base de datos de Comentario */
+    //Repositorio para operaciones CRUD sobre Comentario
     @Autowired
     private IComentarioRepository cR;
 
-    /**
-     * Inserta un nuevo comentario
-     * @param comentario Objeto Comentario a guardar
-     */
+    //Inserta un nuevo comentario en la base de datos
     @Override
     public void insert(Comentario comentario) {
         cR.save(comentario);
     }
 
-    /**
-     * Lista todos los comentarios
-     * @return Lista de Comentario
-     */
+    //Lista todos los comentarios registrados
     @Override
     public List<Comentario> list() {
         return cR.findAll();
     }
 
-    /**
-     * Elimina un comentario por ID
-     * @param id Identificador del comentario
-     */
+    //Elimina un comentario según su ID
     @Override
     public void delete(int id) {
         cR.deleteById(id);
     }
 
-    /**
-     * Busca un comentario por su ID
-     * @param id ID buscado
-     * @return Comentario encontrado o uno nuevo si no existe
-     */
+    //Obtiene un comentario por su ID
     @Override
     public Comentario listId(int id) {
         return cR.findById(id).orElse(new Comentario());
     }
 
-    /**
-     * Actualiza un comentario existente
-     * @param comentario Objeto con datos modificados
-     */
+    //Actualiza un comentario existente
     @Override
     public void update(Comentario comentario) {
         cR.save(comentario);

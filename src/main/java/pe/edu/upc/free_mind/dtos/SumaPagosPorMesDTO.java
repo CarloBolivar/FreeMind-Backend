@@ -1,17 +1,15 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para representar la suma total de pagos realizados por mes.
- */
+//DTO para representar la suma total de pagos realizados por mes
 public class SumaPagosPorMesDTO {
 
-    /** Mes del pago */
+    //Mes del pago
     private int mes;
 
-    /** Monto total pagado en el mes */
+    //Monto total pagado en el mes
     private Double montoTotal;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getMes() {
         return mes;
     }

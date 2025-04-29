@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.IRolService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador para la gestión de roles.
- * Expone endpoints REST y realiza mapeo entre entidades y DTOs.
- */
+//Controlador REST para la gestión de roles
 @RestController
 @RequestMapping("/roles")
 public class RolController {
 
+    //Servicio para operaciones sobre Rol
     @Autowired
     private IRolService rolService;
 
-    /**
-     * Lista todos los roles registrados.
-     * @return Lista de RolDTO
-     */
+    //Lista todos los roles registrados
     @GetMapping
     public List<RolDTO> listar() {
         return rolService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class RolController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Inserta un nuevo rol en la base de datos.
-     * @param dto Objeto RolDTO recibido desde el cliente
-     */
+    //Inserta un nuevo rol en la base de datos
     @PostMapping
     public void insertar(@RequestBody RolDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class RolController {
         rolService.insert(r);
     }
 
-    /**
-     * Elimina un rol por ID
-     * @param id ID del rol a eliminar
-     */
+    //Elimina un rol por ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         rolService.delete(id);
     }
 
-    /**
-     * Obtiene un rol por su ID
-     * @param id ID del rol a consultar
-     * @return DTO del rol encontrado
-     */
+    //Obtiene un rol por su ID
     @GetMapping("/{id}")
     public RolDTO obtenerPorId(@PathVariable("id") Integer id) {
         Rol r = rolService.listId(id);
@@ -65,10 +50,7 @@ public class RolController {
         return m.map(r, RolDTO.class);
     }
 
-    /**
-     * Actualiza un rol existente
-     * @param dto DTO con los nuevos datos del rol
-     */
+    //Actualiza un rol existente
     @PutMapping
     public void modificar(@RequestBody RolDTO dto) {
         ModelMapper m = new ModelMapper();

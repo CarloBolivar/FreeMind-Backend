@@ -8,57 +8,39 @@ import pe.edu.upc.free_mind.servicesinterfaces.IPreguntaTestService;
 
 import java.util.List;
 
-/**
- * Implementación de IPreguntaTestService. Gestiona operaciones sobre la entidad PreguntaTest.
- */
+//Implementación del servicio para la entidad PreguntaTest
 @Service
 public class PreguntaTestServiceImplement implements IPreguntaTestService {
 
-    /** Repositorio para acceso a la base de datos de PreguntaTest */
+    //Repositorio para operaciones CRUD sobre PreguntaTest
     @Autowired
     private IPreguntaTestRepository pR;
 
-    /**
-     * Inserta una nueva pregunta
-     * @param preguntaTest Objeto PreguntaTest a guardar
-     */
+    //Inserta una nueva pregunta en la base de datos
     @Override
     public void insert(PreguntaTest preguntaTest) {
         pR.save(preguntaTest);
     }
 
-    /**
-     * Lista todas las preguntas
-     * @return Lista de PreguntaTest
-     */
+    //Lista todas las preguntas registradas
     @Override
     public List<PreguntaTest> list() {
         return pR.findAll();
     }
 
-    /**
-     * Elimina una pregunta por ID
-     * @param id Identificador de la pregunta
-     */
+    //Elimina una pregunta según su ID
     @Override
     public void delete(int id) {
         pR.deleteById(id);
     }
 
-    /**
-     * Busca una pregunta por su ID
-     * @param id ID buscado
-     * @return PreguntaTest encontrada o nueva si no existe
-     */
+    //Obtiene una pregunta por su ID
     @Override
     public PreguntaTest listId(int id) {
         return pR.findById(id).orElse(new PreguntaTest());
     }
 
-    /**
-     * Actualiza una pregunta existente
-     * @param preguntaTest Objeto con datos modificados
-     */
+    //Actualiza una pregunta existente
     @Override
     public void update(PreguntaTest preguntaTest) {
         pR.save(preguntaTest);

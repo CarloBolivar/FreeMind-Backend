@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.IRespuestaTestService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad RespuestaTest.
- * Gestiona los endpoints relacionados a resultados de test.
- */
+//Controlador REST para gestionar resultados de test
 @RestController
 @RequestMapping("/respuestas")
 public class RespuestaTestController {
 
+    //Servicio para operaciones sobre RespuestaTest
     @Autowired
     private IRespuestaTestService respuestaTestService;
 
-    /**
-     * Lista todas las respuestas del test.
-     * @return Lista de RespuestaTestDTO
-     */
+    //Lista todas las respuestas del test
     @GetMapping
     public List<RespuestaTestDTO> listar() {
         return respuestaTestService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class RespuestaTestController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Inserta una nueva respuesta de test.
-     * @param dto DTO recibido desde el cliente
-     */
+    //Inserta una nueva respuesta de test
     @PostMapping
     public void insertar(@RequestBody RespuestaTestDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class RespuestaTestController {
         respuestaTestService.insert(r);
     }
 
-    /**
-     * Elimina una respuesta por su ID.
-     * @param id ID de la respuesta
-     */
+    //Elimina una respuesta por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         respuestaTestService.delete(id);
     }
 
-    /**
-     * Obtiene una respuesta por su ID.
-     * @param id ID buscado
-     * @return DTO correspondiente
-     */
+    //Obtiene una respuesta por su ID
     @GetMapping("/{id}")
     public RespuestaTestDTO obtenerPorId(@PathVariable("id") Integer id) {
         RespuestaTest r = respuestaTestService.listId(id);
@@ -65,10 +50,7 @@ public class RespuestaTestController {
         return m.map(r, RespuestaTestDTO.class);
     }
 
-    /**
-     * Modifica una respuesta existente.
-     * @param dto DTO con los datos actualizados
-     */
+    //Modifica una respuesta existente
     @PutMapping
     public void modificar(@RequestBody RespuestaTestDTO dto) {
         ModelMapper m = new ModelMapper();

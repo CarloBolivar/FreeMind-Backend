@@ -8,57 +8,39 @@ import pe.edu.upc.free_mind.servicesinterfaces.ITestRealizadoService;
 
 import java.util.List;
 
-/**
- * Implementación de ITestRealizadoService. Gestiona operaciones sobre la entidad TestRealizado.
- */
+//Implementación del servicio para la entidad TestRealizado
 @Service
 public class TestRealizadoServiceImplement implements ITestRealizadoService {
 
-    /** Repositorio para acceso a la base de datos de TestRealizado */
+    //Repositorio para operaciones CRUD sobre TestRealizado
     @Autowired
     private ITestRealizadoRepository trR;
 
-    /**
-     * Inserta un nuevo test realizado
-     * @param testRealizado Objeto TestRealizado a guardar
-     */
+    //Inserta un nuevo test realizado en la base de datos
     @Override
     public void insert(TestRealizado testRealizado) {
         trR.save(testRealizado);
     }
 
-    /**
-     * Lista todos los tests realizados
-     * @return Lista de TestRealizado
-     */
+    //Lista todos los tests realizados
     @Override
     public List<TestRealizado> list() {
         return trR.findAll();
     }
 
-    /**
-     * Elimina un test realizado por ID
-     * @param id Identificador del test realizado
-     */
+    //Elimina un test realizado según su ID
     @Override
     public void delete(int id) {
         trR.deleteById(id);
     }
 
-    /**
-     * Busca un test realizado por su ID
-     * @param id ID buscado
-     * @return TestRealizado encontrado o uno nuevo si no existe
-     */
+    //Obtiene un test realizado por su ID
     @Override
     public TestRealizado listId(int id) {
         return trR.findById(id).orElse(new TestRealizado());
     }
 
-    /**
-     * Actualiza un test realizado existente
-     * @param testRealizado Objeto con datos modificados
-     */
+    //Actualiza un test realizado existente
     @Override
     public void update(TestRealizado testRealizado) {
         trR.save(testRealizado);

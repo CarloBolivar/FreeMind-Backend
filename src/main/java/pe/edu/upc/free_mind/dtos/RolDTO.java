@@ -1,14 +1,15 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para la entidad Rol.
- * Representa un objeto de transferencia de datos para un rol del sistema.
- */
+//DTO para transferir datos de la entidad Rol
 public class RolDTO {
 
+    //Identificador del rol
     private int idRol;
+
+    //Nombre del rol
     private String nombre;
 
+    //Getters y Setters
     public int getIdRol() {
         return idRol;
     }

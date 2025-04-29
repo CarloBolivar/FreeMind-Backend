@@ -8,67 +8,41 @@ import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
 
-/**
- * Implementación del servicio para la entidad Usuario.
- * Aplica la lógica de negocio y delega a la capa de persistencia.
- */
-
+// Implementación del servicio para la entidad Usuario
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
-
-    /**
-     * Repositorio para operaciones CRUD sobre Usuario.
-     */
+    // Repositorio para operaciones CRUD sobre Usuario
     @Autowired
     private IUsuarioRepository uR;
 
-    /**
-     * Inserta un nuevo usuario en la base de datos.
-     *
-     * @param usuario Objeto Usuario a insertar
-     */
+    //Inserta un nuevo usuario en la base de datos
     @Override
     public void insert(Usuario usuario) {
         uR.save(usuario);
     }
 
-    /**
-     * Lista todos los usuarios registrados.
-     *
-     * @return Lista de objetos Usuario
-     */
+    //Lista todos los usuarios registrados.
     @Override
     public List<Usuario> list() {
         return uR.findAll();
     }
 
-    /**
-     * Elimina un usuario según su ID.
-     *
-     * @param id Identificador del usuario a eliminar
-     */
+    //Elimina un usuario según su ID
     @Override
     public void delete(int id) {
         uR.deleteById(id);
     }
 
-    /**
-     * Obtiene un usuario por su ID.
-     *
-     * @param id Identificador del usuario a consultar
-     * @return Objeto Usuario encontrado o null si no existe
-     */
+    //Obtiene un usuario por su ID
     @Override
     public Usuario listId(int id) {
         return uR.findById(id).orElse(new Usuario());
     }
 
-    /**
-     * Reportes
-     */
+    //Reportes
     /*Carlo*/
     @Override
     public void update(Usuario usuario) {

@@ -3,24 +3,22 @@ package pe.edu.upc.free_mind.dtos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * DTO para transferir datos de la entidad Horario.
- */
+//DTO para transferir datos de la entidad Horario
 public class HorarioDTO {
 
-    /** Identificador único del horario */
+    //Identificador único del horario
     private int idHorario;
 
-    /** Fecha disponible para el horario */
+    //Fecha disponible para el horario
     private LocalDate fecha;
 
-    /** Hora disponible para el horario */
+    //Hora disponible para el horario
     private LocalTime hora;
 
-    /** Identificador del usuario (psicólogo) asociado al horario */
+    //Identificador del usuario (psicólogo) asociado al horario
     private int idUsuario;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdHorario() {
         return idHorario;
     }

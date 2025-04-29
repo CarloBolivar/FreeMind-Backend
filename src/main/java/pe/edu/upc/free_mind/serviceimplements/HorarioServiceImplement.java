@@ -8,57 +8,39 @@ import pe.edu.upc.free_mind.servicesinterfaces.IHorarioService;
 
 import java.util.List;
 
-/**
- * Implementación de IHorarioService. Gestiona operaciones sobre la entidad Horario.
- */
+//Implementación del servicio para la entidad Horario
 @Service
 public class HorarioServiceImplement implements IHorarioService {
 
-    /** Repositorio para acceso a la base de datos de Horario */
+    //Repositorio para operaciones CRUD sobre Horario
     @Autowired
     private IHorarioRepository hR;
 
-    /**
-     * Inserta un nuevo horario
-     * @param horario Objeto Horario a guardar
-     */
+    //Inserta un nuevo horario en la base de datos
     @Override
     public void insert(Horario horario) {
         hR.save(horario);
     }
 
-    /**
-     * Lista todos los horarios
-     * @return Lista de Horario
-     */
+    //Lista todos los horarios registrados
     @Override
     public List<Horario> list() {
         return hR.findAll();
     }
 
-    /**
-     * Elimina un horario por ID
-     * @param id Identificador del horario
-     */
+    //Elimina un horario según su ID
     @Override
     public void delete(int id) {
         hR.deleteById(id);
     }
 
-    /**
-     * Busca un horario por su ID
-     * @param id ID buscado
-     * @return Horario encontrado o uno nuevo si no existe
-     */
+    //Obtiene un horario por su ID
     @Override
     public Horario listId(int id) {
         return hR.findById(id).orElse(new Horario());
     }
 
-    /**
-     * Actualiza un horario existente
-     * @param horario Objeto con datos modificados
-     */
+    //Actualiza un horario existente
     @Override
     public void update(Horario horario) {
         hR.save(horario);

@@ -4,11 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.free_mind.entities.RespuestaTest;
 
-/**
- * Repositorio JPA para la entidad RespuestaTest.
- * Permite operaciones CRUD básicas sobre la tabla respuesta_test.
- */
+//Repositorio para operaciones CRUD sobre RespuestaTest
 @Repository
 public interface IRespuestaTestRepository extends JpaRepository<RespuestaTest, Integer> {
-    // Aquí se pueden añadir métodos personalizados si es necesario
+    //Aquí se pueden agregar métodos personalizados si es necesario
 }

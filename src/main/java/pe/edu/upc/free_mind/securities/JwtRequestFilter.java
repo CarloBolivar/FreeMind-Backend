@@ -16,6 +16,7 @@ import pe.edu.upc.free_mind.serviceimplements.JwtUserDetailsService;
 
 import java.io.IOException;
 
+//Filtro que intercepta las solicitudes para validar el token JWT
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -25,6 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    //Intercepta cada solicitud HTTP para validar el JWT
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -34,7 +36,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String correo = null;
         String jwtToken = null;
 
-        // El token debe tener formato "Bearer token"
+        //El token debe iniciar con "Bearer "
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
@@ -48,7 +50,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             logger.warn("JWT Token no comienza con 'Bearer '");
         }
 
-        // Validar token y cargar autenticación
+        //Valida el token y carga la autenticación al contexto de seguridad
         if (correo != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(correo);
 

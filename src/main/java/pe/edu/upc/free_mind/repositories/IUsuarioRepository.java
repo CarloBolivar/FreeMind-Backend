@@ -7,35 +7,29 @@ import pe.edu.upc.free_mind.entities.Usuario;
 
 import java.util.List;
 
-/**
- * Permite operaciones CRUD básicas sin necesidad de implementación explícita.
- */
+//Repositorio para operaciones CRUD sobre Usuario
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
-    // Aquí se pueden definir consultas personalizadas si se requiere
 
+    //Busca un usuario por su correo
     Usuario findByCorreo(String correo);
 
-    /**
-     * Reportes
-     */
-    /* Renzo*/
-    /* Monto total pagado de los clientes */
-    @Query(value = "SELECT u.nombre, SUM(p.monto)\n" +
-            " FROM Usuario u\n" +
-            " INNER JOIN Pago p\n" +
-            " on u.id_usuario = p.id_usuario\n" +
-            " GROUP BY u.nombre\n", nativeQuery = true)
+    //Reportes
+
+    /*Renzo*/
+    //Obtiene el monto total pagado por cada usuario
+    @Query(value = "SELECT u.nombre, SUM(p.monto) " +
+            "FROM Usuario u " +
+            "INNER JOIN Pago p " +
+            "ON u.id_usuario = p.id_usuario " +
+            "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> amountByUsuario();
 
-    /*Cantidad de comentarios de los usuarios */
-    @Query(value = "SELECT u.nombre, COUNT(c.id_comentario)\n" +
-            " FROM Usuario u\n" +
-            " INNER JOIN Comentario c\n" +
-            " on u.id_usuario = c.id_usuario\n" +
-            " GROUP BY u.nombre", nativeQuery = true)
+    //Obtiene la cantidad de comentarios por usuario
+    @Query(value = "SELECT u.nombre, COUNT(c.id_comentario) " +
+            "FROM Usuario u " +
+            "INNER JOIN Comentario c " +
+            "ON u.id_usuario = c.id_usuario " +
+            "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> comentByUsuario();
 }
-
-
-

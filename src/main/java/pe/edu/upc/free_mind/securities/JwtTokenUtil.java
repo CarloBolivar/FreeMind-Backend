@@ -17,11 +17,13 @@ import java.util.Base64;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+//Utilidad para gestión de tokens JWT
 @Component
 public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -2550185165626007488L;
 
+    //Validez del token en milisegundos
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60 * 1000;
 
     @Value("${jwt.secret}")
@@ -30,32 +32,38 @@ public class JwtTokenUtil implements Serializable {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
+    //Obtiene el username contenido en el token
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
+    //Obtiene la fecha de expiración del token
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
+    //Obtiene un claim específico del token
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
 
+    //Obtiene todos los claims del token
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).build().parseClaimsJws(token).getBody();
     }
 
+    //Verifica si el token ha expirado
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
+    //Genera un nuevo token JWT
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
 
-        //trayendo todos los usuarios de la base de datos a memoria y luego filtrando.
+        //Filtra usuario por correo
         Usuario usuario = usuarioRepository.findAll().stream()
                 .filter(u -> u.getCorreo().equals(userDetails.getUsername()))
                 .findFirst()
@@ -72,6 +80,7 @@ public class JwtTokenUtil implements Serializable {
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
+    //Construye el token JWT
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -84,6 +93,7 @@ public class JwtTokenUtil implements Serializable {
                 .compact();
     }
 
+    //Valida si el token pertenece al usuario y no ha expirado
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

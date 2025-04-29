@@ -2,27 +2,25 @@ package pe.edu.upc.free_mind.dtos;
 
 import java.time.LocalDate;
 
-/**
- * DTO para representar los datos de un test psicológico completado por un usuario.
- */
+//DTO para representar los datos de un test psicológico completado
 public class TestRealizadoDTO {
 
-    /** Identificador único del test realizado */
+    //Identificador único del test realizado
     private int idTestRealizado;
 
-    /** Fecha en la que se realizó el test */
+    //Fecha en la que se realizó el test
     private LocalDate fecha;
 
-    /** Resultado obtenido en el test */
+    //Resultado obtenido en el test
     private String resultado;
 
-    /** Identificador del usuario que realizó el test */
+    //Identificador del usuario que realizó el test
     private int idUsuario;
 
-    /** Identificador del test que fue realizado */
+    //Identificador del test que fue realizado
     private int idTest;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdTestRealizado() {
         return idTestRealizado;
     }

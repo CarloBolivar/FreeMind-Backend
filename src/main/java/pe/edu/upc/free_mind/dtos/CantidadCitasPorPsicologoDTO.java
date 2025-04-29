@@ -1,17 +1,15 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para representar la cantidad de citas atendidas por psicólogo.
- */
+//DTO para representar la cantidad de citas atendidas por psicólogo
 public class CantidadCitasPorPsicologoDTO {
 
-    /** Nombre del psicólogo */
+    //Nombre del psicólogo
     private String nombrePsicologo;
 
-    /** Cantidad de citas atendidas por el psicólogo */
+    //Cantidad de citas atendidas por el psicólogo
     private int cantidadCitas;
 
-    // Getters y Setters
+    //Getters y Setters
     public String getNombrePsicologo() {
         return nombrePsicologo;
     }

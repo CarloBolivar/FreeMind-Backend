@@ -1,41 +1,39 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para transferir datos de la entidad Pago.
- */
+//DTO para transferir datos de la entidad Pago
 public class PagoDTO {
 
-    /** Identificador único del pago */
+    //Identificador único del pago
     private int idPago;
 
-    /** Número de la tarjeta utilizada para el pago */
+    //Número de la tarjeta utilizada para el pago
     private String numeroTarjeta;
 
-    /** Nombres del titular de la tarjeta */
+    //Nombres del titular de la tarjeta
     private String nombres;
 
-    /** Apellidos del titular de la tarjeta */
+    //Apellidos del titular de la tarjeta
     private String apellidos;
 
-    /** Mes de vencimiento de la tarjeta */
+    //Mes de vencimiento de la tarjeta
     private int mes;
 
-    /** Año de vencimiento de la tarjeta */
+    //Año de vencimiento de la tarjeta
     private int anio;
 
-    /** Código de verificación de la tarjeta (CVV) */
+    //Código de verificación de la tarjeta (CVV)
     private int cvv;
 
-    /** Correo electrónico asociado al pago */
+    //Correo electrónico asociado al pago
     private String correo;
 
-    /** Identificador de la cita asociada al pago */
+    //Identificador de la cita asociada al pago
     private int idCita;
 
-    /** Monto del pago */
+    //Monto del pago
     private int monto;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdPago() {
         return idPago;
     }

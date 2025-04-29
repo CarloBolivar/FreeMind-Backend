@@ -5,27 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.TerapiaDTO;
 import pe.edu.upc.free_mind.entities.Terapia;
-import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
 import pe.edu.upc.free_mind.servicesinterfaces.ITerapiaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad Terapia.
- * Expone endpoints para operaciones CRUD de terapias realizadas o programadas.
- */
+//Controlador REST para operaciones CRUD de terapias
 @RestController
 @RequestMapping("/terapias")
 public class TerapiaController {
 
+    //Servicio para operaciones sobre Terapia
     @Autowired
     private ITerapiaService terapiaService;
 
-    /**
-     * Lista todas las terapias registradas
-     * @return Lista de TerapiaDTO
-     */
+    //Lista todas las terapias registradas
     @GetMapping
     public List<TerapiaDTO> listar() {
         return terapiaService.list().stream().map(x -> {
@@ -34,10 +28,7 @@ public class TerapiaController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Inserta una nueva terapia
-     * @param dto DTO recibido del cliente
-     */
+    //Inserta una nueva terapia
     @PostMapping
     public void insertar(@RequestBody TerapiaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -45,20 +36,13 @@ public class TerapiaController {
         terapiaService.insert(t);
     }
 
-    /**
-     * Elimina una terapia por su ID
-     * @param id ID de la terapia
-     */
+    //Elimina una terapia por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         terapiaService.delete(id);
     }
 
-    /**
-     * Obtiene una terapia específica por ID
-     * @param id ID buscado
-     * @return DTO de la terapia encontrada
-     */
+    //Obtiene una terapia específica por su ID
     @GetMapping("/{id}")
     public TerapiaDTO obtenerPorId(@PathVariable("id") Integer id) {
         Terapia t = terapiaService.listId(id);
@@ -66,10 +50,7 @@ public class TerapiaController {
         return m.map(t, TerapiaDTO.class);
     }
 
-    /**
-     * Modifica una terapia existente
-     * @param dto DTO con los datos actualizados
-     */
+    //Modifica una terapia existente
     @PutMapping
     public void modificar(@RequestBody TerapiaDTO dto) {
         ModelMapper m = new ModelMapper();

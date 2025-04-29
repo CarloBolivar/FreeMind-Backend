@@ -1,40 +1,36 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para la entidad Usuario.
- * Contiene los campos necesarios para transferir datos entre capas de presentación y lógica.
- * Este DTO sigue el estilo de la demo3155API.
- */
+//DTO para transferir datos de Usuario entre capas
 public class UsuarioDTO {
 
-    /** Identificador del usuario */
+    //Identificador del usuario
     private int idUsuario;
 
-    /** Nombre del usuario */
+    //Nombre del usuario
     private String nombre;
 
-    /** Apellido del usuario */
+    //Apellido del usuario
     private String apellido;
 
-    /** Correo electrónico del usuario */
+    //Correo electrónico del usuario
     private String correo;
 
-    /** Contraseña de acceso al sistema */
+    //Contraseña de acceso al sistema
     private String contrasena;
 
-    /** Documento Nacional de Identidad */
+    //Documento Nacional de Identidad
     private String dni;
 
-    /** Especialidad del usuario (por ejemplo, psicología, medicina, etc.) */
+    //Especialidad del usuario (por ejemplo, psicología, medicina, etc.)
     private String especialidad;
 
-    /** Número de credencial profesional */
+    //Número de credencial profesional
     private String credencial;
 
-    /** Identificador del rol asociado al usuario */
+    //Identificador del rol asociado al usuario
     private int idRol;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdUsuario() {
         return idUsuario;
     }

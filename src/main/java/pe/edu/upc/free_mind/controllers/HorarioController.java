@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.IHorarioService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad Horario.
- * Expone endpoints para gestionar los horarios disponibles.
- */
+//Controlador REST para gestionar horarios disponibles
 @RestController
 @RequestMapping("/horarios")
 public class HorarioController {
 
+    //Servicio para operaciones sobre Horario
     @Autowired
     private IHorarioService horarioService;
 
-    /**
-     * Lista todos los horarios registrados
-     * @return Lista de HorarioDTO
-     */
+    //Lista todos los horarios registrados
     @GetMapping
     public List<HorarioDTO> listar() {
         return horarioService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class HorarioController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Registra un nuevo horario
-     * @param dto DTO recibido del cliente
-     */
+    //Registra un nuevo horario
     @PostMapping
     public void insertar(@RequestBody HorarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class HorarioController {
         horarioService.insert(h);
     }
 
-    /**
-     * Elimina un horario por su ID
-     * @param id Identificador del horario
-     */
+    //Elimina un horario por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         horarioService.delete(id);
     }
 
-    /**
-     * Obtiene un horario por su ID
-     * @param id ID buscado
-     * @return DTO del horario encontrado
-     */
+    //Obtiene un horario por su ID
     @GetMapping("/{id}")
     public HorarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Horario h = horarioService.listId(id);
@@ -65,10 +50,7 @@ public class HorarioController {
         return m.map(h, HorarioDTO.class);
     }
 
-    /**
-     * Modifica un horario existente
-     * @param dto Objeto con los datos actualizados
-     */
+    //Modifica un horario existente
     @PutMapping
     public void modificar(@RequestBody HorarioDTO dto) {
         ModelMapper m = new ModelMapper();

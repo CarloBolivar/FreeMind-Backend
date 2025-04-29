@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.ITestRealizadoService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad TestRealizado.
- * Expone endpoints para gestionar tests realizados por usuarios.
- */
+//Controlador REST para gestionar tests realizados por usuarios
 @RestController
 @RequestMapping("/tests-realizados")
 public class TestRealizadoController {
 
+    //Servicio para operaciones sobre TestRealizado
     @Autowired
     private ITestRealizadoService testRealizadoService;
 
-    /**
-     * Lista todos los tests realizados
-     * @return Lista de TestRealizadoDTO
-     */
+    //Lista todos los tests realizados
     @GetMapping
     public List<TestRealizadoDTO> listar() {
         return testRealizadoService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class TestRealizadoController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Registra un nuevo test realizado
-     * @param dto DTO recibido del cliente
-     */
+    //Registra un nuevo test realizado
     @PostMapping
     public void insertar(@RequestBody TestRealizadoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class TestRealizadoController {
         testRealizadoService.insert(t);
     }
 
-    /**
-     * Elimina un test realizado por su ID
-     * @param id Identificador del test
-     */
+    //Elimina un test realizado por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         testRealizadoService.delete(id);
     }
 
-    /**
-     * Obtiene un test realizado por ID
-     * @param id ID buscado
-     * @return DTO del test encontrado
-     */
+    //Obtiene un test realizado por su ID
     @GetMapping("/{id}")
     public TestRealizadoDTO obtenerPorId(@PathVariable("id") Integer id) {
         TestRealizado t = testRealizadoService.listId(id);
@@ -65,10 +50,7 @@ public class TestRealizadoController {
         return m.map(t, TestRealizadoDTO.class);
     }
 
-    /**
-     * Modifica un test realizado existente
-     * @param dto Objeto con los datos actualizados
-     */
+    //Modifica un test realizado existente
     @PutMapping
     public void modificar(@RequestBody TestRealizadoDTO dto) {
         ModelMapper m = new ModelMapper();

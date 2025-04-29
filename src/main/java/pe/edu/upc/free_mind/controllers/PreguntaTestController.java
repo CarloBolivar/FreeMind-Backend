@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.IPreguntaTestService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad PreguntaTest.
- * Expone endpoints para gestionar preguntas de test psicológico.
- */
+//Controlador REST para gestionar preguntas de test psicológico
 @RestController
 @RequestMapping("/preguntas")
 public class PreguntaTestController {
 
+    //Servicio para operaciones sobre PreguntaTest
     @Autowired
     private IPreguntaTestService preguntaTestService;
 
-    /**
-     * Lista todas las preguntas de test
-     * @return Lista de PreguntaTestDTO
-     */
+    //Lista todas las preguntas de test
     @GetMapping
     public List<PreguntaTestDTO> listar() {
         return preguntaTestService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class PreguntaTestController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Registra una nueva pregunta de test
-     * @param dto DTO recibido del cliente
-     */
+    //Registra una nueva pregunta de test
     @PostMapping
     public void insertar(@RequestBody PreguntaTestDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class PreguntaTestController {
         preguntaTestService.insert(p);
     }
 
-    /**
-     * Elimina una pregunta por su ID
-     * @param id Identificador de la pregunta
-     */
+    //Elimina una pregunta por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         preguntaTestService.delete(id);
     }
 
-    /**
-     * Obtiene una pregunta por ID
-     * @param id ID buscado
-     * @return DTO de la pregunta encontrada
-     */
+    //Obtiene una pregunta por su ID
     @GetMapping("/{id}")
     public PreguntaTestDTO obtenerPorId(@PathVariable("id") Integer id) {
         PreguntaTest p = preguntaTestService.listId(id);
@@ -65,10 +50,7 @@ public class PreguntaTestController {
         return m.map(p, PreguntaTestDTO.class);
     }
 
-    /**
-     * Modifica una pregunta existente
-     * @param dto DTO con datos actualizados
-     */
+    //Modifica una pregunta existente
     @PutMapping
     public void modificar(@RequestBody PreguntaTestDTO dto) {
         ModelMapper m = new ModelMapper();

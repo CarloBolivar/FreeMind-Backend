@@ -8,68 +8,57 @@ import pe.edu.upc.free_mind.servicesinterfaces.IPagoService;
 
 import java.util.List;
 
-/**
- * Implementación de IPagoService. Gestiona operaciones sobre la entidad Pago.
- */
+//Implementación del servicio para la entidad Pago
 @Service
 public class PagoServiceImplement implements IPagoService {
 
-    /** Inyección del repositorio de Pago */
+    //Repositorio para operaciones CRUD sobre Pago
     @Autowired
     private IPagoRepository pR;
 
-    /**
-     * Inserta un nuevo pago en la base de datos.
-     * @param pago Objeto Pago a guardar
-     */
+    //Inserta un nuevo pago en la base de datos
     @Override
     public void insert(Pago pago) {
         pR.save(pago);
     }
 
-    /**
-     * Retorna todos los pagos registrados.
-     * @return Lista de objetos Pago
-     */
+    //Lista todos los pagos registrados
     @Override
     public List<Pago> list() {
         return pR.findAll();
     }
 
-    /**
-     * Elimina un pago por ID
-     * @param id Identificador del pago
-     */
+    //Elimina un pago según su ID
     @Override
     public void delete(int id) {
         pR.deleteById(id);
     }
 
-    /**
-     * Retorna un pago por ID
-     * @param id Identificador buscado
-     * @return Objeto Pago o uno nuevo si no existe
-     */
+    //Obtiene un pago por su ID
     @Override
     public Pago listId(int id) {
         return pR.findById(id).orElse(new Pago());
     }
 
-    /**
-     * Actualiza un pago existente
-     * @param pago Objeto con datos actualizados
-     */
+    //Actualiza un pago existente
     @Override
     public void update(Pago pago) {
         pR.save(pago);
     }
 
-    /**
-     * Reportes
-     */
-    /* Carlo*/
+    //Reportes
+
+    /*Carlo*/
+    //Obtiene la suma de pagos agrupados por mes
     @Override
     public List<String[]> obtenerSumaPagosPorMes() {
         return pR.obtenerSumaPagosPorMes();
+    }
+
+    /*Erick*/
+    //Obtiene el monto total generado por tipo de terapia
+    @Override
+    public List<String[]> obtenerMontoPorTipoDeTerapia() {
+        return pR.obtenerMontoPorTipoDeTerapia();
     }
 }

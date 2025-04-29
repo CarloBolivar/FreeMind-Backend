@@ -3,46 +3,25 @@ package pe.edu.upc.free_mind.servicesinterfaces;
 import pe.edu.upc.free_mind.entities.Cita;
 import java.util.List;
 
-/**
- * Interfaz que define los métodos de servicio para la entidad Cita.
- * Encapsula la lógica de negocio relacionada con el agendamiento de citas.
- */
+//Interfaz que define los métodos de servicio para la entidad Cita
 public interface ICitaService {
 
-    /**
-     * Lista todas las citas registradas.
-     * @return Lista de objetos Cita
-     */
+    //Lista todas las citas registradas
     public List<Cita> list();
 
-    /**
-     * Inserta una nueva cita en la base de datos.
-     * @param cita Objeto Cita a guardar
-     */
+    // Inserta una nueva cita en la base de datos
     public void insert(Cita cita);
 
-    /**
-     * Elimina una cita por su ID.
-     * @param id Identificador de la cita
-     */
+    //Elimina una cita por su ID.
     public void delete(int id);
 
-    /**
-     * Obtiene una cita por su ID.
-     * @param id ID buscado
-     * @return Objeto Cita encontrado o nuevo vacío si no existe
-     */
+    //Obtiene una cita por su ID.
     public Cita listId(int id);
 
-    /**
-     * Actualiza una cita existente con nuevos datos.
-     * @param cita Objeto Cita actualizado
-     */
+    //Actualiza una cita existente con nuevos datos.
     public void update(Cita cita);
 
-    /**
-     * Reportes
-     */
+    //Reportes
     /*Carlo*/
     public List<String[]> obtenerCantidadCitasPorPsicologo();
 

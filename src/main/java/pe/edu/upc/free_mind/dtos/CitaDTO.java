@@ -1,30 +1,27 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para transferir datos de la entidad Cita.
- * Utilizado en la capa de presentación.
- */
+//DTO para transferir datos de la entidad Cita
 public class CitaDTO {
 
-    /** Identificador único de la cita */
+    //Identificador único de la cita
     private int idCita;
 
-    /** Identificador del horario asociado a la cita */
+    //Identificador del horario asociado a la cita
     private int idHorario;
 
-    /** Estado actual de la cita (por ejemplo, programado, completado, cancelado) */
+    //Estado actual de la cita (por ejemplo, programado, completado, cancelado)
     private int estado;
 
-    /** Identificador del paciente asociado a la cita */
+    //Identificador del paciente asociado a la cita
     private int idPaciente;
 
-    /** Identificador del psicólogo asociado a la cita */
+    //Identificador del psicólogo asociado a la cita
     private int idPsicologo;
 
-    /** Identificador de la terapia asociada a la cita (puede ser nulo) */
+    //Identificador de la terapia asociada a la cita (puede ser nulo)
     private Integer idTerapia;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdCita() {
         return idCita;
     }

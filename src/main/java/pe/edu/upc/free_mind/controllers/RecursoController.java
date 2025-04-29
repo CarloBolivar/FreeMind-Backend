@@ -10,21 +10,16 @@ import pe.edu.upc.free_mind.servicesinterfaces.IRecursoService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para la entidad Recurso.
- * Expone endpoints para gestionar recursos educativos.
- */
+//Controlador REST para la gestión de recursos educativos
 @RestController
 @RequestMapping("/recursos")
 public class RecursoController {
 
+    //Servicio para operaciones sobre Recurso
     @Autowired
     private IRecursoService recursoService;
 
-    /**
-     * Lista todos los recursos
-     * @return Lista de RecursoDTO
-     */
+    //Lista todos los recursos registrados
     @GetMapping
     public List<RecursoDTO> listar() {
         return recursoService.list().stream().map(x -> {
@@ -33,10 +28,7 @@ public class RecursoController {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Registra un nuevo recurso
-     * @param dto DTO recibido del cliente
-     */
+    //Registra un nuevo recurso
     @PostMapping
     public void insertar(@RequestBody RecursoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,20 +36,13 @@ public class RecursoController {
         recursoService.insert(r);
     }
 
-    /**
-     * Elimina un recurso por su ID
-     * @param id Identificador del recurso
-     */
+    //Elimina un recurso por su ID
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         recursoService.delete(id);
     }
 
-    /**
-     * Obtiene un recurso por ID
-     * @param id ID buscado
-     * @return DTO del recurso encontrado
-     */
+    //Obtiene un recurso por su ID
     @GetMapping("/{id}")
     public RecursoDTO obtenerPorId(@PathVariable("id") Integer id) {
         Recurso r = recursoService.listId(id);
@@ -65,10 +50,7 @@ public class RecursoController {
         return m.map(r, RecursoDTO.class);
     }
 
-    /**
-     * Modifica un recurso existente
-     * @param dto Objeto con los datos actualizados
-     */
+    //Modifica un recurso existente
     @PutMapping
     public void modificar(@RequestBody RecursoDTO dto) {
         ModelMapper m = new ModelMapper();

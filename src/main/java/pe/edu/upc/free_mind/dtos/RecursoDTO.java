@@ -1,23 +1,21 @@
 package pe.edu.upc.free_mind.dtos;
 
-/**
- * DTO para transferir información de los recursos.
- */
+//DTO para transferir información de los recursos
 public class RecursoDTO {
 
-    /** Identificador único del recurso */
+    //Identificador único del recurso
     private int idRecurso;
 
-    /** Tipo de recurso (por ejemplo, video, documento, enlace) */
+    //Tipo de recurso (por ejemplo, video, documento, enlace)
     private String tipo;
 
-    /** URL del recurso */
+    //URL del recurso
     private String url;
 
-    /** Identificador de la terapia asociada al recurso */
+    //Identificador de la terapia asociada al recurso
     private int idTerapia;
 
-    // Getters y Setters
+    //Getters y Setters
     public int getIdRecurso() {
         return idRecurso;
     }

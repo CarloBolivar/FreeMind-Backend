@@ -11,32 +11,26 @@ public interface IPagoService {
 
     /**
      * Lista todos los pagos registrados.
-     * @return Lista de objetos Pago
      */
     public List<Pago> list();
 
     /**
      * Inserta un nuevo pago en la base de datos.
-     * @param pago Objeto Pago a registrar
      */
     public void insert(Pago pago);
 
     /**
      * Elimina un pago por su ID.
-     * @param id ID del pago a eliminar
      */
     public void delete(int id);
 
     /**
      * Obtiene un pago por su ID.
-     * @param id Identificador buscado
-     * @return Objeto Pago correspondiente o uno nuevo si no existe
      */
     public Pago listId(int id);
 
     /**
      * Actualiza un pago existente.
-     * @param pago Objeto con los nuevos datos
      */
     public void update(Pago pago);
 
@@ -45,4 +39,7 @@ public interface IPagoService {
      */
     /*Carlo*/
     public List<String[]> obtenerSumaPagosPorMes();
+
+    /*Erick*/
+    public List<String[]> obtenerMontoPorTipoDeTerapia();
 }

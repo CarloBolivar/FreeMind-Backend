@@ -10,19 +10,24 @@ import pe.edu.upc.free_mind.securities.JwtResponse;
 import pe.edu.upc.free_mind.securities.JwtTokenUtil;
 import pe.edu.upc.free_mind.serviceimplements.JwtUserDetailsService;
 
+//Controlador REST para gestionar la autenticación y generación de tokens JWT
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
 
+    //Servicio de autenticación
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    //Utilitario para la gestión de tokens JWT
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    //Servicio de carga de detalles del usuario
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
+    //Endpoint para realizar login y generar token JWT
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest req) throws Exception {
         authenticate(req.getCorreo(), req.getContrasena());
@@ -31,6 +36,7 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    //Método privado para autenticar usuario
     private void authenticate(String correo, String contrasena) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(correo, contrasena));
@@ -40,5 +46,4 @@ public class JwtAuthenticationController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
-
 }
