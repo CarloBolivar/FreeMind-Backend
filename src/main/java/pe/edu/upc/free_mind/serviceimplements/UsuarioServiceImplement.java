@@ -67,10 +67,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     /**
-     * Actualiza un usuario existente.
-     *
-     * @param usuario Objeto Usuario con los datos actualizados
+     * Reportes
      */
+    /*Carlo*/
     @Override
     public void update(Usuario usuario) {
         uR.save(usuario);
@@ -80,7 +79,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return usuarioRepository.findByCorreo(correo);
     }
 
-    /*R*/
+    /*Renzo*/
     @Override
     public List<String[]> amountByUsuario() { return uR.amountByUsuario(); }
     @Override

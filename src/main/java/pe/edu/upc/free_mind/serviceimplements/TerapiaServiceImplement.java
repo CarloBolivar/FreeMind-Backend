@@ -30,11 +30,6 @@ public class TerapiaServiceImplement implements ITerapiaService {
         tR.save(terapia);
     }
 
-    //@Override
-    //public List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia() {
-     //   return List.of();
-    //}
-
     /**
      * Lista todas las terapias
      * @return Lista de Terapia

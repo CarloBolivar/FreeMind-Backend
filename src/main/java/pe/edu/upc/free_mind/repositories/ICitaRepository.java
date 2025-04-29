@@ -23,7 +23,11 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
             "ORDER BY cantidadCitas DESC", nativeQuery = true)
     List<String[]> obtenerCantidadCitasPorPsicologo();
 
+    /**
+     * Reportes
+     */
     /*Deyci*/
+    /*Cantidad de citas por tipo de terapia*/
     @Query(value="select\n" +
             "    t.titulo as name_terapia,\n" +
             "    COUNT(c.id_cita) as quantity_citas\n" +
@@ -34,13 +38,13 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
             "order by quantity_citas desc\n ",nativeQuery=true)
     public List<String[]> QuantityCitaByTerapia();
 
+    /*Monto total de ingresos por psicologo*/
    @Query(value ="SELECT u.nombre, u.apellido, SUM(p.monto) AS total_ingresos\n" +
            "FROM usuario u\n" +
            "JOIN cita c ON u.id_usuario = c.id_psicologo\n" +
            "JOIN pago p ON c.id_cita = p.id_cita\n" +
            "GROUP BY u.id_usuario, u.nombre, u.apellido\n" +
            "ORDER BY total_ingresos DESC;", nativeQuery = true)
-
    public List<String[]> TotalIngresosPsicologo();
 
 }

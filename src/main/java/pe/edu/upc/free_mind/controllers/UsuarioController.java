@@ -99,8 +99,11 @@ public class UsuarioController {
     }
 
 
-    
-    /*R*/
+
+    /**
+     * Reportes
+     */
+    /*Renzo*/
     @GetMapping("/montos")
     public List<SumaPagoDTO> sumaPago(){
         List<SumaPagoDTO> dtoLista = new ArrayList<>();

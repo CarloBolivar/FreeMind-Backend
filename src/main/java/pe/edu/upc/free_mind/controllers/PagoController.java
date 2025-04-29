@@ -77,9 +77,9 @@ public class PagoController {
     }
 
     /**
-     * Obtiene la suma de pagos realizados por mes.
-     * @return Lista de String[] con los datos
+     * Reportes
      */
+    /*Carlo*/
     @GetMapping("/suma-pagos-por-mes")
     public List<String[]> obtenerSumaPagosPorMes() {
         return pagoService.obtenerSumaPagosPorMes();

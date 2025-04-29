@@ -15,7 +15,11 @@ import java.util.List;
 public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     // Métodos personalizados pueden agregarse aquí si se requieren
 
-    // Consulta SQL nativa para obtener la suma de pagos por mes
+    /**
+     * Reportes
+     */
+    /*Carlo*/
+    //la suma de pagos por mes
     @Query(value = "SELECT EXTRACT(MONTH FROM h.fecha) AS mes, SUM(p.monto) AS montoTotal " +
             "FROM pago p " +
             "INNER JOIN cita c ON p.id_cita = c.id_cita " +

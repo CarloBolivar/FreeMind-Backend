@@ -41,8 +41,9 @@ public interface ICitaService {
     public void update(Cita cita);
 
     /**
-     * Obtiene la cantidad de citas atendidas por cada psicólogo.
-   */
+     * Reportes
+     */
+    /*Carlo*/
     public List<String[]> obtenerCantidadCitasPorPsicologo();
 
     /*Deyci*/

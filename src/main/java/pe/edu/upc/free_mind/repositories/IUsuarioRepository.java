@@ -16,6 +16,10 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Usuario findByCorreo(String correo);
 
+    /**
+     * Reportes
+     */
+    /* Renzo*/
     /* Monto total pagado de los clientes */
     @Query(value = "SELECT u.nombre, SUM(p.monto)\n" +
             " FROM Usuario u\n" +

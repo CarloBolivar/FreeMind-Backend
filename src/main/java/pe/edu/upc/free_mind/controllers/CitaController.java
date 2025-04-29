@@ -80,14 +80,15 @@ public class CitaController {
     }
 
     /**
-     * Obtiene la cantidad de citas atendidas por cada psicólogo
-     * @return Lista de objetos CantidadCitasPorPsicologoDTO
+     * Reportes
      */
+    /*Carlo*/
     @GetMapping("/cantidad-citas-por-psicologo")
     public List<String[]> obtenerCantidadCitasPorPsicologo() {
         return citaService.obtenerCantidadCitasPorPsicologo();
     }
 
+    /*Deyci*/
     @GetMapping("/cantidadCitasxTerapia")
     public List<CantidadCitasPorTerapiaDTO> listCantidadCitasByTerapia() {
         List<CantidadCitasPorTerapiaDTO> dtoLista=new ArrayList<>();

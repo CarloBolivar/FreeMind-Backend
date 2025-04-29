@@ -65,9 +65,9 @@ public class PagoServiceImplement implements IPagoService {
     }
 
     /**
-     * Obtiene la suma total de pagos realizados por mes.
-     * @return Lista de String[] con los datos
+     * Reportes
      */
+    /* Carlo*/
     @Override
     public List<String[]> obtenerSumaPagosPorMes() {
         return pR.obtenerSumaPagosPorMes();

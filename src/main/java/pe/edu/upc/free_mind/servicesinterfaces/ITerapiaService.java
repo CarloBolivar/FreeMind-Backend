@@ -13,10 +13,6 @@ public interface ITerapiaService {
      * Lista todas las terapias registradas.
      * @return Lista de objetos Terapia
      */
-    
- //List<MontoPorTipoDeTerapiaDTO> obtenerMontoTotalPorTipoTerapia();
-
-    
     public List<Terapia> list();
 
     /**

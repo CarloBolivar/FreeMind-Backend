@@ -66,15 +66,15 @@ public class CitaServiceImplement implements ICitaService {
     }
 
     /**
-     * Obtiene la cantidad de citas atendidas por cada psicólogo.
-     * @return Lista de objetos CantidadCitasPorPsicologoDTO con los datos
+     * Reportes
      */
+    /*Carlo*/
     @Override
     public List<String[]> obtenerCantidadCitasPorPsicologo() {
         return cR.obtenerCantidadCitasPorPsicologo();
     }
 
-    /*D*/
+    /*Deyci*/
     @Override
     public List<String[]> QuantityCitaByTerapia() {
         return cR.QuantityCitaByTerapia();
