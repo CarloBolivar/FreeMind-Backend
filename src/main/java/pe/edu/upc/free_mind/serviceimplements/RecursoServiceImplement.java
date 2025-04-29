@@ -47,6 +47,8 @@ public class RecursoServiceImplement implements IRecursoService {
         rR.save(recurso);
     }
 
+    //Reportes
+    /*Mauricio*/
     @Override
     public List<CantidadRecursosPorTerapiaDTO> cantidadRecursosPorTerapia() {
         return rR.obtenerCantidadRecursosPorTerapia();

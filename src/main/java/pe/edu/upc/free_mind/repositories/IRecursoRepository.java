@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface IRecursoRepository extends JpaRepository<Recurso, Integer> {
     //Aquí se pueden agregar métodos personalizados si es necesario
+
+    //Reportes
+    /*Mauricio*/
     @Query("SELECT new pe.edu.upc.free_mind.dtos.CantidadRecursosPorTerapiaDTO(r.terapia.titulo, COUNT(r)) " +
             "FROM Recurso r " +
             "GROUP BY r.terapia.titulo")

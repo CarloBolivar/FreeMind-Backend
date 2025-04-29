@@ -59,6 +59,8 @@ public class ComentarioController {
         comentarioService.update(c);
     }
 
+    //Reportes
+    /*Mauricio*/
     @GetMapping("/cantidad-comentarios-por-usuario")
     public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
         return comentarioService.cantidadComentariosPorUsuario();

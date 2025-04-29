@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.dtos;
 
+//DTO que representa la cantidad de recursos por terapia
 public class CantidadRecursosPorTerapiaDTO {
     private String tipoTerapia;
     private long cantidadRecursos;

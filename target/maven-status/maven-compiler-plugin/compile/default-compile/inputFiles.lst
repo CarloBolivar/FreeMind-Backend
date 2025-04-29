@@ -15,6 +15,8 @@ C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\controllers\Usu
 C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CantidadCitasPorPsicologoDTO.java
 C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CantidadCitasPorTerapiaDTO.java
 C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CantidadComentarioDTO.java
+C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CantidadComentariosPorUsuarioDTO.java
+C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CantidadRecursosPorTerapiaDTO.java
 C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CantidadTestsPorMesDTO.java
 C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\CitaDTO.java
 C:\Users\carlo\demos\FreeMind\src\main\java\pe\edu\upc\free_mind\dtos\ComentarioDTO.java

@@ -56,6 +56,7 @@ pe\edu\upc\free_mind\securities\JwtAuthenticationEntryPoint.class
 pe\edu\upc\free_mind\serviceimplements\PagoServiceImplement.class
 pe\edu\upc\free_mind\dtos\RecursoDTO.class
 pe\edu\upc\free_mind\entities\RespuestaTest.class
+pe\edu\upc\free_mind\dtos\CantidadComentariosPorUsuarioDTO.class
 pe\edu\upc\free_mind\entities\Usuario.class
 pe\edu\upc\free_mind\dtos\SumaPagoDTO.class
 pe\edu\upc\free_mind\entities\PreguntaTest.class
@@ -69,6 +70,7 @@ pe\edu\upc\free_mind\entities\Test.class
 pe\edu\upc\free_mind\repositories\ICitaRepository.class
 pe\edu\upc\free_mind\controllers\TestController.class
 pe\edu\upc\free_mind\dtos\RolDTO.class
+pe\edu\upc\free_mind\dtos\CantidadRecursosPorTerapiaDTO.class
 pe\edu\upc\free_mind\entities\Comentario.class
 pe\edu\upc\free_mind\entities\Terapia.class
 pe\edu\upc\free_mind\entities\Cita.class

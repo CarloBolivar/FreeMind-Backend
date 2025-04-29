@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.dtos;
 
+//DTO que representa la cantidad de comentarios por usuario
 public class CantidadComentariosPorUsuarioDTO {
     private String nombreUsuario;
     private long cantidadComentarios;

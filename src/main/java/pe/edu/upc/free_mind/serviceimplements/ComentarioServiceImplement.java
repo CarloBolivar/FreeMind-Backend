@@ -47,6 +47,8 @@ public class ComentarioServiceImplement implements IComentarioService {
         cR.save(comentario);
     }
 
+    //Reportes
+    /*Mauricio*/
     @Override
     public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
         return cR.obtenerCantidadComentariosPorUsuario();

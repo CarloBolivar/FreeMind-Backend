@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface IComentarioRepository extends JpaRepository<Comentario, Integer> {
     //Aquí se pueden agregar métodos personalizados si es necesario
+
+    //Reportes
+    /*Mauricio*/
     @Query("SELECT new pe.edu.upc.free_mind.dtos.CantidadComentariosPorUsuarioDTO(c.usuario.nombre, COUNT(c)) " +
             "FROM Comentario c " +
             "GROUP BY c.usuario.nombre")

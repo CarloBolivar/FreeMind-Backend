@@ -21,6 +21,9 @@ public interface IRecursoService {
 
     //Actualiza un recurso existente
     public void update(Recurso recurso);
+
+    //Reportes
+    /*Mauricio*/
     List<CantidadRecursosPorTerapiaDTO> cantidadRecursosPorTerapia();
 
 }

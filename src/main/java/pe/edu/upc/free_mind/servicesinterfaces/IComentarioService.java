@@ -22,6 +22,7 @@ public interface IComentarioService {
     //Actualiza un comentario existente.
     public void update(Comentario comentario);
 
+    //Reportes
+    /*Mauricio*/
     List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario();
-
 }

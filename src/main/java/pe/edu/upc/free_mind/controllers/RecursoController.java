@@ -59,6 +59,8 @@ public class RecursoController {
         recursoService.update(r);
     }
 
+    //Reportes
+    /*Mauricio*/
     @GetMapping("/cantidad-recursos-por-terapia")
     public List<CantidadRecursosPorTerapiaDTO> cantidadRecursosPorTerapia() {
         return recursoService.cantidadRecursosPorTerapia();
