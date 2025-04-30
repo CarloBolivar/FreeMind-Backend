@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadComentarioDTO;
+import pe.edu.upc.free_mind.dtos.PsicologosActivosDTO;
 import pe.edu.upc.free_mind.dtos.SumaPagoDTO;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
 import pe.edu.upc.free_mind.entities.Usuario;
@@ -73,6 +74,29 @@ public class UsuarioController {
     }
 
     //Reportes
+
+    /* Ariam */
+    //Número de psicólogos activos
+    @GetMapping(  "/psicologos-activos")
+    public List<PsicologosActivosDTO> obtenerPsicologosActivos() {
+
+        List<PsicologosActivosDTO> dtoLista = new ArrayList<>();
+        List<String[]> fila = usuarioService.getPsicologosActivos();
+        for (String[] columna : fila) {
+            PsicologosActivosDTO dto = new PsicologosActivosDTO();
+            dto.setIdPsicologo(Integer.parseInt(columna[0]));
+            dto.setNombreCompleto(columna[1]);
+            dto.setEspecialidad(columna[2]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+
+    }
+
+
+
+
+
 
     /*Renzo*/
 

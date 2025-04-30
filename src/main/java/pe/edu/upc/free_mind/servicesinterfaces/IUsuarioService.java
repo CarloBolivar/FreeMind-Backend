@@ -22,7 +22,7 @@ public interface IUsuarioService {
     //Actualiza los datos de un usuario existente en el sistema
     public void update(Usuario usuario);
 
-   //Busca un usuario en el sistema utilizando su correo electrónico
+    //Busca un usuario en el sistema utilizando su correo electrónico
     public default Usuario findByCorreo(String correo) {
         return null;
     }
@@ -31,4 +31,9 @@ public interface IUsuarioService {
     /* Renzo*/
     public List<String[]> amountByUsuario();
     public List<String[]> comentByUsuario();
+
+
+    /*Ariam*/
+    //obtenerPsicologos activos
+    List<String[]> getPsicologosActivos();
 }

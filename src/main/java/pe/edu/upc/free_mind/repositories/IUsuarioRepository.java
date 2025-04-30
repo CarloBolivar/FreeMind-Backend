@@ -32,4 +32,10 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "ON u.id_usuario = c.id_usuario " +
             "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> comentByUsuario();
+
+
+    @Query(value = "SELECT u.id_usuario, CONCAT(u.nombre,' ', u.apellido) AS nombre_completo, u.especialidad " +
+            "FROM Usuario u " +
+            "WHERE u.id_rol = '1' and u.enabled is true ",nativeQuery = true )
+    public List<String[]> getPsicologosActivos();
 }
