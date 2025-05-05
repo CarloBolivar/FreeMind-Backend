@@ -21,6 +21,8 @@ public interface IComentarioRepository extends JpaRepository<Comentario, Integer
     List<CantidadComentariosPorUsuarioDTO> obtenerCantidadComentariosPorUsuario();
 
     /*Deyci*/
+    //Obtiene la cantidad de comentarios negativos de un psicologo
+    // en base a las puntuaciones recibidas
     @Query(value="SELECT \n" +
             "    u.nombre AS nombre_psicologo,\n" +
             "    COUNT(c.id_comentario) AS comentarios_negativos\n" +

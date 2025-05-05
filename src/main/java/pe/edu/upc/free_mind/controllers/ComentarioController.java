@@ -69,6 +69,9 @@ public class ComentarioController {
     }
 
     /*Deyci*/
+
+    //Obtiene la cantidad de comentarios negativos de un psicologo
+    // en base a las puntuaciones recibidas por los usuarios
     @GetMapping("/cantComentariosNegativosPorPsicologo")
     public List<CantComentariosNegativosPorPsicologoDTO> cantidadComentariosNegativosPorPsicologo() {
         List<CantComentariosNegativosPorPsicologoDTO> dtoLista = new ArrayList<>();
