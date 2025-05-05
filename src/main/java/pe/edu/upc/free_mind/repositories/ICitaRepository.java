@@ -25,8 +25,7 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
 
     /*Deyci*/
     //Obtiene la cantidad de citas por tipo de terapia
-    @Query(value = "SELECT t.titulo AS name_terapia, " +
-            "COUNT(c.id_cita) AS quantity_citas " +
+    @Query(value = "SELECT t.titulo AS name_terapia, COUNT(c.id_cita) AS quantity_citas " +
             "FROM cita c " +
             "INNER JOIN terapia t ON c.id_terapia = t.id_terapia " +
             "GROUP BY t.titulo " +

@@ -25,4 +25,7 @@ public interface IComentarioService {
     //Reportes
     /*Mauricio*/
     List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario();
+
+    /*Deyci*/
+    public List<String[]> obtenerCantComentariosNegativosPorPsicologo();
 }
