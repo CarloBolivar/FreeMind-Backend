@@ -83,7 +83,7 @@ public class CitaController {
     /*Deyci*/
 
     //Obtiene la cantidad de citas por tipo de terapia
-    @GetMapping("/cantidadCitasxTerapia")
+    @GetMapping("/cantidadCitasPorTerapia")
     public List<CantidadCitasPorTerapiaDTO> listCantidadCitasByTerapia() {
         List<CantidadCitasPorTerapiaDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = citaService.QuantityCitaByTerapia();

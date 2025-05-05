@@ -20,4 +20,17 @@ public interface IComentarioRepository extends JpaRepository<Comentario, Integer
             "GROUP BY c.usuario.nombre")
     List<CantidadComentariosPorUsuarioDTO> obtenerCantidadComentariosPorUsuario();
 
+    /*Deyci*/
+    @Query(value="SELECT \n" +
+            "    u.nombre AS nombre_psicologo,\n" +
+            "    COUNT(c.id_comentario) AS comentarios_negativos\n" +
+            "FROM comentario c\n" +
+            "JOIN usuario u ON c.usuario_id_usuario = u.id_usuario\n" +
+            "WHERE u.id_rol = (SELECT id_rol FROM rol WHERE nombre = 'Psicólogo')\n" +
+            "  AND c.puntuacion <= 2\n" +
+            "GROUP BY u.nombre\n" +
+            "ORDER BY comentarios_negativos DESC;",nativeQuery = true)
+    public List<String[]> obtenerCantComentariosNegativosPorPsicologo();
+
+
 }

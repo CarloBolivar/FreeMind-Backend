@@ -53,4 +53,13 @@ public class ComentarioServiceImplement implements IComentarioService {
     public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
         return cR.obtenerCantidadComentariosPorUsuario();
     }
+
+    /*Deyci*/
+    @Override
+    public List<String[]> obtenerCantComentariosNegativosPorPsicologo() {
+        return cR.obtenerCantComentariosNegativosPorPsicologo();
+    }
+
+
+
 }
