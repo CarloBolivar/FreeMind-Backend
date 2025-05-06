@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadCitasPorPsicologoDTO;
 import pe.edu.upc.free_mind.dtos.CantidadCitasPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.CitaDTO;
-import pe.edu.upc.free_mind.dtos.TotalIngresosPorPsicologoDTO;
+import pe.edu.upc.free_mind.dtos.CantidadTotalIngresosPorPsicologoDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
@@ -98,11 +98,11 @@ public class CitaController {
 
     //Obtiene el total de ingresos por psicólogo
     @GetMapping("/totalIngresosPsicologos")
-    public List<TotalIngresosPorPsicologoDTO> listTotalIngresosPorPsicologo() {
-        List<TotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();
+    public List<CantidadTotalIngresosPorPsicologoDTO> listTotalIngresosPorPsicologo() {
+        List<CantidadTotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = citaService.totalIngresosPorPsicologo();
         for (String[] columna : fila) {
-            TotalIngresosPorPsicologoDTO dto = new TotalIngresosPorPsicologoDTO();
+            CantidadTotalIngresosPorPsicologoDTO dto = new CantidadTotalIngresosPorPsicologoDTO();
             dto.setNombre(columna[0]);
             dto.setApellido(columna[1]);
             dto.setTotalIngresos(Integer.parseInt(columna[2]));

@@ -1,7 +1,7 @@
 package pe.edu.upc.free_mind.dtos;
 
 //DTO que representa el monto total generado por cada tipo de terapia
-public class MontoPorTipoDeTerapiaDTO {
+public class CantidadMontoPorTipoDeTerapiaDTO {
 
     //Tipo de terapia
     private String tipoTerapia;

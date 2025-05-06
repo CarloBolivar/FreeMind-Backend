@@ -1,7 +1,6 @@
 package pe.edu.upc.free_mind.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.free_mind.entities.Terapia;
 import pe.edu.upc.free_mind.repositories.ITerapiaRepository;
