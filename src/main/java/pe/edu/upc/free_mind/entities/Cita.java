@@ -2,38 +2,36 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa una cita agendada entre un paciente y un psicólogo.
- */
+// Entidad que representa una cita agendada entre un paciente y un psicólogo.
 @Entity
 @Table(name = "cita")
 public class Cita {
 
-    /** Identificador único de la cita */
+    // Identificador único de la cita
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCita;
 
-    /** Estado de la cita (por ejemplo, programado, completado, cancelado) */
+    // Estado de la cita (por ejemplo, programado, completado, cancelado)
     @Column(name = "estado", nullable = false)
     private int estado;
 
-    /** Relación con el horario asignado a la cita */
+    // Relación con el horario asignado a la cita
     @ManyToOne
     @JoinColumn(name = "id_horario", nullable = false)
     private Horario horario;
 
-    /** Relación con el paciente (usuario que recibe la cita) */
+    // Relación con el paciente (usuario que recibe la cita)
     @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
     private Usuario paciente;
 
-    /** Relación con el psicólogo (usuario que brinda la cita) */
+    // Relación con el psicólogo (usuario que brinda la cita)
     @ManyToOne
     @JoinColumn(name = "id_psicologo", nullable = false)
     private Usuario psicologo;
 
-    /** Relación con la terapia asociada a la cita (opcional) */
+    // Relación con la terapia asociada a la cita (opcional)
     @ManyToOne
     @JoinColumn(name = "id_terapia")
     private Terapia terapia;

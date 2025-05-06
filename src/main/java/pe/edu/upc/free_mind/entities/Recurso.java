@@ -2,27 +2,25 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa un recurso educativo o informativo.
- */
+// Entidad que representa un recurso educativo o informativo.
 @Entity
 @Table(name = "recurso")
 public class Recurso {
 
-    /** Identificador único del recurso */
+    // Identificador único del recurso
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecurso;
 
-    /** Tipo del recurso (por ejemplo: video, documento, enlace) */
+    // Tipo del recurso (por ejemplo: video, documento, enlace)
     @Column(name = "tipo", nullable = false, length = 20)
     private String tipo;
 
-    /** URL del recurso */
+    // URL del recurso
     @Column(name = "url", nullable = false, length = 500)
     private String url;
 
-    /** Relación con la entidad Terapia */
+    // Relación con la entidad Terapia
     @ManyToOne
     @JoinColumn(name = "id_terapia", nullable = false)
     private Terapia terapia;

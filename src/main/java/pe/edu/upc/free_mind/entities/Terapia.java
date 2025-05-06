@@ -2,23 +2,21 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa un tipo de terapia disponible en el sistema.
- */
+// Entidad que representa un tipo de terapia disponible en el sistema.
 @Entity
 @Table(name = "terapia")
 public class Terapia {
 
-    /** Identificador único de la terapia */
+    // Identificador único de la terapia
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTerapia;
 
-    /** Título o nombre de la terapia */
+    // Título o nombre de la terapia
     @Column(name = "titulo", nullable = false, length = 100)
     private String titulo;
 
-    /** Descripción detallada de la terapia (opcional) */
+    // Descripción detallada de la terapia (opcional)
     @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String descripcion;
 
