@@ -2,51 +2,49 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa un pago realizado para una cita.
- */
+// Entidad que representa un pago realizado para una cita.
 @Entity
 @Table(name = "pago")
 public class Pago {
 
-    /** Identificador único del pago */
+    // Identificador único del pago
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPago;
 
-    /** Número de la tarjeta utilizada para el pago */
+    // Número de la tarjeta utilizada para el pago
     @Column(name = "numero_tarjeta", nullable = false, length = 20)
     private String numeroTarjeta;
 
-    /** Nombres del titular de la tarjeta */
+    // Nombres del titular de la tarjeta
     @Column(name = "nombres", nullable = false, length = 50)
     private String nombres;
 
-    /** Apellidos del titular de la tarjeta */
+    // Apellidos del titular de la tarjeta
     @Column(name = "apellidos", nullable = false, length = 50)
     private String apellidos;
 
-    /** Mes de vencimiento de la tarjeta */
+    // Mes de vencimiento de la tarjeta
     @Column(name = "mes", nullable = false)
     private int mes;
 
-    /** Año de vencimiento de la tarjeta */
+    // Año de vencimiento de la tarjeta
     @Column(name = "anio", nullable = false)
     private int anio;
 
-    /** Código de verificación de la tarjeta (CVV) */
+    // Código de verificación de la tarjeta (CVV)
     @Column(name = "cvv", nullable = false)
     private int cvv;
 
-    /** Correo electrónico asociado al pago */
+    // Correo electrónico asociado al pago
     @Column(name = "correo", nullable = false, length = 50)
     private String correo;
 
-    /** Monto del pago */
+    // Monto del pago
     @Column(name = "monto", nullable = false)
     private int monto;
 
-    /** Cita asociada al pago */
+    // Cita asociada al pago
     @ManyToOne
     @JoinColumn(name = "id_cita", nullable = false)
     private Cita cita;

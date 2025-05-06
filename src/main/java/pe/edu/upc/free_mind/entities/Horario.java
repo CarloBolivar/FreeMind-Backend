@@ -4,27 +4,25 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * Entidad que representa un horario disponible para un usuario (psicólogo).
- */
+// Entidad que representa un horario disponible para un usuario (psicólogo).
 @Entity
 @Table(name = "horario")
 public class Horario {
 
-    /** Identificador único del horario */
+    // Identificador único del horario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idHorario;
 
-    /** Fecha del horario disponible */
+    // Fecha del horario disponible
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    /** Hora disponible */
+    // Hora disponible
     @Column(name = "hora", nullable = false)
     private LocalTime hora;
 
-    /** Usuario asociado (psicólogo) */
+    // Usuario asociado (psicólogo)
     @ManyToOne
     @JoinColumn(name = "usuario_id_usuario", nullable = false)
     private Usuario usuario;

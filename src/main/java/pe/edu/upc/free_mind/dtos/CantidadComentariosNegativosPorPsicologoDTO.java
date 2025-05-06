@@ -1,6 +1,6 @@
 package pe.edu.upc.free_mind.dtos;
 
-public class CantComentariosNegativosPorPsicologoDTO {
+public class CantidadComentariosNegativosPorPsicologoDTO {
     //Nombre del psicólogo
     private String nombrePsicologo;
 

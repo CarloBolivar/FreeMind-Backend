@@ -3,9 +3,9 @@ package pe.edu.upc.free_mind.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
+import pe.edu.upc.free_mind.dtos.CantidadMontoPorTipoDeTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.PagoDTO;
-import pe.edu.upc.free_mind.dtos.SumaPagosPorMesDTO;
+import pe.edu.upc.free_mind.dtos.CantidadSumaPagosPorMesDTO;
 import pe.edu.upc.free_mind.entities.Pago;
 import pe.edu.upc.free_mind.servicesinterfaces.IPagoService;
 
@@ -67,11 +67,11 @@ public class PagoController {
 
     //Obtiene la suma de pagos agrupados por mes
     @GetMapping("/suma-pagos-por-mes")
-    public List<SumaPagosPorMesDTO> obtenerSumaPagosPorMes() {
-        List<SumaPagosPorMesDTO> dtoLista = new ArrayList<>();
+    public List<CantidadSumaPagosPorMesDTO> obtenerSumaPagosPorMes() {
+        List<CantidadSumaPagosPorMesDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = pagoService.obtenerSumaPagosPorMes();
         for (String[] columna : fila) {
-            SumaPagosPorMesDTO dto = new SumaPagosPorMesDTO();
+            CantidadSumaPagosPorMesDTO dto = new CantidadSumaPagosPorMesDTO();
             dto.setMes(Integer.parseInt(columna[0]));
             dto.setMontoTotal(Double.parseDouble(columna[1]));
             dtoLista.add(dto);
@@ -83,11 +83,11 @@ public class PagoController {
 
     //Obtiene el monto total generado por tipo de terapia
     @GetMapping("/monto-total-por-tipo-de-terapia")
-    public List<MontoPorTipoDeTerapiaDTO> obtenerMontoPorTipoDeTerapia() {
-        List<MontoPorTipoDeTerapiaDTO> dtoLista = new ArrayList<>();
+    public List<CantidadMontoPorTipoDeTerapiaDTO> obtenerMontoPorTipoDeTerapia() {
+        List<CantidadMontoPorTipoDeTerapiaDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = pagoService.obtenerMontoPorTipoDeTerapia();
         for (String[] columna : fila) {
-            MontoPorTipoDeTerapiaDTO dto = new MontoPorTipoDeTerapiaDTO();
+            CantidadMontoPorTipoDeTerapiaDTO dto = new CantidadMontoPorTipoDeTerapiaDTO();
             dto.setTipoTerapia(columna[0]);
             dto.setMontoTotal(Double.parseDouble(columna[1]));
             dtoLista.add(dto);

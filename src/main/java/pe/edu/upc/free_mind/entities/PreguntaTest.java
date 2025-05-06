@@ -2,24 +2,22 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa una pregunta perteneciente a un test.
- */
+// Entidad que representa una pregunta perteneciente a un test.
 @Entity
 @Table(name = "pregunta_test")
 public class PreguntaTest {
 
-    /** Identificador único de la pregunta */
+    // Identificador único de la pregunta
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pregunta")
     private int idPregunta;
 
-    /** Contenido de la pregunta */
+    // Contenido de la pregunta
     @Column(name = "pregunta", nullable = false, columnDefinition = "text")
     private String pregunta;
 
-    /** Test al que pertenece la pregunta */
+    // Test al que pertenece la pregunta
     @ManyToOne
     @JoinColumn(name = "id_test", nullable = false)
     private Test test;
