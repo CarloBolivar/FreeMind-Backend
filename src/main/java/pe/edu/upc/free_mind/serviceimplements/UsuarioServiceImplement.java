@@ -58,6 +58,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public List<String[]> amountByUsuario() { return uR.amountByUsuario(); }
     @Override
     public List<String[]> comentByUsuario() { return uR.comentByUsuario(); }
+    @Override
+    public List<String[]> cantByUsuario() { return uR.cantidadUsuario(); }
 }
 
 
