@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadComentarioDTO;
 import pe.edu.upc.free_mind.dtos.CantidadSumaPagoDTO;
+import pe.edu.upc.free_mind.dtos.CantidadxRolesDTO;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
 import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
