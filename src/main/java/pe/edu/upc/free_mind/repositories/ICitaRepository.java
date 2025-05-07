@@ -41,4 +41,10 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
             "GROUP BY u.id_usuario, u.nombre, u.apellido " +
             "ORDER BY total_ingresos DESC", nativeQuery = true)
     public List<String[]> TotalIngresosPsicologo();
+
+    /*Erick*/
+    // Obtiene el reporte de citas pendientes
+    @Query(value = "SELECT c.id_cita, c.estado FROM cita c " +
+                   "WHERE c.estado = 'pendiente'", nativeQuery = true)
+    List<String[]> obtenerCitasPendientes(); // Devuelve el ID y el estado de las citas pendientes
 }
