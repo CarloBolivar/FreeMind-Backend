@@ -32,4 +32,11 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "ON u.id_usuario = c.id_usuario " +
             "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> comentByUsuario();
+
+    @Query(value = "SELECT r.nombre, COUNT(u.id_usuario)\n" +
+            " FROM Usuario u\n" +
+            " JOIN Rol r ON u.id_rol = r.id_rol\n" +
+            " WHERE u.id_rol IN (1, 2)\n" +
+            " GROUP BY r.nombre;\n", nativeQuery = true)
+    public List<String[]> cantidadUsuario();
 }
