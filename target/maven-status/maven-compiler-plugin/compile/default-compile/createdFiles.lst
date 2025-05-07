@@ -51,6 +51,7 @@ pe\edu\upc\free_mind\controllers\CitaController.class
 pe\edu\upc\free_mind\dtos\CantidadComentariosNegativosPorPsicologoDTO.class
 pe\edu\upc\free_mind\serviceimplements\TestServiceImplement.class
 pe\edu\upc\free_mind\repositories\ITestRealizadoRepository.class
+pe\edu\upc\free_mind\dtos\CantidadxRolesDTO.class
 pe\edu\upc\free_mind\serviceimplements\RolServiceImplement.class
 pe\edu\upc\free_mind\dtos\CantidadSumaPagosPorMesDTO.class
 pe\edu\upc\free_mind\dtos\CantidadCitasPorTerapiaDTO.class
