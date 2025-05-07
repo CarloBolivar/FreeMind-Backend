@@ -67,4 +67,9 @@ public class CitaServiceImplement implements ICitaService {
     public List<String[]> totalIngresosPorPsicologo() {
         return cR.TotalIngresosPsicologo();
     }
+
+    /*Erick*/
+    @Override
+    public List<String[]> getCitasPendientes() {
+        return cR.
 }
