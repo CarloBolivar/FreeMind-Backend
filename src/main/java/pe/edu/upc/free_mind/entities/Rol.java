@@ -3,7 +3,6 @@ package pe.edu.upc.free_mind.entities;
 import jakarta.persistence.*;
 
 // Entidad que representa el rol que tiene un usuario dentro del sistema.
-// Mapeada a la tabla "rol" en la base de datos.
 @Entity
 @Table(name = "rol")
 public class Rol {

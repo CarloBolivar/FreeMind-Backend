@@ -3,7 +3,6 @@ package pe.edu.upc.free_mind.entities;
 import jakarta.persistence.*;
 
 // Entidad que representa una respuesta de un usuario a una pregunta de un test.
-// Mapeada a la tabla "respuesta_test" en la base de datos.
 @Entity
 @Table(name = "respuesta_test")
 public class RespuestaTest {

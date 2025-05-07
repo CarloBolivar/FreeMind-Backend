@@ -46,6 +46,7 @@ public class TestServiceImplement implements ITestService {
         tR.save(test);
     }
 
+    //Reportes
     @Override
     public List<String[]> cantidadTestsPorMes() {
         return tR.cantidadTestsPorMes();

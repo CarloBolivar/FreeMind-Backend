@@ -68,8 +68,8 @@ public class WebSecurityConfig {
                                 antMatcher("/swagger-ui/**"), // acceso libre a Swagger
                                 antMatcher("/v3/api-docs/**")
                         ).permitAll()
-                        .requestMatchers(antMatcher("/api/usuarios/**")).hasAuthority("ADMIN") // solo ADMIN
-                        .requestMatchers(antMatcher("/api/roles/**")).hasAuthority("ADMIN") // solo ADMIN
+                        .requestMatchers(antMatcher("/usuarios/**")).hasAuthority("ADMIN") // solo ADMIN
+                        .requestMatchers(antMatcher("/roles/**")).hasAuthority("ADMIN") // solo ADMIN
                         .anyRequest().authenticated() // el resto requiere autenticación
                 )
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))

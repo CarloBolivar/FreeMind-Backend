@@ -3,7 +3,6 @@ package pe.edu.upc.free_mind.entities;
 import jakarta.persistence.*;
 
 // Entidad que representa a un usuario en el sistema.
-// Mapeada a la tabla "usuario" en la base de datos.
 @Entity
 @Table(name = "usuario")
 public class Usuario {
