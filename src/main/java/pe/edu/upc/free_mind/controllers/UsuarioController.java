@@ -103,4 +103,17 @@ public class UsuarioController {
         }
         return dtoLista;
     }
+
+    @GetMapping("/roles")
+    public List<CantidadxRolesDTO> cantidadUsuario(){
+        List<CantidadxRolesDTO> dtoLista = new ArrayList<>();
+        List<String[]> fila = usuarioService.cantByUsuario();
+        for (String[] columna : fila) {
+            CantidadxRolesDTO dto = new CantidadxRolesDTO();
+            dto.setRol(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
 }
