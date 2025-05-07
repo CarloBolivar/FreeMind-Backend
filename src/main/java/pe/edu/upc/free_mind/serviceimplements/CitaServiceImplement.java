@@ -70,7 +70,7 @@ public class CitaServiceImplement implements ICitaService {
 
     /*Erick*/
     @Override
-    public List<String[]> obtenerCitasPendientes() {
+    public List<String[]> ObtenerCitasPendientes() {
         return cR.obtenerCitasPendientes();
     }
 }
