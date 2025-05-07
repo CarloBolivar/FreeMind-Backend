@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadComentarioDTO;
 import pe.edu.upc.free_mind.dtos.CantidadSumaPagoDTO;
@@ -24,7 +25,9 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
 
+
     //Lista todos los usuarios existentes
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<UsuarioDTO> listar() {
         return usuarioService.list().stream().map(x -> {
@@ -34,6 +37,7 @@ public class UsuarioController {
     }
 
     //Registra un nuevo usuario
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void registrar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -42,12 +46,14 @@ public class UsuarioController {
     }
 
     //Elimina un usuario por su ID
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         usuarioService.delete(id);
     }
 
     //Obtiene un usuario por su ID
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public UsuarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Usuario u = usuarioService.listId(id);
@@ -56,6 +62,7 @@ public class UsuarioController {
     }
 
     //Modifica un usuario existente
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -64,6 +71,7 @@ public class UsuarioController {
     }
 
     //Obtiene el perfil del usuario autenticado
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/perfil")
     public UsuarioDTO obtenerPerfil(@AuthenticationPrincipal UserDetails userDetails) {
         String correo = userDetails.getUsername();
@@ -77,6 +85,7 @@ public class UsuarioController {
     /*Renzo*/
 
     //Obtiene el monto total pagado por usuario
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/montos")
     public List<CantidadSumaPagoDTO> sumaPago() {
         List<CantidadSumaPagoDTO> dtoLista = new ArrayList<>();
@@ -91,6 +100,7 @@ public class UsuarioController {
     }
 
     //Obtiene la cantidad de comentarios realizados por usuario
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/comentarios")
     public List<CantidadComentarioDTO> cantidadComentario() {
         List<CantidadComentarioDTO> dtoLista = new ArrayList<>();
