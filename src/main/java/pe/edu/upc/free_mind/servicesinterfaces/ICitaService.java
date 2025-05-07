@@ -29,4 +29,6 @@ public interface ICitaService {
     public List<String[]> QuantityCitaByTerapia();
     public List<String[]> totalIngresosPorPsicologo();
 
+    /*Erick*/
+    public List<CitaDTO> getCitasPendientes(); 
 }
