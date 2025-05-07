@@ -30,5 +30,5 @@ public interface ICitaService {
     public List<String[]> totalIngresosPorPsicologo();
 
     /*Erick*/
-    public List<CitaDTO> ObtenerCitasPendientes(); 
+    public List<String[]> ObtenerCitasPendientes(); 
 }
