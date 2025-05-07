@@ -31,4 +31,5 @@ public interface IUsuarioService {
     /* Renzo*/
     public List<String[]> amountByUsuario();
     public List<String[]> comentByUsuario();
+    public List<String[]> cantByUsuario();
 }
