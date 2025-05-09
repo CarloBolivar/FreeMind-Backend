@@ -25,12 +25,12 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
 
     /*Deyci*/
     //Obtiene la cantidad de citas por tipo de terapia
-    @Query(value = "SELECT t.titulo AS name_terapia, COUNT(c.id_cita) AS quantity_citas " +
-            "FROM cita c " +
-            "INNER JOIN terapia t ON c.id_terapia = t.id_terapia " +
-            "GROUP BY t.titulo " +
+    @Query(value = "SELECT t.titulo AS name_terapia, t.descripcion, COUNT(c.id_cita) AS quantity_citas\n" +
+            "FROM cita c \n" +
+            "INNER JOIN terapia t ON c.id_terapia = t.id_terapia \n" +
+            "GROUP BY t.titulo, t.descripcion\n" +
             "ORDER BY quantity_citas DESC", nativeQuery = true)
-    public List<String[]> QuantityCitaByTerapia();
+    public List<String[]> obtenerCantidadCitasPorTerapia();
 
     //Obtiene el monto total de ingresos generados por psicólogo
     @Query(value = "SELECT u.nombre, u.apellido, SUM(p.monto) AS total_ingresos " +
