@@ -82,15 +82,16 @@ public class CitaController {
 
     /*Deyci*/
 
-    //Obtiene la cantidad de citas por tipo de terapia
+    //Obtiene la cantidad de citas por tipo de terapias
     @GetMapping("/cantidadCitasPorTerapia")
-    public List<CantidadCitasPorTerapiaDTO> listCantidadCitasByTerapia() {
+    public List<CantidadCitasPorTerapiaDTO> obtenerCantidadCitasPorTerapia() {
         List<CantidadCitasPorTerapiaDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = citaService.QuantityCitaByTerapia();
+        List<String[]> fila = citaService.obtenerCantidadCitasPorTerapia();
         for (String[] columna : fila) {
             CantidadCitasPorTerapiaDTO dto = new CantidadCitasPorTerapiaDTO();
             dto.setNameTerapia(columna[0]);
-            dto.setQuantityCitas(Integer.parseInt(columna[1]));
+            dto.setDescripcion(columna[1]);
+            dto.setQuantityCitas(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }
         return dtoLista;
@@ -98,7 +99,7 @@ public class CitaController {
 
     //Obtiene el total de ingresos por psicólogo
     @GetMapping("/totalIngresosPsicologos")
-    public List<CantidadTotalIngresosPorPsicologoDTO> listTotalIngresosPorPsicologo() {
+    public List<CantidadTotalIngresosPorPsicologoDTO> obtenerTotalIngresosPorPsicologo() {
         List<CantidadTotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = citaService.totalIngresosPorPsicologo();
         for (String[] columna : fila) {

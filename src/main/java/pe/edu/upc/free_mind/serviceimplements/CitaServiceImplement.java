@@ -58,8 +58,8 @@ public class CitaServiceImplement implements ICitaService {
     /*Deyci*/
     //Obtiene la cantidad de citas por tipo de terapia
     @Override
-    public List<String[]> QuantityCitaByTerapia() {
-        return cR.QuantityCitaByTerapia();
+    public List<String[]> obtenerCantidadCitasPorTerapia() {
+        return cR.obtenerCantidadCitasPorTerapia();
     }
 
     //Obtiene el total de ingresos generados por cada psicólogo
