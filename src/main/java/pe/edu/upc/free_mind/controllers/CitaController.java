@@ -90,7 +90,8 @@ public class CitaController {
         for (String[] columna : fila) {
             CantidadCitasPorTerapiaDTO dto = new CantidadCitasPorTerapiaDTO();
             dto.setNameTerapia(columna[0]);
-            dto.setQuantityCitas(Integer.parseInt(columna[1]));
+            dto.setDescripcion(columna[1]);
+            dto.setQuantityCitas(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }
         return dtoLista;

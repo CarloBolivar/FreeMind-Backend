@@ -6,6 +6,8 @@ public class CantidadCitasPorTerapiaDTO {
     //Nombre de la terapia
     private String nameTerapia;
 
+    private String descripcion;
+
     //Cantidad de citas asociadas a la terapia
     private int quantityCitas;
 
@@ -25,4 +27,8 @@ public class CantidadCitasPorTerapiaDTO {
     public void setQuantityCitas(int quantityCitas) {
         this.quantityCitas = quantityCitas;
     }
+
+    public String getDescripcion() { return descripcion; }
+
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }
