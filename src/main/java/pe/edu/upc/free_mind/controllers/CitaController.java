@@ -82,7 +82,7 @@ public class CitaController {
 
     /*Deyci*/
 
-    //Obtiene la cantidad de citas por tipo de terapia
+    //Obtiene la cantidad de citas por tipo de terapias
     @GetMapping("/cantidadCitasPorTerapia")
     public List<CantidadCitasPorTerapiaDTO> obtenerCantidadCitasPorTerapia() {
         List<CantidadCitasPorTerapiaDTO> dtoLista = new ArrayList<>();

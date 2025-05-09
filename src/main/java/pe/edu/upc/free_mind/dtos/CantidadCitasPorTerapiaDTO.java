@@ -6,6 +6,7 @@ public class CantidadCitasPorTerapiaDTO {
     //Nombre de la terapia
     private String nameTerapia;
 
+    //descripcion de la terapia
     private String descripcion;
 
     //Cantidad de citas asociadas a la terapia
