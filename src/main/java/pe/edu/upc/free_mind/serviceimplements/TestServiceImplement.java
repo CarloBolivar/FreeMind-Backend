@@ -49,6 +49,7 @@ public class TestServiceImplement implements ITestService {
     //Reportes
 
     /*Erick*/
+    //Obtiene la cantidad de tests completados por mes
     @Override
     public List<String[]> cantidadTestsPorMes() {
         return tR.cantidadTestsPorMes();
