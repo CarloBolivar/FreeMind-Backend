@@ -29,5 +29,6 @@ public interface IPagoService {
     public List<String[]> obtenerSumaPagosPorMes();
 
     /*Erick*/
+    //Obtiene el monto total generado por tipo de terapia
     public List<String[]> obtenerMontoPorTipoDeTerapia();
 }
