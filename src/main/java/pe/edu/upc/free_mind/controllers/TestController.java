@@ -63,7 +63,6 @@ public class TestController {
     //Reportes
 
     /*Erick*/
-
     //Obtiene la cantidad de tests completados por mes
     @GetMapping("/cantidad-tests-por-mes")
     public List<CantidadTestsPorMesDTO> obtenerCantidadTestsPorMes() {
