@@ -80,7 +80,6 @@ public class PagoController {
     }
 
     /*Erick*/
-
     //Obtiene el monto total generado por tipo de terapia
     @GetMapping("/monto-total-por-tipo-de-terapia")
     public List<CantidadMontoPorTipoDeTerapiaDTO> obtenerMontoPorTipoDeTerapia() {
