@@ -56,7 +56,7 @@ public class PagoServiceImplement implements IPagoService {
     }
 
     /*Erick*/
-    //Obtiene el monto total generado por tipo de terapia
+    //Obtiene el monto total generado por el tipo de terapia elegido
     @Override
     public List<String[]> obtenerMontoPorTipoDeTerapia() {
         return pR.obtenerMontoPorTipoDeTerapia();
