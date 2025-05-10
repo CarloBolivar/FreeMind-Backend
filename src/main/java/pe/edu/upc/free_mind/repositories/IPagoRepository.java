@@ -24,7 +24,7 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     List<String[]> obtenerSumaPagosPorMes();
 
     /*Erick*/
-    //Obtiene el monto total generado por tipo de terapia
+    //Obtiene el monto total generado por el tipo de terapia elegido
     @Query(value = "SELECT t.titulo AS tipoTerapia, SUM(p.monto) AS montoTotal " +
             "FROM pago p " +
             "INNER JOIN cita c ON p.id_cita = c.id_cita " +
