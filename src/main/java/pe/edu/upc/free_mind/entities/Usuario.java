@@ -36,7 +36,7 @@ public class Usuario {
     @Column(name = "especialidad", length = 100)
     private String especialidad;
 
-    // Número o código de credencial profesional
+    // credencial profesional
     @Column(name = "credencial", length = 20)
     private String credencial;
 

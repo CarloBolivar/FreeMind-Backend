@@ -33,6 +33,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> comentByUsuario();
 
+    //Obtiene la cantidad de usuarios por rol
     @Query(value = "SELECT r.nombre, COUNT(u.id_usuario)\n" +
             " FROM Usuario u\n" +
             " JOIN Rol r ON u.id_rol = r.id_rol\n" +

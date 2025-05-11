@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.controllers;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
@@ -11,6 +12,8 @@ import pe.edu.upc.free_mind.securities.JwtTokenUtil;
 import pe.edu.upc.free_mind.serviceimplements.JwtUserDetailsService;
 
 //Controlador REST para gestionar la autenticación y generación de tokens JWT
+
+@Hidden
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -36,7 +39,7 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    //Método privado para autenticar usuario
+    //Metodo privado para autenticar usuario
     private void authenticate(String correo, String contrasena) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(correo, contrasena));
