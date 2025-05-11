@@ -6,6 +6,7 @@ pe\edu\upc\free_mind\controllers\UsuarioController.class
 pe\edu\upc\free_mind\serviceimplements\PreguntaTestServiceImplement.class
 pe\edu\upc\free_mind\servicesinterfaces\IComentarioService.class
 pe\edu\upc\free_mind\serviceimplements\RespuestaTestServiceImplement.class
+pe\edu\upc\free_mind\dtos\UsuarioSeguroDTO.class
 pe\edu\upc\free_mind\dtos\CantidadSumaPagoDTO.class
 pe\edu\upc\free_mind\servicesinterfaces\IRolService.class
 pe\edu\upc\free_mind\dtos\TestRealizadoDTO.class

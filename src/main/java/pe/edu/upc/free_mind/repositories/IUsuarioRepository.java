@@ -40,4 +40,9 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             " WHERE u.id_rol IN (1, 2)\n" +
             " GROUP BY r.nombre;\n", nativeQuery = true)
     public List<String[]> cantidadUsuario();
+
+    //Filtro
+    List<Usuario> findByEspecialidad(String especialidad);
+    List<Usuario> findByRolIdRol(Integer idRol);
+    List<Usuario> findByEspecialidadAndRolIdRol(String especialidad, Integer idRol);
 }

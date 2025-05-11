@@ -23,11 +23,12 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository uR;
 
-    //Inserta un nuevo usuario en la base de datos
+    //Inserta un nuevo usuario en la base de datos,deja el usuario habilitado y el password encoder encripta la contraseña
     @Override
     public void insert(Usuario usuario) {
         String encriptada = passwordEncoder.encode(usuario.getContrasena());
         usuario.setContrasena(encriptada);
+        usuario.setEnabled(true);
         uR.save(usuario);
     }
 
@@ -68,6 +69,20 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public List<String[]> comentByUsuario() { return uR.comentByUsuario(); }
     @Override
     public List<String[]> cantByUsuario() { return uR.cantidadUsuario(); }
+
+    //Filtro
+    @Override
+    public List<Usuario> filtrarUsuarios(String especialidad, Integer idRol) {
+        if (especialidad != null && idRol != null) {
+            return uR.findByEspecialidadAndRolIdRol(especialidad, idRol);
+        } else if (especialidad != null) {
+            return uR.findByEspecialidad(especialidad);
+        } else if (idRol != null) {
+            return uR.findByRolIdRol(idRol);
+        } else {
+            return uR.findAll();
+        }
+    }
 }
 
 

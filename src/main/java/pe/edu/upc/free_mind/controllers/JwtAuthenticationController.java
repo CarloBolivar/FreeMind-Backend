@@ -9,7 +9,6 @@ import pe.edu.upc.free_mind.securities.JwtRequest;
 import pe.edu.upc.free_mind.securities.JwtResponse;
 import pe.edu.upc.free_mind.securities.JwtTokenUtil;
 import pe.edu.upc.free_mind.serviceimplements.JwtUserDetailsService;
-import io.swagger.v3.oas.annotations.Operation;
 
 //Controlador REST para gestionar la autenticación y generación de tokens JWT
 @RestController
@@ -29,7 +28,6 @@ public class JwtAuthenticationController {
     private JwtUserDetailsService userDetailsService;
 
     //Endpoint para realizar login y generar token JWT
-    @Operation( hidden = true)
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest req) throws Exception {
         authenticate(req.getCorreo(), req.getContrasena());

@@ -12,6 +12,7 @@ import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import pe.edu.upc.free_mind.dtos.UsuarioSeguroDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,10 @@ public class UsuarioController {
     //Lista todos los usuarios existentes
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
-    public List<UsuarioDTO> listar() {
+    public List<UsuarioSeguroDTO> listar() {
         return usuarioService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, UsuarioDTO.class);
+            return m.map(x, UsuarioSeguroDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -126,5 +127,19 @@ public class UsuarioController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    //Filtro
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/filtro")
+    public List<UsuarioSeguroDTO> filtrarUsuarios(
+            @RequestParam(required = false) String especialidad,
+            @RequestParam(required = false) Integer idRol) {
+
+        List<Usuario> usuarios = usuarioService.filtrarUsuarios(especialidad, idRol);
+        ModelMapper mapper = new ModelMapper();
+        return usuarios.stream()
+                .map(u -> mapper.map(u, UsuarioSeguroDTO.class))
+                .collect(Collectors.toList());
     }
 }

@@ -32,4 +32,8 @@ public interface IUsuarioService {
     public List<String[]> amountByUsuario();
     public List<String[]> comentByUsuario();
     public List<String[]> cantByUsuario();
+
+    //Filtro
+    List<Usuario> filtrarUsuarios(String especialidad, Integer idRol);
+
 }
