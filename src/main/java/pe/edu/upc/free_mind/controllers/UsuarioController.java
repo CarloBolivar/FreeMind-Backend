@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.free_mind.dtos.CantidadComentarioDTO;
 import pe.edu.upc.free_mind.dtos.CantidadSumaPagoDTO;
 import pe.edu.upc.free_mind.dtos.CantidadUsuariosPorRol;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
@@ -101,21 +100,8 @@ public class UsuarioController {
         return dtoLista;
     }
 
-    //Obtiene la cantidad de comentarios realizados por usuario
+    //Obtiene el monto total de usuarios por roles
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/comentarios")
-    public List<CantidadComentarioDTO> cantidadComentario() {
-        List<CantidadComentarioDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = usuarioService.comentByUsuario();
-        for (String[] columna : fila) {
-            CantidadComentarioDTO dto = new CantidadComentarioDTO();
-            dto.setNombre(columna[0]);
-            dto.setComentByUsuario(Integer.parseInt(columna[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
     @GetMapping("/roles")
     public List<CantidadUsuariosPorRol> cantidadUsuario(){
         List<CantidadUsuariosPorRol> dtoLista = new ArrayList<>();
