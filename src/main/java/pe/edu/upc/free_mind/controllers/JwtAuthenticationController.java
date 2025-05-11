@@ -1,6 +1,5 @@
 package pe.edu.upc.free_mind.controllers;
 
-import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
@@ -10,10 +9,9 @@ import pe.edu.upc.free_mind.securities.JwtRequest;
 import pe.edu.upc.free_mind.securities.JwtResponse;
 import pe.edu.upc.free_mind.securities.JwtTokenUtil;
 import pe.edu.upc.free_mind.serviceimplements.JwtUserDetailsService;
+import io.swagger.v3.oas.annotations.Operation;
 
 //Controlador REST para gestionar la autenticación y generación de tokens JWT
-
-@Hidden
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -31,6 +29,7 @@ public class JwtAuthenticationController {
     private JwtUserDetailsService userDetailsService;
 
     //Endpoint para realizar login y generar token JWT
+    @Operation( hidden = true)
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest req) throws Exception {
         authenticate(req.getCorreo(), req.getContrasena());
