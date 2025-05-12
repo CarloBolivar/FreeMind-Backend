@@ -21,6 +21,9 @@ public class UsuarioDTO {
     //Documento Nacional de Identidad
     private String dni;
 
+    //estado del usuario habilitado o no
+    private boolean enabled;
+
     //Especialidad del usuario (por ejemplo, psicología, medicina, etc.)
     private String especialidad;
 
@@ -77,6 +80,14 @@ public class UsuarioDTO {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getEspecialidad() {

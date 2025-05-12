@@ -69,6 +69,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public List<String[]> cantByUsuario() { return uR.cantidadUsuario(); }
 
+    //Ariam Reportes
+    @Override
+    public List<String[]> getPsicologosActivos() {
+        return uR.getPsicologosActivos();
+
     //Filtro
     @Override
     public List<Usuario> filtrarUsuarios(String especialidad, Integer idRol) {
@@ -81,6 +86,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
         } else {
             return uR.findAll();
         }
+
     }
 }
 
