@@ -57,10 +57,10 @@ public class UsuarioController {
     //Obtiene un usuario por su ID
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public UsuarioDTO obtenerPorId(@PathVariable("id") Integer id) {
+    public UsuarioSeguroDTO obtenerPorId(@PathVariable("id") Integer id) {
         Usuario u = usuarioService.listId(id);
         ModelMapper m = new ModelMapper();
-        return m.map(u, UsuarioDTO.class);
+        return m.map(u, UsuarioSeguroDTO.class);
     }
 
     //Modifica un usuario existente
@@ -86,6 +86,7 @@ public class UsuarioController {
 
     /* Ariam */
     //Número de psicólogos activos
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(  "/psicologos-activos")
     public List<CantidadPsicologosActivosDTO> obtenerPsicologosActivos() {
 
