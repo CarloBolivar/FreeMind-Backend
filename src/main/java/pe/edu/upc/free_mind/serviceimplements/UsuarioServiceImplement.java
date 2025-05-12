@@ -73,6 +73,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public List<String[]> getPsicologosActivos() {
         return uR.getPsicologosActivos();
+    }
 
     //Filtro
     @Override
@@ -86,7 +87,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
         } else {
             return uR.findAll();
         }
-
     }
 }
 

@@ -4,9 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.free_mind.dtos.CantidadComentarioDTO;
-import pe.edu.upc.free_mind.dtos.PsicologosActivosDTO;
-import pe.edu.upc.free_mind.dtos.SumaPagoDTO;
+import pe.edu.upc.free_mind.dtos.CantidadPsicologosActivosDTO;
 import pe.edu.upc.free_mind.dtos.CantidadSumaPagoDTO;
 import pe.edu.upc.free_mind.dtos.CantidadUsuariosPorRol;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
@@ -89,12 +87,12 @@ public class UsuarioController {
     /* Ariam */
     //Número de psicólogos activos
     @GetMapping(  "/psicologos-activos")
-    public List<PsicologosActivosDTO> obtenerPsicologosActivos() {
+    public List<CantidadPsicologosActivosDTO> obtenerPsicologosActivos() {
 
-        List<PsicologosActivosDTO> dtoLista = new ArrayList<>();
+        List<CantidadPsicologosActivosDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = usuarioService.getPsicologosActivos();
         for (String[] columna : fila) {
-            PsicologosActivosDTO dto = new PsicologosActivosDTO();
+            CantidadPsicologosActivosDTO dto = new CantidadPsicologosActivosDTO();
             dto.setIdPsicologo(Integer.parseInt(columna[0]));
             dto.setNombreCompleto(columna[1]);
             dto.setEspecialidad(columna[2]);

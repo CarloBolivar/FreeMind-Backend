@@ -1,5 +1,4 @@
 pe\edu\upc\free_mind\repositories\IRecursoRepository.class
-pe\edu\upc\free_mind\dtos\CantidadComentarioDTO.class
 pe\edu\upc\free_mind\entities\TestRealizado.class
 pe\edu\upc\free_mind\controllers\PreguntaTestController.class
 pe\edu\upc\free_mind\controllers\UsuarioController.class
@@ -22,6 +21,7 @@ pe\edu\upc\free_mind\serviceimplements\CitaServiceImplement.class
 pe\edu\upc\free_mind\servicesinterfaces\IUsuarioService.class
 pe\edu\upc\free_mind\securities\SwaggerConfig.class
 pe\edu\upc\free_mind\dtos\ComentarioDTO.class
+pe\edu\upc\free_mind\dtos\CantidadPsicologosActivosDTO.class
 pe\edu\upc\free_mind\serviceimplements\RecursoServiceImplement.class
 pe\edu\upc\free_mind\servicesinterfaces\IHorarioService.class
 pe\edu\upc\free_mind\securities\JwtResponse.class
