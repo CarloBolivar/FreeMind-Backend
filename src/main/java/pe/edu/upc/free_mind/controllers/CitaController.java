@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadCitasPorPsicologoDTO;
 import pe.edu.upc.free_mind.dtos.CantidadCitasPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.CitaDTO;
-import pe.edu.upc.free_mind.dtos.TotalIngresosPorPsicologoDTO;
+import pe.edu.upc.free_mind.dtos.CantidadTotalIngresosPorPsicologoDTO;
 import pe.edu.upc.free_mind.entities.Cita;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
@@ -82,15 +82,16 @@ public class CitaController {
 
     /*Deyci*/
 
-    //Obtiene la cantidad de citas por tipo de terapia
-    @GetMapping("/cantidadCitasxTerapia")
-    public List<CantidadCitasPorTerapiaDTO> listCantidadCitasByTerapia() {
+    //Obtiene la cantidad de citas por tipo de terapias
+    @GetMapping("/cantidadCitasPorTerapia")
+    public List<CantidadCitasPorTerapiaDTO> obtenerCantidadCitasPorTerapia() {
         List<CantidadCitasPorTerapiaDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = citaService.QuantityCitaByTerapia();
+        List<String[]> fila = citaService.obtenerCantidadCitasPorTerapia();
         for (String[] columna : fila) {
             CantidadCitasPorTerapiaDTO dto = new CantidadCitasPorTerapiaDTO();
             dto.setNameTerapia(columna[0]);
-            dto.setQuantityCitas(Integer.parseInt(columna[1]));
+            dto.setDescripcion(columna[1]);
+            dto.setQuantityCitas(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }
         return dtoLista;
@@ -98,11 +99,11 @@ public class CitaController {
 
     //Obtiene el total de ingresos por psicólogo
     @GetMapping("/totalIngresosPsicologos")
-    public List<TotalIngresosPorPsicologoDTO> listTotalIngresosPorPsicologo() {
-        List<TotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();
+    public List<CantidadTotalIngresosPorPsicologoDTO> obtenerTotalIngresosPorPsicologo() {
+        List<CantidadTotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = citaService.totalIngresosPorPsicologo();
         for (String[] columna : fila) {
-            TotalIngresosPorPsicologoDTO dto = new TotalIngresosPorPsicologoDTO();
+            CantidadTotalIngresosPorPsicologoDTO dto = new CantidadTotalIngresosPorPsicologoDTO();
             dto.setNombre(columna[0]);
             dto.setApellido(columna[1]);
             dto.setTotalIngresos(Integer.parseInt(columna[2]));

@@ -26,7 +26,7 @@ public interface ICitaService {
     public List<String[]> obtenerCantidadCitasPorPsicologo();
 
     /*Deyci*/
-    public List<String[]> QuantityCitaByTerapia();
+    public List<String[]> obtenerCantidadCitasPorTerapia();
     public List<String[]> totalIngresosPorPsicologo();
 
 }

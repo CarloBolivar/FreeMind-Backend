@@ -53,4 +53,7 @@ public class ComentarioServiceImplement implements IComentarioService {
     public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
         return cR.obtenerCantidadComentariosPorUsuario();
     }
+
+
+
 }

@@ -2,51 +2,52 @@ package pe.edu.upc.free_mind.entities;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa a un usuario en el sistema.
- * Mapeada a la tabla "usuario" en la base de datos.
- */
+// Entidad que representa a un usuario en el sistema.
 @Entity
 @Table(name = "usuario")
 public class Usuario {
 
-    /** Identificador único del usuario */
+    // Identificador único del usuario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
-    /** Nombre del usuario */
+    // Nombre del usuario
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    /** Apellido del usuario */
+    // Apellido del usuario
     @Column(name = "apellido", nullable = false, length = 50)
     private String apellido;
 
-    /** Correo electrónico del usuario */
+    // Correo electrónico del usuario
     @Column(name = "correo", nullable = false, length = 50)
     private String correo;
 
-    /** Contraseña cifrada del usuario */
+    // Contraseña cifrada del usuario
     @Column(name = "contrasena", nullable = false, length = 200)
     private String contrasena;
 
-    /** Documento Nacional de Identidad */
+    // Documento Nacional de Identidad
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
-    /** Especialidad del usuario (si aplica) */
+    // Especialidad del usuario (si aplica)
     @Column(name = "especialidad", length = 100)
     private String especialidad;
 
-    /** Número o código de credencial profesional */
+    // credencial profesional
     @Column(name = "credencial", length = 20)
     private String credencial;
 
-    /** Rol que tiene el usuario dentro del sistema */
+    // Rol que tiene el usuario dentro del sistema
     @ManyToOne
     @JoinColumn(name = "id_rol")
     private Rol rol;
+
+    // Estado del usuario (habilitado o no)
+    @Column(name = "enabled")
+    private Boolean enabled;
 
     // Getters y Setters
     public int getIdUsuario() {
@@ -121,18 +122,11 @@ public class Usuario {
         this.rol = rol;
     }
 
-    /** Estado del usuario (habilitado o no) */
-    @Column(name = "enabled")
-    private Boolean enabled;
-
-    /** Getter para enabled */
     public Boolean getEnabled() {
         return enabled;
     }
 
-    /** Setter para enabled */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
 }

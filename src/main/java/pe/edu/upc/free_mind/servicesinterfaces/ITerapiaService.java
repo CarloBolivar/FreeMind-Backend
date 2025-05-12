@@ -1,6 +1,5 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
-import pe.edu.upc.free_mind.dtos.MontoPorTipoDeTerapiaDTO;
 import pe.edu.upc.free_mind.entities.Terapia;
 import java.util.List;
 

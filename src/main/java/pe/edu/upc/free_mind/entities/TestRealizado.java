@@ -3,34 +3,32 @@ package pe.edu.upc.free_mind.entities;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-/**
- * Entidad que representa un test psicológico que ha sido respondido por un usuario.
- */
+// Entidad que representa un test psicológico que ha sido respondido por un usuario.
 @Entity
 @Table(name = "test_realizado")
 public class TestRealizado {
 
-    /** Identificador único del test realizado */
+    // Identificador único del test realizado
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTestRealizado;
 
-    /** Fecha en la que se completó el test */
-    @Column(name = "fecha", nullable = false) // Se llama fecha, no fechaRealizacion
+    // Fecha en la que se completó el test (se llama 'fecha' en la BD)
+    @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    /** Resultado del test */
-    @Column(name = "resultado", columnDefinition = "text") // No poner length, usar definición text
+    // Resultado del test (definido como TEXT en la base de datos)
+    @Column(name = "resultado", columnDefinition = "text")
     private String resultado;
 
-    /** Usuario que realizó el test */
+    // Usuario que realizó el test
     @ManyToOne
-    @JoinColumn(name = "id_usuario") // Nombre exacto en BD: id_usuario
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    /** Test que fue realizado */
+    // Test que fue realizado
     @ManyToOne
-    @JoinColumn(name = "id_test") // Nombre exacto en BD: id_test
+    @JoinColumn(name = "id_test")
     private Test test;
 
     // Getters y Setters

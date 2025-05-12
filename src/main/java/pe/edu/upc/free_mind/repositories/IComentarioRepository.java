@@ -20,4 +20,5 @@ public interface IComentarioRepository extends JpaRepository<Comentario, Integer
             "GROUP BY c.usuario.nombre")
     List<CantidadComentariosPorUsuarioDTO> obtenerCantidadComentariosPorUsuario();
 
+
 }

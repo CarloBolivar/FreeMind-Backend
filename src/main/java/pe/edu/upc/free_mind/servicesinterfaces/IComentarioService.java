@@ -25,4 +25,6 @@ public interface IComentarioService {
     //Reportes
     /*Mauricio*/
     List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario();
+
+
 }

@@ -23,5 +23,6 @@ public interface ITestService {
 
     //Reportes
     /*Erick*/
+    //Obtiene la cantidad de tests completados por mes
     public List<String[]> cantidadTestsPorMes();
 }

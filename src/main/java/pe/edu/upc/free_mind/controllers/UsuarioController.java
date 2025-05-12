@@ -2,15 +2,19 @@ package pe.edu.upc.free_mind.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadComentarioDTO;
 import pe.edu.upc.free_mind.dtos.PsicologosActivosDTO;
 import pe.edu.upc.free_mind.dtos.SumaPagoDTO;
+import pe.edu.upc.free_mind.dtos.CantidadSumaPagoDTO;
+import pe.edu.upc.free_mind.dtos.CantidadUsuariosPorRol;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
 import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import pe.edu.upc.free_mind.dtos.UsuarioSeguroDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +29,19 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
 
+
     //Lista todos los usuarios existentes
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
-    public List<UsuarioDTO> listar() {
+    public List<UsuarioSeguroDTO> listar() {
         return usuarioService.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, UsuarioDTO.class);
+            return m.map(x, UsuarioSeguroDTO.class);
         }).collect(Collectors.toList());
     }
 
     //Registra un nuevo usuario
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void registrar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -43,12 +50,14 @@ public class UsuarioController {
     }
 
     //Elimina un usuario por su ID
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         usuarioService.delete(id);
     }
 
     //Obtiene un usuario por su ID
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public UsuarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Usuario u = usuarioService.listId(id);
@@ -57,6 +66,7 @@ public class UsuarioController {
     }
 
     //Modifica un usuario existente
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -65,6 +75,7 @@ public class UsuarioController {
     }
 
     //Obtiene el perfil del usuario autenticado
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/perfil")
     public UsuarioDTO obtenerPerfil(@AuthenticationPrincipal UserDetails userDetails) {
         String correo = userDetails.getUsername();
@@ -93,20 +104,16 @@ public class UsuarioController {
 
     }
 
-
-
-
-
-
     /*Renzo*/
 
     //Obtiene el monto total pagado por usuario
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/montos")
-    public List<SumaPagoDTO> sumaPago() {
-        List<SumaPagoDTO> dtoLista = new ArrayList<>();
+    public List<CantidadSumaPagoDTO> sumaPago() {
+        List<CantidadSumaPagoDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = usuarioService.amountByUsuario();
         for (String[] columna : fila) {
-            SumaPagoDTO dto = new SumaPagoDTO();
+            CantidadSumaPagoDTO dto = new CantidadSumaPagoDTO();
             dto.setNombre(columna[0]);
             dto.setAmountByUsuario(Double.parseDouble(columna[1]));
             dtoLista.add(dto);
@@ -114,17 +121,32 @@ public class UsuarioController {
         return dtoLista;
     }
 
-    //Obtiene la cantidad de comentarios realizados por usuario
-    @GetMapping("/comentarios")
-    public List<CantidadComentarioDTO> cantidadComentario() {
-        List<CantidadComentarioDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = usuarioService.comentByUsuario();
+    //Obtiene el monto total de usuarios por roles
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/roles")
+    public List<CantidadUsuariosPorRol> cantidadUsuario(){
+        List<CantidadUsuariosPorRol> dtoLista = new ArrayList<>();
+        List<String[]> fila = usuarioService.cantByUsuario();
         for (String[] columna : fila) {
-            CantidadComentarioDTO dto = new CantidadComentarioDTO();
-            dto.setNombre(columna[0]);
-            dto.setComentByUsuario(Integer.parseInt(columna[1]));
+            CantidadUsuariosPorRol dto = new CantidadUsuariosPorRol();
+            dto.setRol(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    //Filtro
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/filtro")
+    public List<UsuarioSeguroDTO> filtrarUsuarios(
+            @RequestParam(required = false) String especialidad,
+            @RequestParam(required = false) Integer idRol) {
+
+        List<Usuario> usuarios = usuarioService.filtrarUsuarios(especialidad, idRol);
+        ModelMapper mapper = new ModelMapper();
+        return usuarios.stream()
+                .map(u -> mapper.map(u, UsuarioSeguroDTO.class))
+                .collect(Collectors.toList());
     }
 }

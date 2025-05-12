@@ -24,18 +24,25 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "ON u.id_usuario = p.id_usuario " +
             "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> amountByUsuario();
+  
+      //Obtiene la cantidad de usuarios por rol
+    @Query(value = "SELECT r.nombre, COUNT(u.id_usuario)\n" +
+            " FROM Usuario u\n" +
+            " JOIN Rol r ON u.id_rol = r.id_rol\n" +
+            " WHERE u.id_rol IN (1, 2)\n" +
+            " GROUP BY r.nombre;\n", nativeQuery = true)
+    public List<String[]> cantidadUsuario();
 
-    //Obtiene la cantidad de comentarios por usuario
-    @Query(value = "SELECT u.nombre, COUNT(c.id_comentario) " +
-            "FROM Usuario u " +
-            "INNER JOIN Comentario c " +
-            "ON u.id_usuario = c.id_usuario " +
-            "GROUP BY u.nombre", nativeQuery = true)
-    public List<String[]> comentByUsuario();
-
-
+    //Obtiene la cantidad de psicologos activos
     @Query(value = "SELECT u.id_usuario, CONCAT(u.nombre,' ', u.apellido) AS nombre_completo, u.especialidad " +
             "FROM Usuario u " +
             "WHERE u.id_rol = '1' and u.enabled is true ",nativeQuery = true )
     public List<String[]> getPsicologosActivos();
+
+
+
+    //Filtro
+    List<Usuario> findByEspecialidad(String especialidad);
+    List<Usuario> findByRolIdRol(Integer idRol);
+    List<Usuario> findByEspecialidadAndRolIdRol(String especialidad, Integer idRol);
 }

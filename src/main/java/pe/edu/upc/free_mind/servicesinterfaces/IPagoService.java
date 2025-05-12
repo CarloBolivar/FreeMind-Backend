@@ -3,43 +3,32 @@ package pe.edu.upc.free_mind.servicesinterfaces;
 import pe.edu.upc.free_mind.entities.Pago;
 import java.util.List;
 
-/**
- * Interfaz que define los métodos de servicio para la entidad Pago.
- * Encapsula la lógica de negocio relacionada a la gestión de pagos.
- */
+// Interfaz que define los métodos de servicio para la entidad Pago.
+
 public interface IPagoService {
 
-    /**
-     * Lista todos los pagos registrados.
-     */
+    // Lista todos los pagos registrados.
     public List<Pago> list();
 
-    /**
-     * Inserta un nuevo pago en la base de datos.
-     */
+    // Inserta un nuevo pago en la base de datos.
     public void insert(Pago pago);
 
-    /**
-     * Elimina un pago por su ID.
-     */
+    // Elimina un pago por su ID.
+
     public void delete(int id);
 
-    /**
-     * Obtiene un pago por su ID.
-     */
+    // Obtiene un pago por su ID.
+
     public Pago listId(int id);
 
-    /**
-     * Actualiza un pago existente.
-     */
+    // Actualiza un pago existente.
     public void update(Pago pago);
 
-    /**
-     * Reportes
-     */
+    // Reportes
     /*Carlo*/
     public List<String[]> obtenerSumaPagosPorMes();
 
     /*Erick*/
+    //Obtiene el monto total generado por tipo de terapia
     public List<String[]> obtenerMontoPorTipoDeTerapia();
 }

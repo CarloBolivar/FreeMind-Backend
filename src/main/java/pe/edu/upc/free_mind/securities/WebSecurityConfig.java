@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import io.swagger.v3.oas.annotations.Hidden;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -60,26 +61,26 @@ public class WebSecurityConfig {
 
     //Cadena de filtros de seguridad para proteger las rutas de la API usando JWT
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        /**
-        httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(antMatcher("/login")).permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers(
+                                antMatcher("/login"), // acceso libre al login
+                                antMatcher("/swagger-ui/**"), // acceso libre a Swagger
+                                antMatcher("/v3/api-docs/**")
+                        ).permitAll()
+                        .requestMatchers(antMatcher("/usuarios/**")).hasAuthority("ADMIN") // solo ADMIN
+                        .requestMatchers(antMatcher("/roles/**")).hasAuthority("ADMIN") // solo ADMIN
+                        .anyRequest().authenticated() // el resto requiere autenticación
                 )
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(AbstractHttpConfigurer::disable)
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-                .sessionManagement(Customizer.withDefaults());
+                .sessionManagement(Customizer.withDefaults())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(Customizer.withDefaults());
 
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-         */
-        httpSecurity
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                );
-        return httpSecurity.build();
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
+
 }
