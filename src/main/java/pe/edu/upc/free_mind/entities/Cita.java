@@ -7,34 +7,24 @@ import jakarta.persistence.*;
 @Table(name = "cita")
 public class Cita {
 
-    // Identificador único de la cita
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCita;
 
-    // Estado de la cita (por ejemplo, programado, completado, cancelado)
     @Column(name = "estado", nullable = false)
     private int estado;
 
-    // Relación con el horario asignado a la cita
-    @ManyToOne
-    @JoinColumn(name = "id_horario", nullable = false)
-    private Horario horario;
+    @Column(name = "id_horario", nullable = false)
+    private int idHorario;
 
-    // Relación con el paciente (usuario que recibe la cita)
-    @ManyToOne
-    @JoinColumn(name = "id_paciente", nullable = false)
-    private Usuario paciente;
+    @Column(name = "id_paciente", nullable = false)
+    private int idPaciente; // 🔁 antes: private Usuario paciente
 
-    // Relación con el psicólogo (usuario que brinda la cita)
-    @ManyToOne
-    @JoinColumn(name = "id_psicologo", nullable = false)
-    private Usuario psicologo;
+    @Column(name = "id_psicologo", nullable = false)
+    private int idPsicologo; // 🔁 antes: private Usuario psicologo
 
-    // Relación con la terapia asociada a la cita (opcional)
-    @ManyToOne
-    @JoinColumn(name = "id_terapia")
-    private Terapia terapia;
+    @Column(name = "id_terapia")
+    private Integer idTerapia; // 🔁 antes: private Terapia terapia
 
     // Getters y Setters
     public int getIdCita() {
@@ -53,35 +43,35 @@ public class Cita {
         this.estado = estado;
     }
 
-    public Horario getHorario() {
-        return horario;
+    public int getIdHorario() {
+        return idHorario;
     }
 
-    public void setHorario(Horario horario) {
-        this.horario = horario;
+    public void setIdHorario(int idHorario) {
+        this.idHorario = idHorario;
     }
 
-    public Usuario getPaciente() {
-        return paciente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setPaciente(Usuario paciente) {
-        this.paciente = paciente;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public Usuario getPsicologo() {
-        return psicologo;
+    public int getIdPsicologo() {
+        return idPsicologo;
     }
 
-    public void setPsicologo(Usuario psicologo) {
-        this.psicologo = psicologo;
+    public void setIdPsicologo(int idPsicologo) {
+        this.idPsicologo = idPsicologo;
     }
 
-    public Terapia getTerapia() {
-        return terapia;
+    public Integer getIdTerapia() {
+        return idTerapia;
     }
 
-    public void setTerapia(Terapia terapia) {
-        this.terapia = terapia;
+    public void setIdTerapia(Integer idTerapia) {
+        this.idTerapia = idTerapia;
     }
 }

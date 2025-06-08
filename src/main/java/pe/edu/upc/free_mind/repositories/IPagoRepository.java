@@ -15,12 +15,7 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
 
     /*Carlo*/
     //Obtiene la suma de pagos agrupados por mes
-    @Query(value = "SELECT EXTRACT(MONTH FROM h.fecha) AS mes, SUM(p.monto) AS montoTotal " +
-            "FROM pago p " +
-            "INNER JOIN cita c ON p.id_cita = c.id_cita " +
-            "INNER JOIN horario h ON c.id_horario = h.id_horario " +
-            "GROUP BY mes " +
-            "ORDER BY mes", nativeQuery = true)
+    @Query(value = "SELECT p.mes, SUM(p.monto) FROM pago p GROUP BY p.mes ORDER BY p.mes", nativeQuery = true)
     List<String[]> obtenerSumaPagosPorMes();
 
     /*Erick*/

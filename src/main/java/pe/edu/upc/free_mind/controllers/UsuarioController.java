@@ -6,7 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadPsicologosActivosDTO;
 import pe.edu.upc.free_mind.dtos.CantidadSumaPagoDTO;
-import pe.edu.upc.free_mind.dtos.CantidadUsuariosPorRol;
+import pe.edu.upc.free_mind.dtos.CantidadUsuariosPorRolDTO;
 import pe.edu.upc.free_mind.dtos.UsuarioDTO;
 import pe.edu.upc.free_mind.entities.Usuario;
 import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
@@ -29,7 +29,7 @@ public class UsuarioController {
 
 
     //Lista todos los usuarios existentes
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<UsuarioSeguroDTO> listar() {
         return usuarioService.list().stream().map(x -> {
@@ -39,7 +39,7 @@ public class UsuarioController {
     }
 
     //Registra un nuevo usuario
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void registrar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -48,14 +48,14 @@ public class UsuarioController {
     }
 
     //Elimina un usuario por su ID
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         usuarioService.delete(id);
     }
 
     //Obtiene un usuario por su ID
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public UsuarioSeguroDTO obtenerPorId(@PathVariable("id") Integer id) {
         Usuario u = usuarioService.listId(id);
@@ -64,7 +64,7 @@ public class UsuarioController {
     }
 
     //Modifica un usuario existente
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -73,7 +73,7 @@ public class UsuarioController {
     }
 
     //Obtiene el perfil del usuario autenticado
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/perfil")
     public UsuarioDTO obtenerPerfil(@AuthenticationPrincipal UserDetails userDetails) {
         String correo = userDetails.getUsername();
@@ -86,7 +86,7 @@ public class UsuarioController {
 
     /* Ariam */
     //Número de psicólogos activos
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(  "/psicologos-activos")
     public List<CantidadPsicologosActivosDTO> obtenerPsicologosActivos() {
 
@@ -106,7 +106,7 @@ public class UsuarioController {
     /*Renzo*/
 
     //Obtiene el monto total pagado por usuario
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/montos")
     public List<CantidadSumaPagoDTO> sumaPago() {
         List<CantidadSumaPagoDTO> dtoLista = new ArrayList<>();
@@ -121,13 +121,13 @@ public class UsuarioController {
     }
 
     //Obtiene el monto total de usuarios por roles
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/roles")
-    public List<CantidadUsuariosPorRol> cantidadUsuario(){
-        List<CantidadUsuariosPorRol> dtoLista = new ArrayList<>();
+    public List<CantidadUsuariosPorRolDTO> cantidadUsuario(){
+        List<CantidadUsuariosPorRolDTO> dtoLista = new ArrayList<>();
         List<String[]> fila = usuarioService.cantByUsuario();
         for (String[] columna : fila) {
-            CantidadUsuariosPorRol dto = new CantidadUsuariosPorRol();
+            CantidadUsuariosPorRolDTO dto = new CantidadUsuariosPorRolDTO();
             dto.setRol(columna[0]);
             dto.setCantidad(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
@@ -136,7 +136,7 @@ public class UsuarioController {
     }
 
     //Filtro
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/filtro")
     public List<UsuarioSeguroDTO> filtrarUsuarios(
             @RequestParam(required = false) String especialidad,

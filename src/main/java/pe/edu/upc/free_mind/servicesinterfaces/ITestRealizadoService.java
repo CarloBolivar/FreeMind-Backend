@@ -20,4 +20,9 @@ public interface ITestRealizadoService {
 
     //Actualiza un test realizado existente
     public void update(TestRealizado testRealizado);
+
+    //Reportes
+    /*Erick*/
+    //Obtiene la cantidad de tests completados por mes
+    public List<String[]> cantidadTestsPorMes();
 }

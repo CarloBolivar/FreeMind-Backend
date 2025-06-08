@@ -1,22 +1,22 @@
 package pe.edu.upc.free_mind.securities;
 
+
 import java.io.Serializable;
 
-//Clase que representa la respuesta JWT después de la autenticación
 public class JwtResponse implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8091879091924046844L;
 
-    //Token generado
-    private final String token;
+    private final String jwttoken;
 
-    //Constructor que recibe el token
-    public JwtResponse(String token) {
-        this.token = token;
+    public String getJwttoken() {
+        return jwttoken;
     }
 
-    //Devuelve el token
-    public String getToken() {
-        return token;
+    public JwtResponse(String jwttoken) {
+        super();
+        this.jwttoken = jwttoken;
     }
+
+
 }

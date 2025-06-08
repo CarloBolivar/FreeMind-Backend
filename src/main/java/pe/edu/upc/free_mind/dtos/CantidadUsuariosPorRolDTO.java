@@ -1,7 +1,7 @@
 package pe.edu.upc.free_mind.dtos;
 
 //DTO para representar el total de usuarios por rol
-public class CantidadUsuariosPorRol {
+public class CantidadUsuariosPorRolDTO {
     private String rol;
     private int cantidad;
 

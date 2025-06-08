@@ -21,6 +21,7 @@ public interface ICitaService {
     //Actualiza una cita existente con nuevos datos.
     public void update(Cita cita);
 
+
     //Reportes
     /*Carlo*/
     public List<String[]> obtenerCantidadCitasPorPsicologo();

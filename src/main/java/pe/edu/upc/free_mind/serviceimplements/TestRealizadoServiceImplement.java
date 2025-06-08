@@ -45,4 +45,13 @@ public class TestRealizadoServiceImplement implements ITestRealizadoService {
     public void update(TestRealizado testRealizado) {
         trR.save(testRealizado);
     }
+
+    //Reportes
+
+    /*Erick*/
+    //Obtiene la cantidad de tests completados por mes
+    @Override
+    public List<String[]> cantidadTestsPorMes() {
+        return trR.cantidadTestsPorMes();
+    }
 }

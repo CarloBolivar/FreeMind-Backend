@@ -12,13 +12,4 @@ import java.util.List;
 public interface ITestRepository extends JpaRepository<Test, Integer> {
 
     //Reportes
-
-    /*Erick*/
-    //Obtiene la cantidad de tests completados por mes (31 días)
-    @Query(value = "SELECT EXTRACT(MONTH FROM fecha) AS mes, COUNT(id_test) AS cantidadTests " +
-            "FROM test " +
-            "WHERE estado = 'Completado' " +
-            "GROUP BY mes " +
-            "ORDER BY mes", nativeQuery = true)
-    public List<String[]> cantidadTestsPorMes();
 }

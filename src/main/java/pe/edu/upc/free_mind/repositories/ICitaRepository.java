@@ -18,10 +18,11 @@ public interface ICitaRepository extends JpaRepository<Cita, Integer> {
     @Query(value = "SELECT u.nombre AS nombrePsicologo, COUNT(c.id_cita) AS cantidadCitas " +
             "FROM usuario u " +
             "INNER JOIN cita c ON u.id_usuario = c.id_psicologo " +
-            "WHERE u.id_rol = (SELECT id_rol FROM rol WHERE nombre = 'Psicólogo') " +
+            "WHERE u.id_rol = (SELECT id_rol FROM rol WHERE nombre = 'PSICOLOGO') " +
             "GROUP BY u.nombre " +
             "ORDER BY cantidadCitas DESC", nativeQuery = true)
-    List<String[]> obtenerCantidadCitasPorPsicologo();
+    public List<String[]> obtenerCantidadCitasPorPsicologo();
+
 
     /*Deyci*/
     //Obtiene la cantidad de citas por tipo de terapia

@@ -21,8 +21,5 @@ public interface ITestService {
     //Actualiza un test existente
     public void update(Test test);
 
-    //Reportes
-    /*Erick*/
-    //Obtiene la cantidad de tests completados por mes
-    public List<String[]> cantidadTestsPorMes();
+
 }

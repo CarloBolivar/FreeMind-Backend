@@ -11,13 +11,14 @@ public class TestRealizado {
     // Identificador único del test realizado
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTestRealizado;
+    @Column(name = "id_test_realizado")
+    private int idRealizado;
 
-    // Fecha en la que se completó el test (se llama 'fecha' en la BD)
+    // Fecha en la que se completó el test
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    // Resultado del test (definido como TEXT en la base de datos)
+    // Resultado del test
     @Column(name = "resultado", columnDefinition = "text")
     private String resultado;
 
@@ -32,12 +33,12 @@ public class TestRealizado {
     private Test test;
 
     // Getters y Setters
-    public int getIdTestRealizado() {
-        return idTestRealizado;
+    public int getIdRealizado() {
+        return idRealizado;
     }
 
-    public void setIdTestRealizado(int idTestRealizado) {
-        this.idTestRealizado = idTestRealizado;
+    public void setIdRealizado(int idRealizado) {
+        this.idRealizado = idRealizado;
     }
 
     public LocalDate getFecha() {
@@ -72,3 +73,4 @@ public class TestRealizado {
         this.test = test;
     }
 }
+
