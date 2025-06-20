@@ -1,5 +1,7 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Terapia;
+
 //DTO para transferir información de los recursos
 public class RecursoDTO {
 
@@ -13,9 +15,10 @@ public class RecursoDTO {
     private String url;
 
     //Identificador de la terapia asociada al recurso
-    private int idTerapia;
+    private Terapia terapia;
 
     //Getters y Setters
+
     public int getIdRecurso() {
         return idRecurso;
     }
@@ -40,11 +43,11 @@ public class RecursoDTO {
         this.url = url;
     }
 
-    public int getIdTerapia() {
-        return idTerapia;
+    public Terapia getTerapia() {
+        return terapia;
     }
 
-    public void setIdTerapia(int idTerapia) {
-        this.idTerapia = idTerapia;
+    public void setTerapia(Terapia terapia) {
+        this.terapia = terapia;
     }
 }

@@ -1,5 +1,8 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Test;
+import pe.edu.upc.free_mind.entities.Usuario;
+
 import java.time.LocalDate;
 
 //DTO para representar los datos de un test psicológico completado
@@ -15,12 +18,13 @@ public class TestRealizadoDTO {
     private String resultado;
 
     //Identificador del usuario que realizó el test
-    private int idUsuario;
+    private Usuario usuario;
 
     //Identificador del test que fue realizado
-    private int idTest;
+    private Test test;
 
     //Getters y Setters
+
     public int getIdTestRealizado() {
         return idTestRealizado;
     }
@@ -45,19 +49,19 @@ public class TestRealizadoDTO {
         this.resultado = resultado;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public int getIdTest() {
-        return idTest;
+    public Test getTest() {
+        return test;
     }
 
-    public void setIdTest(int idTest) {
-        this.idTest = idTest;
+    public void setTest(Test test) {
+        this.test = test;
     }
 }

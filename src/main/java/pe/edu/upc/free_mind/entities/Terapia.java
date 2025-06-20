@@ -20,6 +20,9 @@ public class Terapia {
     @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String descripcion;
 
+    public Terapia() {
+    }
+
     // Getters y Setters
     public int getIdTerapia() {
         return idTerapia;

@@ -25,6 +25,9 @@ public class Recurso {
     @JoinColumn(name = "id_terapia", nullable = false)
     private Terapia terapia;
 
+    public Recurso() {
+    }
+
     // Getters y Setters
     public int getIdRecurso() {
         return idRecurso;
