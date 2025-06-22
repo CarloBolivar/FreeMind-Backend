@@ -1,5 +1,7 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Usuario;
+
 import java.time.LocalDate;
 
 //DTO para transferir datos relacionados a comentarios realizados por usuarios
@@ -18,7 +20,7 @@ public class ComentarioDTO {
     private LocalDate fecha;
 
     //Identificador del usuario que realizó el comentario
-    private int idUsuario;
+    private Usuario usuario;
 
     //Getters y Setters
     public int getIdComentario() {
@@ -53,11 +55,11 @@ public class ComentarioDTO {
         this.fecha = fecha;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
