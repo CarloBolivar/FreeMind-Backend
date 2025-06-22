@@ -29,6 +29,7 @@ public class HorarioController {
             HorarioDTO dto = m.map(x, HorarioDTO.class);
             dto.setIdUsuario(x.getUsuario().getIdUsuario());
             dto.setDisponible(x.isDisponible());
+            dto.setNombreUsuario(x.getUsuario().getNombre());
             return dto;
         }).collect(Collectors.toList());
     }
