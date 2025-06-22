@@ -1,5 +1,6 @@
 package pe.edu.upc.free_mind.servicesinterfaces;
 
+import pe.edu.upc.free_mind.dtos.HorarioDTO;
 import pe.edu.upc.free_mind.entities.Horario;
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface IHorarioService {
 
     //Actualiza un horario existente
     public void update(Horario horario);
+
+    List<HorarioDTO> listDTO();
+
 }

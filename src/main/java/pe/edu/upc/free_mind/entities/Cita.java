@@ -34,6 +34,7 @@ public class Cita {
         return idCita;
     }
 
+
     public void setIdCita(int idCita) {
         this.idCita = idCita;
     }

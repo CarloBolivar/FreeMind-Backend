@@ -20,8 +20,18 @@ public class HorarioDTO {
 
     private boolean disponible;
 
+    private String nombreUsuario;
+
 
     //Getters y Setters
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
     public int getIdHorario() {
         return idHorario;
     }

@@ -3,7 +3,9 @@ package pe.edu.upc.free_mind.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.free_mind.entities.Cita;
+import pe.edu.upc.free_mind.entities.Horario;
 import pe.edu.upc.free_mind.repositories.ICitaRepository;
+import pe.edu.upc.free_mind.repositories.IHorarioRepository;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
 
 import java.util.List;
@@ -15,6 +17,9 @@ public class CitaServiceImplement implements ICitaService {
     //Repositorio para operaciones CRUD sobre Cita
     @Autowired
     private ICitaRepository cR;
+
+    @Autowired
+    private IHorarioRepository hR;
 
     //Inserta una nueva cita en la base de datos
     @Override
@@ -31,8 +36,20 @@ public class CitaServiceImplement implements ICitaService {
     //Elimina una cita según su ID
     @Override
     public void delete(int id) {
+        Cita cita = cR.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cita no encontrada"));
+
+        // Cambiar el horario a disponible
+        Horario horario = cita.getHorario();
+        if (horario != null) {
+            horario.setDisponible(true);
+            hR.save(horario); // ✅ Guarda el cambio en disponibilidad
+        }
+
+        // Ahora sí, elimina la cita
         cR.deleteById(id);
     }
+
 
     //Obtiene una cita por su ID
     @Override
