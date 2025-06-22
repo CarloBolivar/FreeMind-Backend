@@ -1,5 +1,7 @@
 package pe.edu.upc.free_mind.dtos;
 
+import pe.edu.upc.free_mind.entities.Cita;
+
 //DTO para transferir datos de la entidad Pago
 public class PagoDTO {
 
@@ -27,13 +29,14 @@ public class PagoDTO {
     //Correo electrónico asociado al pago
     private String correo;
 
-    //Identificador de la cita asociada al pago
-    private int idCita;
-
     //Monto del pago
     private int monto;
 
+    //Identificador de la cita asociada al pago
+    private Cita cita;
+
     //Getters y Setters
+
     public int getIdPago() {
         return idPago;
     }
@@ -98,19 +101,19 @@ public class PagoDTO {
         this.correo = correo;
     }
 
-    public int getIdCita() {
-        return idCita;
-    }
-
-    public void setIdCita(int idCita) {
-        this.idCita = idCita;
-    }
-
     public int getMonto() {
         return monto;
     }
 
     public void setMonto(int monto) {
         this.monto = monto;
+    }
+
+    public Cita getCita() {
+        return cita;
+    }
+
+    public void setCita(Cita cita) {
+        this.cita = cita;
     }
 }
