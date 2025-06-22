@@ -18,6 +18,9 @@ public class HorarioDTO {
     //Identificador del usuario (psicólogo) asociado al horario
     private int idUsuario;
 
+    private boolean disponible;
+
+
     //Getters y Setters
     public int getIdHorario() {
         return idHorario;
@@ -41,6 +44,14 @@ public class HorarioDTO {
 
     public void setHora(LocalTime hora) {
         this.hora = hora;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     public int getIdUsuario() {

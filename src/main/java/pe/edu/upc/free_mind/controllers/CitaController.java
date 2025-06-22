@@ -3,112 +3,117 @@ package pe.edu.upc.free_mind.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.free_mind.dtos.CantidadCitasPorPsicologoDTO;
-import pe.edu.upc.free_mind.dtos.CantidadCitasPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.CitaDTO;
-import pe.edu.upc.free_mind.dtos.CantidadTotalIngresosPorPsicologoDTO;
 import pe.edu.upc.free_mind.entities.Cita;
+import pe.edu.upc.free_mind.entities.Horario;
+import pe.edu.upc.free_mind.entities.Usuario;
+import pe.edu.upc.free_mind.entities.Terapia;
 import pe.edu.upc.free_mind.servicesinterfaces.ICitaService;
+import pe.edu.upc.free_mind.servicesinterfaces.IHorarioService;
+import pe.edu.upc.free_mind.servicesinterfaces.IUsuarioService;
+import pe.edu.upc.free_mind.servicesinterfaces.ITerapiaService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//Controlador REST para gestionar citas entre usuarios
 @RestController
 @RequestMapping("/citas")
 public class CitaController {
 
-    //Servicio para operaciones sobre Cita
     @Autowired
     private ICitaService citaService;
 
-    //Lista todas las citas existentes
+    @Autowired
+    private IHorarioService horarioService;
+
+    @Autowired
+    private IUsuarioService usuarioService;
+
+    @Autowired
+    private ITerapiaService terapiaService;
+
     @GetMapping
     public List<CitaDTO> listar() {
-        return citaService.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, CitaDTO.class);
+        return citaService.list().stream().map(c -> {
+            CitaDTO dto = new CitaDTO();
+            dto.setIdCita(c.getIdCita());
+            dto.setEstado(c.getEstado());
+            dto.setIdHorario(c.getHorario().getIdHorario());
+            dto.setIdPaciente(c.getPaciente().getIdUsuario());
+            dto.setIdPsicologo(c.getPsicologo().getIdUsuario());
+            dto.setIdTerapia(c.getTerapia() != null ? c.getTerapia().getIdTerapia() : null);
+            return dto;
         }).collect(Collectors.toList());
     }
 
-    //Registra una nueva cita
     @PostMapping
     public void insertar(@RequestBody CitaDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Cita c = m.map(dto, Cita.class);
+        Cita c = new Cita();
+        c.setEstado(dto.getEstado());
+
+        // Relaciones
+        Horario horario = horarioService.listId(dto.getIdHorario());
+        Usuario paciente = usuarioService.listId(dto.getIdPaciente());
+        Usuario psicologo = usuarioService.listId(dto.getIdPsicologo());
+        Terapia terapia = (dto.getIdTerapia() != null) ? terapiaService.listId(dto.getIdTerapia()) : null;
+
+        c.setHorario(horario);
+        c.setPaciente(paciente);
+        c.setPsicologo(psicologo);
+        c.setTerapia(terapia);
+
         citaService.insert(c);
+
+        // Marcar horario como no disponible
+        horario.setDisponible(false);
+        horarioService.update(horario);
     }
 
-    //Elimina una cita por su ID
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id) {
-        citaService.delete(id);
+    @PutMapping
+    public void modificar(@RequestBody CitaDTO dto) {
+        Cita c = citaService.listId(dto.getIdCita());
+        int idHorarioAnterior = c.getHorario().getIdHorario();
+
+        // Actualizar datos
+        c.setEstado(dto.getEstado());
+        Horario nuevoHorario = horarioService.listId(dto.getIdHorario());
+        Usuario paciente = usuarioService.listId(dto.getIdPaciente());
+        Usuario psicologo = usuarioService.listId(dto.getIdPsicologo());
+        Terapia terapia = (dto.getIdTerapia() != null) ? terapiaService.listId(dto.getIdTerapia()) : null;
+
+        c.setHorario(nuevoHorario);
+        c.setPaciente(paciente);
+        c.setPsicologo(psicologo);
+        c.setTerapia(terapia);
+
+        citaService.update(c);
+
+        // Si cambió el horario, liberar el anterior y ocupar el nuevo
+        if (idHorarioAnterior != nuevoHorario.getIdHorario()) {
+            Horario anterior = horarioService.listId(idHorarioAnterior);
+            anterior.setDisponible(true);
+            horarioService.update(anterior);
+
+            nuevoHorario.setDisponible(false);
+            horarioService.update(nuevoHorario);
+        }
     }
 
-    //Obtiene una cita por su ID
     @GetMapping("/{id}")
     public CitaDTO obtenerPorId(@PathVariable("id") Integer id) {
         Cita c = citaService.listId(id);
-        ModelMapper m = new ModelMapper();
-        return m.map(c, CitaDTO.class);
+        CitaDTO dto = new CitaDTO();
+        dto.setIdCita(c.getIdCita());
+        dto.setEstado(c.getEstado());
+        dto.setIdHorario(c.getHorario().getIdHorario());
+        dto.setIdPaciente(c.getPaciente().getIdUsuario());
+        dto.setIdPsicologo(c.getPsicologo().getIdUsuario());
+        dto.setIdTerapia(c.getTerapia() != null ? c.getTerapia().getIdTerapia() : null);
+        return dto;
     }
 
-    //Modifica una cita existente
-    @PutMapping
-    public void modificar(@RequestBody CitaDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Cita c = m.map(dto, Cita.class);
-        citaService.update(c);
-    }
-
-    //Reportes
-
-    /*Carlo*/
-
-    //Obtiene la cantidad de citas atendidas por cada psicólogo
-    @GetMapping("/cantidad-citas-por-psicologo")
-    public List<CantidadCitasPorPsicologoDTO> obtenerCantidadCitasPorPsicologo() {
-        List<CantidadCitasPorPsicologoDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = citaService.obtenerCantidadCitasPorPsicologo();
-        for (String[] columna : fila) {
-            CantidadCitasPorPsicologoDTO dto = new CantidadCitasPorPsicologoDTO();
-            dto.setNombrePsicologo(columna[0]);
-            dto.setCantidadCitas(Integer.parseInt(columna[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
-    /*Deyci*/
-
-    //Obtiene la cantidad de citas por tipo de terapias
-    @GetMapping("/cantidadCitasPorTerapia")
-    public List<CantidadCitasPorTerapiaDTO> obtenerCantidadCitasPorTerapia() {
-        List<CantidadCitasPorTerapiaDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = citaService.obtenerCantidadCitasPorTerapia();
-        for (String[] columna : fila) {
-            CantidadCitasPorTerapiaDTO dto = new CantidadCitasPorTerapiaDTO();
-            dto.setNameTerapia(columna[0]);
-            dto.setDescripcion(columna[1]);
-            dto.setQuantityCitas(Integer.parseInt(columna[2]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
-    //Obtiene el total de ingresos por psicólogo
-    @GetMapping("/totalIngresosPsicologos")
-    public List<CantidadTotalIngresosPorPsicologoDTO> obtenerTotalIngresosPorPsicologo() {
-        List<CantidadTotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = citaService.totalIngresosPorPsicologo();
-        for (String[] columna : fila) {
-            CantidadTotalIngresosPorPsicologoDTO dto = new CantidadTotalIngresosPorPsicologoDTO();
-            dto.setNombre(columna[0]);
-            dto.setApellido(columna[1]);
-            dto.setTotalIngresos(Integer.parseInt(columna[2]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id) {
+        citaService.delete(id);
     }
 }

@@ -22,6 +22,9 @@ public class Horario {
     @Column(name = "hora", nullable = false)
     private LocalTime hora;
 
+    @Column(name = "disponible", nullable = false)
+    private boolean disponible;
+
     // Usuario asociado (psicólogo)
     @ManyToOne
     @JoinColumn(name = "usuario_id_usuario", nullable = false)
@@ -52,6 +55,14 @@ public class Horario {
         this.hora = hora;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -59,4 +70,6 @@ public class Horario {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
 }
