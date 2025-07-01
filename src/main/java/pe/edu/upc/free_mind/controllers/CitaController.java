@@ -113,16 +113,17 @@ public class CitaController {
 
     /*Erick*/
     // Reporte de citas pendientes
-    @GetMapping("/citas-pendientes")
-    public List<CitaDTO> obtenerCitasPendientes() {
-        List<CitaDTO> dtoLista = new ArrayList<>();
-        List<String[]> fila = citaService.ObtenerCitasPendientes(); 
-        for (String[] columna : fila) {
-            CitaDTO dto = new CitaDTO();
-            dto.setIdCita(Integer.parseInt(columna[0])); // 
-            dto.setEstado(Integer.parseInt(columna[1])); // 
-            dtoLista.add(dto);
-        }
-        return dtoLista; // Retorna la lista de DTOs
+ @GetMapping("/citas-pendientes")
+ public List<CitaDTO> obtenerCitasPendientes() {
+    List<CitaDTO> dtoLista = new ArrayList<>();
+    List<String[]> fila = citaService.ObtenerCitasPendientes();
+
+    for (String[] columna : fila) {
+        CitaDTO dto = new CitaDTO();
+        dto.setIdCita(Integer.parseInt(columna[0]));  // ID de la cita
+        dto.setEstado(Integer.parseInt(columna[1]));  // Estado (pendiente, atendido, etc.)
+        dtoLista.add(dto);
     }
+  return dtoLista;
+}
 }
