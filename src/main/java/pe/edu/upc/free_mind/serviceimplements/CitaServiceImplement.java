@@ -43,7 +43,7 @@ public class CitaServiceImplement implements ICitaService {
         Horario horario = cita.getHorario();
         if (horario != null) {
             horario.setDisponible(true);
-            hR.save(horario); // ✅ Guarda el cambio en disponibilidad
+            hR.save(horario); // Guarda el cambio en disponibilidad
         }
 
         // Ahora sí, elimina la cita

@@ -10,6 +10,4 @@ import java.util.List;
 //Repositorio para operaciones CRUD sobre Test
 @Repository
 public interface ITestRepository extends JpaRepository<Test, Integer> {
-
-    //Reportes
 }
