@@ -21,7 +21,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query(value = "SELECT u.nombre, SUM(p.monto) " +
             "FROM Usuario u " +
             "INNER JOIN Pago p " +
-            "ON u.id_usuario = p.id_usuario " +
+            "ON u.nombre = p.nombres " +
             "GROUP BY u.nombre", nativeQuery = true)
     public List<String[]> amountByUsuario();
   
