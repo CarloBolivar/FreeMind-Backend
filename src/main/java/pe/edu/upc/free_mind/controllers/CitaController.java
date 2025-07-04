@@ -1,6 +1,7 @@
 package pe.edu.upc.free_mind.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadCitasPorTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.CantidadTotalIngresosPorPsicologoDTO;
@@ -135,6 +136,7 @@ public class CitaController {
         return dtoLista;
     }
     //Obtiene el total de ingresos por psicólogo
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/totalIngresosPsicologos")
     public List<CantidadTotalIngresosPorPsicologoDTO> obtenerTotalIngresosPorPsicologo() {
         List<CantidadTotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();

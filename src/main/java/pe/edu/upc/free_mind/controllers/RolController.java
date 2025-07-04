@@ -21,7 +21,7 @@ public class RolController {
     private IRolService rolService;
 
     //Lista todos los roles registrados
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<RolDTO> listar() {
         return rolService.list().stream().map(x -> {
@@ -31,7 +31,7 @@ public class RolController {
     }
 
     //Inserta un nuevo rol en la base de datos
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody RolDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -40,14 +40,14 @@ public class RolController {
     }
 
     //Elimina un rol por ID
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         rolService.delete(id);
     }
 
     //Obtiene un rol por su ID
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public RolDTO obtenerPorId(@PathVariable("id") Integer id) {
         Rol r = rolService.listId(id);
@@ -56,7 +56,7 @@ public class RolController {
     }
 
     //Actualiza un rol existente
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody RolDTO dto) {
         ModelMapper m = new ModelMapper();

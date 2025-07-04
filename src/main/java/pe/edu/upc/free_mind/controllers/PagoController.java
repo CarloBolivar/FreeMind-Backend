@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadMontoPorTipoDeTerapiaDTO;
 import pe.edu.upc.free_mind.dtos.PagoDTO;
@@ -66,6 +67,7 @@ public class PagoController {
     /*Carlo*/
 
     //Obtiene la suma de pagos agrupados por mes
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/suma-pagos-por-mes")
     public List<CantidadSumaPagosPorMesDTO> obtenerSumaPagosPorMes() {
         List<CantidadSumaPagosPorMesDTO> dtoLista = new ArrayList<>();
@@ -80,6 +82,7 @@ public class PagoController {
     }
 
     /*Erick*/
+    @PreAuthorize("hasAuthority('ADMIN')")
     //Obtiene el monto total generado por tipo de terapia
     @GetMapping("/monto-total-por-tipo-de-terapia")
     public List<CantidadMontoPorTipoDeTerapiaDTO> obtenerMontoPorTipoDeTerapia() {
