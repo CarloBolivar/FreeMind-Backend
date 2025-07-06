@@ -24,6 +24,7 @@ public class PagoController {
     private IPagoService pagoService;
 
     //Lista todos los pagos registrados
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @GetMapping
     public List<PagoDTO> listar() {
         return pagoService.list().stream().map(x -> {
@@ -33,6 +34,7 @@ public class PagoController {
     }
 
     //Registra un nuevo pago
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @PostMapping
     public void insertar(@RequestBody PagoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -41,12 +43,14 @@ public class PagoController {
     }
 
     //Elimina un pago por su ID
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         pagoService.delete(id);
     }
 
     //Obtiene un pago por su ID
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @GetMapping("/{id}")
     public PagoDTO obtenerPorId(@PathVariable("id") Integer id) {
         Pago p = pagoService.listId(id);
@@ -55,6 +59,7 @@ public class PagoController {
     }
 
     //Modifica un pago existente
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @PutMapping
     public void modificar(@RequestBody PagoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -82,8 +87,9 @@ public class PagoController {
     }
 
     /*Erick*/
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     //Obtiene el monto total generado por tipo de terapia
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/monto-total-por-tipo-de-terapia")
     public List<CantidadMontoPorTipoDeTerapiaDTO> obtenerMontoPorTipoDeTerapia() {
         List<CantidadMontoPorTipoDeTerapiaDTO> dtoLista = new ArrayList<>();

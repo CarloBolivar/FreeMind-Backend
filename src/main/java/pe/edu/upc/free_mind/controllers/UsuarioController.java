@@ -86,6 +86,7 @@ public class UsuarioController {
 
     /* Ariam */
     //Número de psicólogos activos
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(  "/psicologos-activos")
     public List<CantidadPsicologosActivosDTO> obtenerPsicologosActivos() {
 

@@ -19,12 +19,11 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     /*Renzo*/
     //Obtiene el monto total pagado por cada usuario
     @Query(value = "SELECT u.nombre, SUM(p.monto) " +
-            "FROM Usuario u " +
-            "INNER JOIN Pago p " +
-            "ON u.id_usuario = p.id_usuario " +
-            "ON u.nombre = p.nombres " +
+            "FROM usuario u " +
+            "INNER JOIN cita c ON u.id_usuario = c.id_paciente " +
+            "INNER JOIN pago p ON c.id_cita = p.id_cita " +
             "GROUP BY u.nombre", nativeQuery = true)
-    public List<String[]> amountByUsuario();
+    List<String[]> amountByUsuario();
 
       //Obtiene la cantidad de usuarios por rol
     @Query(value = "SELECT r.nombre, COUNT(u.id_usuario)\n" +

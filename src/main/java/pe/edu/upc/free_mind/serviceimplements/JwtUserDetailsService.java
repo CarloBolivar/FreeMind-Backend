@@ -28,7 +28,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
 
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(user.getRol().getNombre())); // si es un solo rol
+        roles.add(new SimpleGrantedAuthority(user.getRol().getNombre()));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getCorreo(),
@@ -37,5 +37,10 @@ public class JwtUserDetailsService implements UserDetailsService {
                 true, true, true,
                 roles
         );
+    }
+
+    // Agregar para el controlador de login
+    public Usuario findByCorreo(String correo) {
+        return repo.findByCorreo(correo);
     }
 }

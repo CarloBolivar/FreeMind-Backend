@@ -23,13 +23,13 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository uR;
 
-    //Inserta un nuevo usuario en la base de datos,deja el usuario habilitado y el password encoder encripta la contraseña
+    //Inserta un nuevo usuario en la base de datos deja el usuario habilitado y el password encoder encripta la contraseña
     @Override
-    public void insert(Usuario usuario) {
+    public Usuario insert(Usuario usuario) {
         String encriptada = passwordEncoder.encode(usuario.getContrasena());
         usuario.setContrasena(encriptada);
         usuario.setEnabled(true);
-        uR.save(usuario);
+        return uR.save(usuario);
     }
 
     //Lista todos los usuarios registrados.

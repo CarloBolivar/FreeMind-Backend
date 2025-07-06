@@ -32,21 +32,22 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         final String requestTokenHeader = request.getHeader("Authorization");
 
+        if (requestTokenHeader == null || !requestTokenHeader.startsWith("Bearer ")) {
+            // No hay token o no comienza con Bearer → continuar sin autenticar
+            chain.doFilter(request, response);
+            return;
+        }
+
         String username = null;
         String jwtToken = null;
 
-        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-            jwtToken = requestTokenHeader.substring(7);
-            try {
-                username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-            } catch (IllegalArgumentException e) {
-                System.out.println("No se puede encontrar el token JWT");
-            } catch (ExpiredJwtException e) {
-                System.out.println("Token JWT ha expirado");
-            }
-        } else {
-            logger.warn("JWT Token no inicia con la palabra Bearer");
-            System.out.println(requestTokenHeader);
+        jwtToken = requestTokenHeader.substring(7);
+        try {
+            username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+        } catch (IllegalArgumentException e) {
+            System.out.println("No se puede obtener el token JWT");
+        } catch (ExpiredJwtException e) {
+            System.out.println("Token JWT ha expirado");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -64,4 +65,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         chain.doFilter(request, response);
     }
+
 }

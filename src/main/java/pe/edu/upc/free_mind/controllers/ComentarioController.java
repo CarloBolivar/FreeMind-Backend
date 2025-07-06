@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.CantidadComentariosPorUsuarioDTO;
 import pe.edu.upc.free_mind.dtos.ComentarioDTO;
@@ -21,6 +22,7 @@ public class ComentarioController {
     private IComentarioService comentarioService;
 
     //Lista todos los comentarios
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @GetMapping
     public List<ComentarioDTO> listar() {
         return comentarioService.list().stream().map(x -> {
@@ -30,6 +32,7 @@ public class ComentarioController {
     }
 
     //Registra un nuevo comentario
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @PostMapping
     public void insertar(@RequestBody ComentarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -38,12 +41,14 @@ public class ComentarioController {
     }
 
     //Elimina un comentario por su ID
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         comentarioService.delete(id);
     }
 
     //Obtiene un comentario por su ID
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @GetMapping("/{id}")
     public ComentarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Comentario c = comentarioService.listId(id);
@@ -52,6 +57,7 @@ public class ComentarioController {
     }
 
     //Modifica un comentario existente
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @PutMapping
     public void modificar(@RequestBody ComentarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -61,6 +67,7 @@ public class ComentarioController {
 
     //Reportes
     /*Mauricio*/
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @GetMapping("/cantidad-comentarios-por-usuario")
     public List<CantidadComentariosPorUsuarioDTO> cantidadComentariosPorUsuario() {
         return comentarioService.cantidadComentariosPorUsuario();

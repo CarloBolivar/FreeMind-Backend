@@ -11,7 +11,7 @@ public interface IUsuarioService {
     public List<Usuario> list();
 
     //Inserta un nuevo usuario en el sistema
-    public void insert(Usuario usuario);
+    Usuario insert(Usuario usuario);
 
     //Elimina un usuario específico del sistema basado en su ID
     public void delete(int id);
@@ -33,7 +33,7 @@ public interface IUsuarioService {
     public List<String[]> cantByUsuario();
 
     /*Ariam*/
-    //obtenerPsicologos activos
+    //obtener psicologos activos
     List<String[]> getPsicologosActivos();
 
     //Filtro

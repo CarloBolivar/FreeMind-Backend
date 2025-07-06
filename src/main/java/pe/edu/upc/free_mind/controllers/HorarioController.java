@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.HorarioDTO;
 import pe.edu.upc.free_mind.entities.Horario;
@@ -22,6 +23,7 @@ public class HorarioController {
     @Autowired
     private IUsuarioService usuarioService;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @GetMapping
     public List<HorarioDTO> listar() {
         return horarioService.list().stream().map(x -> {
@@ -34,6 +36,7 @@ public class HorarioController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @PostMapping
     public void insertar(@RequestBody HorarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,6 +47,7 @@ public class HorarioController {
         horarioService.insert(h);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @PutMapping
     public void modificar(@RequestBody HorarioDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -54,6 +58,7 @@ public class HorarioController {
         horarioService.update(h);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @GetMapping("/{id}")
     public HorarioDTO obtenerPorId(@PathVariable("id") Integer id) {
         Horario h = horarioService.listId(id);
@@ -64,21 +69,26 @@ public class HorarioController {
         return dto;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         horarioService.delete(id);
     }
 
+    //Reportes
+
     // Lista horarios disponibles de un psicólogo específico
-    @GetMapping("/disponibles/{idPsicologo}")
-    public List<HorarioDTO> listarDisponiblesPorPsicologo(@PathVariable("idPsicologo") int idPsicologo) {
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
+    @GetMapping("/disponibles")
+    public List<HorarioDTO> listarTodosLosDisponibles() {
         return horarioService.list().stream()
-                .filter(h -> h.isDisponible() && h.getUsuario().getIdUsuario() == idPsicologo)
+                .filter(Horario::isDisponible)
                 .map(h -> {
                     ModelMapper m = new ModelMapper();
                     HorarioDTO dto = m.map(h, HorarioDTO.class);
                     dto.setIdUsuario(h.getUsuario().getIdUsuario());
                     dto.setDisponible(h.isDisponible());
+                    dto.setNombreUsuario(h.getUsuario().getNombre());
                     return dto;
                 })
                 .collect(Collectors.toList());

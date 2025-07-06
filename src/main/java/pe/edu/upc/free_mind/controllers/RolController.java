@@ -63,4 +63,13 @@ public class RolController {
         Rol r = m.map(dto, Rol.class);
         rolService.update(r);
     }
+
+    // Ruta pública para obtener solo PACIENTE y PSICOLOGO
+    @GetMapping("/publicos")
+    public List<RolDTO> listarPublicos() {
+        return rolService.list().stream()
+                .filter(r -> r.getNombre().equalsIgnoreCase("PACIENTE") || r.getNombre().equalsIgnoreCase("PSICOLOGO"))
+                .map(r -> new ModelMapper().map(r, RolDTO.class))
+                .collect(Collectors.toList());
+    }
 }

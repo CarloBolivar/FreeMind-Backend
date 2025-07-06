@@ -35,6 +35,7 @@ public class CitaController {
     @Autowired
     private ITerapiaService terapiaService;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @GetMapping
     public List<CitaDTO> listar() {
         return citaService.list().stream().map(c -> {
@@ -48,7 +49,7 @@ public class CitaController {
             return dto;
         }).collect(Collectors.toList());
     }
-
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @PostMapping
     public void insertar(@RequestBody CitaDTO dto) {
         Cita c = new Cita();
@@ -72,6 +73,7 @@ public class CitaController {
         horarioService.update(horario);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @PutMapping
     public void modificar(@RequestBody CitaDTO dto) {
         Cita c = citaService.listId(dto.getIdCita());
@@ -102,6 +104,7 @@ public class CitaController {
         }
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @GetMapping("/{id}")
     public CitaDTO obtenerPorId(@PathVariable("id") Integer id) {
         Cita c = citaService.listId(id);
@@ -115,6 +118,7 @@ public class CitaController {
         return dto;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO','PACIENTE')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         citaService.delete(id);
@@ -122,6 +126,7 @@ public class CitaController {
 
     //Reportes - Deyci
     //Obtiene la cantidad de citas por tipo de terapias
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @GetMapping("/cantidadCitasPorTerapia")
     public List<CantidadCitasPorTerapiaDTO> obtenerCantidadCitasPorTerapia() {
         List<CantidadCitasPorTerapiaDTO> dtoLista = new ArrayList<>();
@@ -136,7 +141,7 @@ public class CitaController {
         return dtoLista;
     }
     //Obtiene el total de ingresos por psicólogo
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PSICOLOGO')")
     @GetMapping("/totalIngresosPsicologos")
     public List<CantidadTotalIngresosPorPsicologoDTO> obtenerTotalIngresosPorPsicologo() {
         List<CantidadTotalIngresosPorPsicologoDTO> dtoLista = new ArrayList<>();

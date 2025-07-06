@@ -2,6 +2,7 @@ package pe.edu.upc.free_mind.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.free_mind.dtos.RespuestaTestDTO;
 import pe.edu.upc.free_mind.entities.RespuestaTest;
@@ -20,6 +21,7 @@ public class RespuestaTestController {
     private IRespuestaTestService respuestaTestService;
 
     //Lista todas las respuestas del test
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @GetMapping
     public List<RespuestaTestDTO> listar() {
         return respuestaTestService.list().stream().map(x -> {
@@ -29,6 +31,7 @@ public class RespuestaTestController {
     }
 
     //Inserta una nueva respuesta de test
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @PostMapping
     public void insertar(@RequestBody RespuestaTestDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -37,12 +40,14 @@ public class RespuestaTestController {
     }
 
     //Elimina una respuesta por su ID
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         respuestaTestService.delete(id);
     }
 
     //Obtiene una respuesta por su ID
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @GetMapping("/{id}")
     public RespuestaTestDTO obtenerPorId(@PathVariable("id") Integer id) {
         RespuestaTest r = respuestaTestService.listId(id);
@@ -51,6 +56,7 @@ public class RespuestaTestController {
     }
 
     //Modifica una respuesta existente
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'PACIENTE')")
     @PutMapping
     public void modificar(@RequestBody RespuestaTestDTO dto) {
         ModelMapper m = new ModelMapper();
